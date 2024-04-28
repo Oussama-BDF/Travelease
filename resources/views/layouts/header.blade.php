@@ -10,6 +10,9 @@
             <a class="nav-link" href="{{route('home')}}">Home</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{route('trips.index')}}">Trips</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{route('transports.index')}}">Transports</a>
         </li>
       </ul>
