@@ -1,7 +1,6 @@
 <div class="col-md-4 mb-4 text-center">
     <div class="card bg-dark text-white">
         <div class="card-body">
-            <h5 class="card-title">Category : {{ $transport->category }}</h5>
             <p class="card-text">Name : {{$transport->name}}</p>
         </div>
         <div class="card-footer text-muted d-flex justify-content-around">

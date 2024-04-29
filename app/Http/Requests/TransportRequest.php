@@ -22,7 +22,6 @@ class TransportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => 'required|max:20',
             'name' => 'required|max:20',
         ];
     }

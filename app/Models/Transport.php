@@ -10,7 +10,6 @@ class Transport extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category',
         'name',
     ];
 }

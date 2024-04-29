@@ -6,13 +6,6 @@
             @csrf
             @method('PUT')
             <div class="form-group mb-3">
-                <label for="category">Category:</label>
-                <input class="form-control" type="text" id="category" name="category" placeholder="Enter category" value='{{old("category", $transport->category)}}'>
-                @error('category')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group mb-3">
                 <label for="name">Name:</label>
                 <input class="form-control" type="text" id="name" name="name" placeholder="Enter name" value='{{old("name", $transport->name)}}'>
                 @error('name')

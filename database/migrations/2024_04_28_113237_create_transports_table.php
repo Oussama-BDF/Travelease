@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('transports', function (Blueprint $table) {
             $table->id();
-            $table->string('category', 20);
             $table->string('name', 20);
             $table->timestamps();
         });
