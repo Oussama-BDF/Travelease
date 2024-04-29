@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Trip;
 use App\Models\Transport;
+use App\Models\Activity;
 use App\Http\Requests\TripRequest;
+use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
@@ -33,13 +35,29 @@ class TripController extends Controller
     public function store(TripRequest $request)
     {
         // Retrieve form data
-        $formFields = $request->post();
+        $formFields = $request->validated();
+
         // Check if the transport id exist in the db (security)
         if (empty(Transport::find($formFields['transport_id']))) {
             return to_route('trips.index')->with('failed', 'Cannot Create This Trip, Try Again');
         }
+
         // Create the trip
         $trip = Trip::create($formFields);
+
+        // Store the activities
+        if ($request->has('activity_price') && $request->has('activity_name')) {
+            // Prepare activities data
+            $activitiesData = [];
+            foreach ($request->activity_name as $key => $activity_name) {
+                $activitiesData[] = [
+                    'name' => $activity_name,
+                    'price' => $request->activity_price[$key],
+                ];
+            }
+            // Create activities in the db
+            $trip->activities()->createMany($activitiesData);
+        }
         return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
     }
 
@@ -66,16 +84,29 @@ class TripController extends Controller
     public function update(TripRequest $request, Trip $trip)
     {
         // Retrieve form data
-        $formFields = $request->post();
+        $formFields = $request->validated();
         // Fill the trip object
         $trip->fill($formFields);
-        // Check if there is an update in the object
+        // Check if there is an update in the trip object
         if ($trip->isDirty()) {
             $trip->save();
-            return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Updated Successfully');
-        } else {
-            return to_route('trips.index')->with('warning', 'No changes were made to the Trip');
         }
+        
+        // Delete activities related to the trip
+        $trip->activities()->delete();
+        // Update or create activities
+        if ($request->has('activity_name') && $request->has('activity_price')) {
+            foreach ($request->activity_name as $key => $activity_name) {
+                $activitiesData[] = [
+                    'name' => $activity_name,
+                    'price' => $request->activity_price[$key],
+                ];
+            }
+            // Create the activities
+            $trip->activities()->createMany($activitiesData);
+        }
+
+        return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Updated Successfully');
     }
 
     /**

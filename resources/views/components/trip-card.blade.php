@@ -4,9 +4,8 @@
             <h5 class="card-title">{{ $trip->destination }}</h5>
             <p class="card-text">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>
         </div>
-        <span class="list-group-item">Start at: {{ $trip->start_at }} End At: {{ $trip->end_at }}</span>
-        <span class="list-group-item">Transport Category: {{ $trip->transport?->category ?? "Undefined" }}</span>
-        <span class="list-group-item">Transport Name: {{ $trip->transport?->name ?? "Undefined" }}</span>
+        <span class="list-group-item"><b>Start at:</b> {{ $trip->start_at }} <b>End At:</b> {{ $trip->end_at }}</span>
+        <span class="list-group-item"><b>Transport:</b> {{ $trip->transport?->name ?? "Undefined" }}</span>
         <span class="list-group-item" style="color: #8f0c0c"><b>Price: {{ $trip->price }}</b></span>
         <div class="card-footer text-muted d-flex justify-content-around">
             <a href="{{ route('trips.show', $trip->id) }}" class="btn btn-primary">View Details</a>
