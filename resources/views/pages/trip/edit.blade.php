@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="my-4">Edit Trip</h1>
         <a href="{{route('trips.index')}}" class="btn btn-secondary">Back</a>
-        <form action="{{route('trips.update', $trip->id)}}" method="post" class="my-4">
+        <form action="{{route('trips.update', $trip->id)}}" method="post" class="my-4" enctype='multipart/form-data'>
             @csrf
             @method('PUT')
             <div class="row">
@@ -41,7 +41,7 @@
                         <select class="form-control" id="transport_id" name="transport_id">
                             <option value="">Select Transport</option>
                             @foreach($transports as $transport)
-                                <option @selected($transport->id == old('transport_id', $trip->transport_id)) value="{{ $transport->id }}">{{ $transport->name }} - {{$transport->category}}</option>
+                                <option @selected($transport->id == old('transport_id', $trip->transport_id)) value="{{ $transport->id }}">{{ $transport->name }}</option>
                             @endforeach
                         </select>
                         @error('transport_id')
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <h4>Activities :</h4>
+            <label>Activities :</label>
             <button id="add-activity" type="button" class="btn btn-primary rounded-circle">+</button>
             <div class="" id="activity-container">
                 @foreach($trip->activities as $key => $activity)
@@ -93,6 +93,21 @@
                     @endif
                 @endforeach
             </div>
+
+            <label>Images:</label>
+            <div id="image-container">
+                @foreach($trip->images as $key => $image)
+                    <x-image-input :key="$key+1" :id="$image->id"/>
+                    <div class="bg-dark mb-3" style="width: 100px">
+                        <img src="{{ asset('storage/'.$image->thumbnail) }}" style="width: 100px" class="" alt="...">
+                    </div>
+                @endforeach
+
+                @for($i=count($trip->images); $i<3; $i++)
+                    <x-image-input :key="$i+1" id=""/>
+                @endfor
+            </div>
+
             <div class="d-flex justify-content-between my-2">
                 <button type="submit" class="btn btn-primary">Edit</button>
                 <input type="reset" class="btn btn-primary float-right" value="Reset">

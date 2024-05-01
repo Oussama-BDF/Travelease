@@ -1,3 +1,4 @@
+@props(['trip'])
 <div class="col-md-4 mb-4 text-center">
     <div class="card bg-dark text-white">
         <div class="card-body">

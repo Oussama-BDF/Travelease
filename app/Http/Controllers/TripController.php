@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Trip;
 use App\Models\Transport;
 use App\Models\Activity;
-use App\Http\Requests\TripRequest;
+use App\Models\Image;
+use App\Http\Requests\StoreTripRequest;
+use App\Http\Requests\UpdateTripRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class TripController extends Controller
 {
@@ -32,7 +37,7 @@ class TripController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TripRequest $request)
+    public function store(StoreTripRequest $request)
     {
         // Retrieve form data
         $formFields = $request->validated();
@@ -58,6 +63,24 @@ class TripController extends Controller
             // Create activities in the db
             $trip->activities()->createMany($activitiesData);
         }
+
+        // Store the images
+        $imagesData = [];
+        for ($i=1; $i<=3; $i++) {
+            if ($request->hasFile('image'.$i)) {
+                // Upload the images
+                $originalImagePath = $request->file('image'.$i)->store('trip', 'public');
+                $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'thumbnails');
+                // Prepare images data
+                $imagesData[] = [
+                    'path' => $originalImagePath,
+                    'thumbnail' => $thumbnailImagePath,
+                ];
+            }
+        }
+        // Create the images in the db
+        $trip->images()->createMany($imagesData);
+        
         return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
     }
 
@@ -81,7 +104,7 @@ class TripController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TripRequest $request, Trip $trip)
+    public function update(UpdateTripRequest $request, Trip $trip)
     {
         // Retrieve form data
         $formFields = $request->validated();
@@ -106,6 +129,36 @@ class TripController extends Controller
             $trip->activities()->createMany($activitiesData);
         }
 
+        // Store the images
+        // Todo : Allow the admin to delete an image.
+        $imagesData = [];
+        for ($i=1; $i<=3; $i++) {
+            if ($request->hasFile('image'.$i)) {
+                // Upload the new image to the server
+                $originalImagePath = $request->file('image'.$i)->store('trip', 'public');
+                $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'thumbnails');
+                // Delete the old image from the server & from the db if exist
+                if ($image = Image::find($request->{"id$i"})) {
+                    static::deleteFile($image->path);
+                    static::deleteFile($image->thumbnail);
+                    $image->delete();
+                }
+                // Prepare the new images data to store in the db
+                $imagesData[] = [
+                    'id' => $request->{"id$i"} ?? null,
+                    'path' => $originalImagePath,
+                    'thumbnail' => $thumbnailImagePath,
+                    'trip_id' => $trip->id,
+                ];
+            }
+        }
+        // Create or update images in the database
+        Image::upsert(
+            $imagesData,
+            ['id'],
+            ['path', 'thumbnail', 'trip_id']
+        );
+
         return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Updated Successfully');
     }
 
@@ -114,7 +167,46 @@ class TripController extends Controller
      */
     public function destroy(Trip $trip)
     {
+        // Delete the images from the server
+        foreach ($trip->images as $image) {
+            $fileToDelete = $image->path;
+            static::deleteFile($image->path);
+            static::deleteFile($image->thumbnail);
+        }
+
+        // Delete the trip from the db
         $trip->delete();
+
         return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Deleted Successfully');
+    }
+
+    public static function ResizeStoreImage($OriginalImage, $place) {
+        // create image manager with desired driver
+        $manager = new ImageManager(new Driver());
+
+        // Generate unique file name for the thumbnail image
+        $thumbnailImageName = time() . '.' . $OriginalImage->getClientOriginalExtension();
+
+        // read image from file system
+        $image = $manager->read($OriginalImage);
+
+        // resize image
+        $image->scale(width: 100);
+
+        $thumbnailImagePath = $place . '/' . $thumbnailImageName;
+
+        // save modified image in new format 
+        $image->toPng()->save('storage/' . $thumbnailImagePath);
+
+        // Return the file path
+        return $thumbnailImagePath;
+    }
+
+    public static function deleteFile($fileToDelete) {
+        // Check if the file exists before attempting to delete it
+        if (Storage::disk('public')->exists($fileToDelete)) {
+            // Delete the file
+            Storage::disk('public')->delete($fileToDelete);
+        }
     }
 }

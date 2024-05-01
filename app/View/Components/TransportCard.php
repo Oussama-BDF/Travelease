@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class activityInput extends Component
+class TransportCard extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class activityInput extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.activity-input');
+        return view('components.transport-card');
     }
 }

@@ -24,7 +24,7 @@
                         <h4>accommodation : </h4> {{ $trip->accommodation}}
                     </div>
                     <div class="card-text">
-                        <h4>Transport : </h4>{{ $trip->transport?->category ?? "Undefined" }} - {{ $trip->transport?->name}}
+                        <h4>Transport : </h4>{{ $trip->transport?->name  ?? "Undefined" }}
                     </div>
                     <div class="card-text">
                         <h4>Activities : </h4>
@@ -38,6 +38,13 @@
                     </div>
                 </div>
             </div>
+            @foreach($trip->images as $image)
+            <div class="col-md-4 mb-4 text-center">
+                <div class="card bg-dark text-white">
+                    <img src="{{ asset('storage/'.$image->path) }}" class="card-img-top" alt="...">
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </x-master>

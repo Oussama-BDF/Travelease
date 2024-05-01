@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TripRequest extends FormRequest
+class UpdateTripRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,6 +31,9 @@ class TripRequest extends FormRequest
             'description' => 'nullable|string',
             'activity_price.*' => 'required|numeric|max:9999.99',
             'activity_name.*' => 'required',
+            'image1' => 'image|mimes:jpg,jpeg,png',
+            'image2' => 'image|mimes:jpg,jpeg,png',
+            'image3' => 'image|mimes:jpg,jpeg,png',
         ];
     }
 
@@ -41,7 +44,9 @@ class TripRequest extends FormRequest
             'activity_price.*.required' => 'The price field is required.',
             'activity_price.*.numeric' => 'The activity price field must be a number.',
             'activity_price.*.max' => 'The activity price field must not be greater than 9999.99.',
-            'transport_id' => 'The transport field is required.',
+            'transport_id.required' => 'The transport field is required.',
+            'image*.mimes' => 'The image field must be a file of type: jpg, jpeg.',
+            'image*.image' => 'The image field must be an image.',
         ];
     }
 }

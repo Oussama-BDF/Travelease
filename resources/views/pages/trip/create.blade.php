@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="my-4">Add Trip</h1>
         <a href="{{route('trips.index')}}" class="btn btn-secondary">Back</a>
-        <form action="{{route('trips.store')}}" method="post" class="my-4">
+        <form action="{{route('trips.store')}}" method="post" class="my-4" enctype='multipart/form-data'>
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -40,7 +40,7 @@
                         <select class="form-control" id="transport_id" name="transport_id">
                             <option value="">Select Transport</option>
                             @foreach($transports as $transport)
-                                <option @selected($transport->id == old('transport_id')) value="{{ $transport->id }}">{{ $transport->name }} - {{$transport->category}}</option>
+                                <option @selected($transport->id == old('transport_id')) value="{{ $transport->id }}">{{ $transport->name }}</option>
                             @endforeach
                         </select>
                         @error('transport_id')
@@ -80,20 +80,21 @@
                     </div>
                 </div>
             </div>
-            <h4>Activities :</h4>
+            <label>Activities :</label>
             <button id="add-activity" type="button" class="btn btn-primary rounded-circle">+</button>
             <div id="activity-container">
-                @error('activity_price.*')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                @error('activity_name.*')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-
                 @foreach(old("activity_name") ?? [] as $key => $activity_name)
                     <x-activity-input :key="$key"  :activity_price="old('activity_price.' . $key)" :activity_name="$activity_name" />
                 @endforeach
             </div>
+            
+            <label>Images :</label>
+            <div id="image-container">
+                @for($i=0; $i<3; $i++)
+                    <x-image-input :key="$i+1" id="" />
+                @endfor
+            </div>
+
             <div class="d-flex justify-content-between my-2">
                 <button type="submit" class="btn btn-primary">Add</button>
                 <input type="reset" class="btn btn-primary float-right" value="Reset">

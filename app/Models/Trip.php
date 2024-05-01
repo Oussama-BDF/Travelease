@@ -26,4 +26,8 @@ class Trip extends Model
     public function activities() {
         return $this->hasMany(Activity::class);
     }
+
+    public function images() {
+        return $this->hasMany(Image::class);
+    }
 }
