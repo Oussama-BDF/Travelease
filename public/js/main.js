@@ -29,3 +29,16 @@ var btnRemoveActivity = document.querySelectorAll('button.delete-activity')
 function removeActivity(ele) {
     ele.parentNode.remove()
 }
+
+
+// Delete Image
+function deleteImage(checkbox) {
+    // Find the parent container of the checkbox
+    const parentContainer = checkbox.parentNode;
+
+    // Find the previous sibling (input element) of the parent container
+    const input = parentContainer.previousElementSibling.querySelector('input[type="file"]');
+
+    // If checkbox is checked, disable the input; otherwise, enable it
+    input.disabled = checkbox.checked
+}

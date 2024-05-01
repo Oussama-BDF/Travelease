@@ -130,18 +130,18 @@ class TripController extends Controller
         }
 
         // Store the images
-        // Todo : Allow the admin to delete an image.
         $imagesData = [];
+        $deletingCount = 0;
+        $tripImages = count($trip->images);
         for ($i=1; $i<=3; $i++) {
             if ($request->hasFile('image'.$i)) {
                 // Upload the new image to the server
                 $originalImagePath = $request->file('image'.$i)->store('trip', 'public');
                 $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'thumbnails');
-                // Delete the old image from the server & from the db if exist
+                // Delete the old image from the server if exist
                 if ($image = Image::find($request->{"id$i"})) {
                     static::deleteFile($image->path);
                     static::deleteFile($image->thumbnail);
-                    $image->delete();
                 }
                 // Prepare the new images data to store in the db
                 $imagesData[] = [
@@ -150,6 +150,15 @@ class TripController extends Controller
                     'thumbnail' => $thumbnailImagePath,
                     'trip_id' => $trip->id,
                 ];
+            } elseif ($request->has("delete_image.".$i-1)) { // check if the image is need to be deleted
+                // Delete the image from the server & from the db
+                // Delete in maximum two images
+                if (($image = Image::find($request->{"id$i"})) && $tripImages - $deletingCount > 1) {
+                    static::deleteFile($image->path);
+                    static::deleteFile($image->thumbnail);
+                    $image->delete();
+                    $deletingCount++;
+                }
             }
         }
         // Create or update images in the database
@@ -185,7 +194,7 @@ class TripController extends Controller
         $manager = new ImageManager(new Driver());
 
         // Generate unique file name for the thumbnail image
-        $thumbnailImageName = time() . '.' . $OriginalImage->getClientOriginalExtension();
+        $thumbnailImageName = uniqid() . '.' . $OriginalImage->getClientOriginalExtension();
 
         // read image from file system
         $image = $manager->read($OriginalImage);
