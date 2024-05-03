@@ -31,7 +31,9 @@ class TripController extends Controller
     public function create()
     {
         $transports = Transport::all();
-        return view('pages.trip.create', compact('transports')); 
+        $isUpdate = false;
+        $trip = new Trip();
+        return view('pages.trip.create', compact('transports', 'trip', 'isUpdate')); 
     }
 
     /**
@@ -98,7 +100,8 @@ class TripController extends Controller
     public function edit(Trip $trip)
     {
         $transports = Transport::all();
-        return view('pages.trip.edit', compact('trip', 'transports')); 
+        $isUpdate = true;
+        return view('pages.trip.edit', compact('trip', 'transports', 'isUpdate')); 
     }
 
     /**

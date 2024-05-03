@@ -22,7 +22,9 @@ class TransportController extends Controller
      */
     public function create()
     {
-        return view('pages.transport.create');
+        $transport = new Transport();
+        $isUpdate = false;
+        return view('pages.transport.create', compact('transport', 'isUpdate'));
     }
 
     /**
@@ -48,7 +50,8 @@ class TransportController extends Controller
      */
     public function edit(Transport $transport)
     {
-        return view('pages.transport.edit', compact('transport'));
+        $isUpdate = true;
+        return view('pages.transport.edit', compact('transport', 'isUpdate'));
         
     }
 
