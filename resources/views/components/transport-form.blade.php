@@ -1,13 +1,11 @@
-@@props(['isUpdate', 'transport'])
+@props(['isUpdate', 'transport'])
 @php
     $route = route('transports.store');
     if ($isUpdate) {
         $route = route('transports.update', $transport->id);
     }
 @endphp
-<div class="container">
-    <h1 class="my-4">{{$isUpdate? 'Edit':'Add'}} Transport</h1>
-    <a href="{{route('transports.index')}}" class="btn btn-secondary">Back</a>
+<div class="col">
     <form action="{{$route}}" method="post" class="my-4">
         @csrf
         @if($isUpdate)

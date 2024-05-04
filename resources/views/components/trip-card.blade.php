@@ -1,9 +1,10 @@
 @props(['trip'])
-<div class="col-md-4 mb-4 text-center">
-    <div class="card bg-dark text-white">
+<div class="col-xl-4 col-md-6 mb-4 text-center">
+    <div class="card shadow h-100">
+        <img src="{{asset('storage/' . $trip->images->first()->path)}}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{ $trip->destination }}</h5>
-            <p class="card-text">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>
+            <h5 class="h5 mb-0 font-weight-bold text-gray-800">{{ $trip->destination }}</h5>
+            <p class="text-xs font-weight-bold text-uppercase mb-1">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>
         </div>
         <span class="list-group-item"><b>Start at:</b> {{ $trip->start_at }} <b>End At:</b> {{ $trip->end_at }}</span>
         <span class="list-group-item"><b>Transport:</b> {{ $trip->transport?->name ?? "Undefined" }}</span>
@@ -19,3 +20,4 @@
         </div>
     </div>
 </div>
+

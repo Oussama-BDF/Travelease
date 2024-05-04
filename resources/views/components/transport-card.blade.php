@@ -1,8 +1,8 @@
 @props(['transport'])
-<div class="col-md-4 mb-4 text-center">
-    <div class="card bg-dark text-white">
+<div class="col-xl-3 col-md-6 mb-4 text-center">
+    <div class="card shadow h-100 py-2">
         <div class="card-body">
-            <p class="card-text">Name : {{$transport->name}}</p>
+            <p class="h5 mb-0 text-gray-800">Name : {{$transport->name}}</p>
         </div>
         <div class="card-footer text-muted d-flex justify-content-around">
             <form action="{{route('transports.destroy', $transport->id)}}" method="post">

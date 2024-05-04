@@ -1,44 +1,56 @@
-// Add An Activity
-var btnAddActivity = document.getElementById('add-activity');
-var activityContainer = document.getElementById('activity-container');
-var activity = `<div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label>Activity Price:</label>
-                            <input class="form-control" type="text" name="activity_price[]" placeholder="Enter activity price">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group mb-3">
-                            <label>Activity Name:</label>
-                            <input class="form-control" type="text" name="activity_name[]" placeholder="Enter activity name">
-                        </div>
-                    </div>
-                    <button onclick="removeActivity(this)" id="delete-activity" type="button" class="delete-activity col-auto btn btn-danger rounded-circle">X</button>
-                </div>`;
+(function($) {
+  "use strict"; // Start of use strict
 
-btnAddActivity.addEventListener('click', function () {
-    var tempDiv = document.createElement('div'); // Create a temporary div element
-    tempDiv.innerHTML = activity; // Set the HTML content of the temporary div
-    var newElement = tempDiv.firstChild; // Get the first child of the temporary div (which is the div created from elementFile)
-    activityContainer.appendChild(newElement); // Append the new element to elementsFiles
-});
+  // Toggle the side navigation
+  $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
 
-// Remove An Activity
-var btnRemoveActivity = document.querySelectorAll('button.delete-activity')
-function removeActivity(ele) {
-    ele.parentNode.remove()
-}
+  // Close any open menu accordions when window is resized below 768px
+  $(window).resize(function() {
+    if ($(window).width() < 768) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+    
+    // Toggle the side navigation when window is resized below 480px
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
 
+  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
+    if ($(window).width() > 768) {
+      var e0 = e.originalEvent,
+        delta = e0.wheelDelta || -e0.detail;
+      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+      e.preventDefault();
+    }
+  });
 
-// Delete Image
-function deleteImage(checkbox) {
-    // Find the parent container of the checkbox
-    const parentContainer = checkbox.parentNode;
+  // Scroll to top button appear
+  $(document).on('scroll', function() {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  });
 
-    // Find the previous sibling (input element) of the parent container
-    const input = parentContainer.previousElementSibling.querySelector('input[type="file"]');
+  // Smooth scrolling using jQuery easing
+  $(document).on('click', 'a.scroll-to-top', function(e) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: ($($anchor.attr('href')).offset().top)
+    }, 1000, 'easeInOutExpo');
+    e.preventDefault();
+  });
 
-    // If checkbox is checked, disable the input; otherwise, enable it
-    input.disabled = checkbox.checked
-}
+})(jQuery); // End of use strict
