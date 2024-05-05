@@ -22,7 +22,7 @@ class TripController extends Controller
     {
         //Use "with" to avoid the duplication of queries on the table transports
         $trips = Trip::query()->with('transport')->paginate(10);
-        return view('pages.trip.index', compact('trips'));
+        return view('pages.admin.trip.index', compact('trips'));
     }
 
     /**
@@ -33,7 +33,7 @@ class TripController extends Controller
         $transports = Transport::all();
         $isUpdate = false;
         $trip = new Trip();
-        return view('pages.trip.create', compact('transports', 'trip', 'isUpdate')); 
+        return view('pages.admin.trip.create', compact('transports', 'trip', 'isUpdate')); 
     }
 
     /**
@@ -91,7 +91,7 @@ class TripController extends Controller
      */
     public function show(Trip $trip)
     {
-        return view('pages.trip.show', compact('trip'));
+        return view('pages.admin.trip.show', compact('trip'));
     }
 
     /**
@@ -101,7 +101,7 @@ class TripController extends Controller
     {
         $transports = Transport::all();
         $isUpdate = true;
-        return view('pages.trip.edit', compact('trip', 'transports', 'isUpdate')); 
+        return view('pages.admin.trip.edit', compact('trip', 'transports', 'isUpdate')); 
     }
 
     /**
