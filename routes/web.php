@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TransportController;
-use App\Http\Controllers\TripController;
+use App\Http\Controllers\admin\TransportController;
+use App\Http\Controllers\admin\TripController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\admin\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.home');
 })->name('home');
 
 
@@ -31,6 +32,10 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     Route::resource('transports', TransportController::class);
     // Transports
     Route::resource('trips', TripController::class);
+    // Admin Profile
+    Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::patch('/password', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
 });
 
 // User/Admin Auth

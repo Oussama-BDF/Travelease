@@ -18,14 +18,14 @@ class RoleSeeder extends Seeder
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'user']);
 
-        // Create permissions
-        $permission1 = Permission::create(['name' => 'create trip']);
-        $permission2 = Permission::create(['name' => 'edit trip']);
-        $permission3 = Permission::create(['name' => 'delete trip']);
-        $permission4 = Permission::create(['name' => 'book trip']);
+        // // Create permissions
+        // $permission1 = Permission::create(['name' => 'create trip']);
+        // $permission2 = Permission::create(['name' => 'edit trip']);
+        // $permission3 = Permission::create(['name' => 'delete trip']);
+        // $permission4 = Permission::create(['name' => 'book trip']);
 
-        // Assign permissions to roles
-        $role1->givePermissionTo($permission1, $permission2, $permission3);
-        $role2->givePermissionTo($permission4);
+        // // Assign permissions to roles
+        // $role1->givePermissionTo($permission1, $permission2, $permission3);
+        // $role2->givePermissionTo($permission4);
     }
 }
