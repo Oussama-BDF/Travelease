@@ -1,7 +1,7 @@
 @props(['trip'])
 <div class="col-xl-4 col-md-6 mb-4 text-center">
     <div class="card shadow h-100">
-        <img src="{{asset('storage/' . $trip->images->first()->path)}}" class="card-img-top" alt="...">
+        <img src="{{asset('storage/' . $trip->images->first()->path) ?? asset('storage/default.png')}}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="h5 mb-0 font-weight-bold text-gray-800">{{ $trip->destination }}</h5>
             <p class="text-xs font-weight-bold text-uppercase mb-1">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>

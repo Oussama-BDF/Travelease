@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\TransportController;
-use App\Http\Controllers\admin\TripController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\admin\AdminProfileController;
+use App\Http\Controllers\Admin\TransportController;
+use App\Http\Controllers\Admin\TripController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,19 +33,17 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Transports
     Route::resource('trips', TripController::class);
     // Admin Profile
-    Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
-    Route::patch('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
-    Route::patch('/password', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::patch('/password', [ProfileController::class, 'updatePassword'])->name('admin.password.update');
 });
 
-// User/Admin Auth
-Route::controller(AuthController::class)->group(function() {
+// Admin Auth
+Route::name('admin.')->controller(AuthController::class)->prefix('admin')->group(function() {
     Route::get('/login', 'showLoginForm')->name('loginForm')->middleware('guest');
     Route::post('/login', 'login')->name('login')->middleware('guest');
     
-    Route::get('/register', 'showRegisterForm')->name('registerForm')->middleware('guest');
-    Route::post('/register', 'register')->name('register')->middleware('guest');
-    
-    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+    Route::get('/logout', 'logout')->name('logout')->middleware(['role:admin', 'auth']);
 });
 
+require __DIR__.'/user.php';

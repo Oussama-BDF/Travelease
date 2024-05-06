@@ -31,9 +31,9 @@ class StoreTripRequest extends FormRequest
             'description' => 'nullable|string',
             'activity_price.*' => 'required|numeric|max:9999.99',
             'activity_name.*' => 'required',
-            'image1' => 'required|image|mimes:jpg,jpeg,png',
-            'image2' => 'image|mimes:jpg,jpeg,png',
-            'image3' => 'image|mimes:jpg,jpeg,png',
+            'image1' => 'required|image|mimes:jpg,jpeg,png,svg|max:5000',
+            'image2' => 'image|mimes:jpg,jpeg,png,svg|max:5000',
+            'image3' => 'image|mimes:jpg,jpeg,png,svg|max:5000',
         ];
     }
 

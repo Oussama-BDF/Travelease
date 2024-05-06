@@ -8,7 +8,7 @@ use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AdminProfileController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.

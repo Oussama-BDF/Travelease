@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Trip;
@@ -71,9 +71,9 @@ class TripController extends Controller
         $imagesData = [];
         for ($i=1; $i<=3; $i++) {
             if ($request->hasFile('image'.$i)) {
-                // Upload the images
+                // Upload the images in the public disk
                 $originalImagePath = $request->file('image'.$i)->store('trip', 'public');
-                $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'thumbnails');
+                $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'trip');
                 // Prepare images data
                 $imagesData[] = [
                     'path' => $originalImagePath,
@@ -141,7 +141,7 @@ class TripController extends Controller
             if ($request->hasFile('image'.$i)) {
                 // Upload the new image to the server
                 $originalImagePath = $request->file('image'.$i)->store('trip', 'public');
-                $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'thumbnails');
+                $thumbnailImagePath = static::ResizeStoreImage($request->file('image'.$i), 'trip');
                 // Delete the old image from the server if exist
                 if ($image = Image::find($request->{"id$i"})) {
                     static::deleteFile($image->path);
@@ -182,7 +182,6 @@ class TripController extends Controller
     {
         // Delete the images from the server
         foreach ($trip->images as $image) {
-            $fileToDelete = $image->path;
             static::deleteFile($image->path);
             static::deleteFile($image->thumbnail);
         }
@@ -193,7 +192,7 @@ class TripController extends Controller
         return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Deleted Successfully');
     }
 
-    public static function ResizeStoreImage($OriginalImage, $place) {
+    public static function ResizeStoreImage($OriginalImage, $destinationDirectory) {
         // create image manager with desired driver
         $manager = new ImageManager(new Driver());
 
@@ -206,10 +205,19 @@ class TripController extends Controller
         // resize image
         $image->scale(width: 100);
 
-        $thumbnailImagePath = $place . '/' . $thumbnailImageName;
+        // Check if the directories exist, if not, create them
+        if (!Storage::disk('public')->exists('thumbnails')) {
+            Storage::disk('public')->makeDirectory('thumbnails');
+        }
+        if (!Storage::disk('public')->exists("thumbnails/{$destinationDirectory}")) {
+            Storage::disk('public')->makeDirectory("thumbnails/{$destinationDirectory}");
+        }
 
-        // save modified image in new format 
-        $image->toPng()->save('storage/' . $thumbnailImagePath);
+        // $thumbnailImagePath = 'thumbnails/' . $destinationDirectory . '/' . $thumbnailImageName;
+        $thumbnailImagePath = "thumbnails/$destinationDirectory/$thumbnailImageName";
+
+        // save modified image in the public disk
+        $image->save(storage_path('app/public/' . $thumbnailImagePath));
 
         // Return the file path
         return $thumbnailImagePath;

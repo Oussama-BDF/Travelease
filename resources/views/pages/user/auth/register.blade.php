@@ -3,15 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Travel Ease - Login</title>
+        <title>Travel Ease - Register</title>
         <link rel="stylesheet" href="{{asset('css/app.min.css')}}">
         <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
     </head>
     <body id="page-top">
         <div class="container">
-            <h1>register</h1>
+            <h1>User Register</h1>
             <a href="{{route('loginForm')}}" class="btn btn-primary">Already have an account?</a>
-            <form action="{{route('register')}}" method="post">
+            <form action="{{route('register')}}" method="post" enctype='multipart/form-data'>
                 @csrf
                 <div class="form-group mb-3">
                     <label for="name">Name:</label>
@@ -38,6 +38,27 @@
                     <label for="re-password">Password Confirmation:</label>
                     <input class="form-control" type="password" id="re-password" name="password_confirmation" placeholder="Confirm password">
                     @error('password_confirmation')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group mb-3">
+                    <label for="phone-number">Phone number:</label>
+                    <input class="form-control" type="number" id="phone-number" name="phone_number" placeholder="Enter phone number" value='{{old("phone_number")}}'>
+                    @error('phone_number')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group mb-3">
+                    <label for="address">Address:</label>
+                    <input class="form-control" type="text" id="address" name="address" placeholder="Enter address" value='{{old("address")}}'>
+                    @error('address')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group mb-3">
+                    <label for="image">Profile Image:</label>
+                    <input class="form-control-file" type="file" id="image" name="profile_image" placeholder="Select an image">
+                    @error('image')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>

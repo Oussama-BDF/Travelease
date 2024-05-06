@@ -10,8 +10,7 @@
     <body id="page-top">
         <div class="container">
             <h1>Login</h1>
-            <a class="btn btn-primary" href="{{route('registerForm')}}">Create An Account?</a>
-            <form action="{{route('login')}}" method="post">
+            <form action="{{route('admin.login')}}" method="post">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="email">Email:</label>
