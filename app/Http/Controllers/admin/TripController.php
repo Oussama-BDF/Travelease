@@ -23,7 +23,7 @@ class TripController extends Controller
     {
         //Use "with" to avoid the duplication of queries on the table transports
         $trips = Trip::query()->with('transport')->paginate(10);
-        return view('pages.admin.trip.index', compact('trips'));
+        return view('admin.trip.index', compact('trips'));
     }
 
     /**
@@ -34,7 +34,7 @@ class TripController extends Controller
         $transports = Transport::all();
         $isUpdate = false;
         $trip = new Trip();
-        return view('pages.admin.trip.create', compact('transports', 'trip', 'isUpdate')); 
+        return view('admin.trip.create', compact('transports', 'trip', 'isUpdate')); 
     }
 
     /**
@@ -92,7 +92,7 @@ class TripController extends Controller
      */
     public function show(Trip $trip)
     {
-        return view('pages.admin.trip.show', compact('trip'));
+        return view('admin.trip.show', compact('trip'));
     }
 
     /**
@@ -102,7 +102,7 @@ class TripController extends Controller
     {
         $transports = Transport::all();
         $isUpdate = true;
-        return view('pages.admin.trip.edit', compact('trip', 'transports', 'isUpdate')); 
+        return view('admin.trip.edit', compact('trip', 'transports', 'isUpdate')); 
     }
 
     /**
@@ -206,15 +206,15 @@ class TripController extends Controller
         $image->scale(width: 100);
 
         // Check if the directories exist, if not, create them
-        if (!Storage::disk('public')->exists('thumbnails')) {
-            Storage::disk('public')->makeDirectory('thumbnails');
+        if (!Storage::disk('public')->exists($destinationDirectory)) {
+            Storage::disk('public')->makeDirectory($destinationDirectory);
         }
-        if (!Storage::disk('public')->exists("thumbnails/{$destinationDirectory}")) {
-            Storage::disk('public')->makeDirectory("thumbnails/{$destinationDirectory}");
+        if (!Storage::disk('public')->exists("{$destinationDirectory}/thumbnails")) {
+            Storage::disk('public')->makeDirectory("{$destinationDirectory}/thumbnails");
         }
 
         // $thumbnailImagePath = 'thumbnails/' . $destinationDirectory . '/' . $thumbnailImageName;
-        $thumbnailImagePath = "thumbnails/$destinationDirectory/$thumbnailImageName";
+        $thumbnailImagePath = "$destinationDirectory/thumbnails/$thumbnailImageName";
 
         // save modified image in the public disk
         $image->save(storage_path('app/public/' . $thumbnailImagePath));

@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('user.home');
 })->name('home');
 
 
@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Dashboard
     Route::get('/', function () {
-        return view('pages.admin.dashboard');
+        return view('admin.dashboard');
     })->name('dashboard');
     // Trips
     Route::resource('transports', TransportController::class);

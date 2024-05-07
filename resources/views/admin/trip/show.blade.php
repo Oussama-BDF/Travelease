@@ -1,9 +1,9 @@
-<x-master title='Trip'>
-    <div class="container">
-        <h1 class="my-4">Trip</h1>
-        <a href="{{route('trips.index')}}" class="btn btn-secondary">Back</a>
-        <div class="row my-4">
-            <div class="card py-4">
+<x-admin-layout title='Trip'>
+    <x-slot name="header">Trip</x-slot>
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-4 shadow mb-4">
                 <div class="cardbody">
                     <div class="card-text">
                         <h4>Destination : </h4> {{ $trip->destination}}
@@ -38,13 +38,13 @@
                     </div>
                 </div>
             </div>
-            @foreach($trip->images as $image)
-            <div class="col-md-4 mb-4 text-center">
-                <div class="card bg-dark text-white">
-                    <img src="{{ asset('storage/'.$image->path) }}" class="card-img-top" alt="...">
-                </div>
-            </div>
-            @endforeach
         </div>
+        @foreach($trip->images as $image)
+        <div class="col-md-4 mb-4 text-center">
+            <div class="card bg-dark text-white">
+                <img src="{{ asset('storage/'.$image->path) }}" class="card-img-top" alt="...">
+            </div>
+        </div>
+        @endforeach
     </div>
-</x-master>
+</x-admin-layout>

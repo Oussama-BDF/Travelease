@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'password' => ['required', 'min:8', 'max:60', 'confirmed'],
             'phone_number' => ['nullable', 'string', 'max:15'],
             'address' => ['nullable', 'string', 'max:100'],
-            'profile_image' => ['nullable', 'image', 'mimes:png,jpg,jpeg,svg', 'max:5000'],
+            'profile_image' => ['nullable', 'image', 'mimes:png,jpg,jpeg', 'max:5000'],
         ];
     }
 }

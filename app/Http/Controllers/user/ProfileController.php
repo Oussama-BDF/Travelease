@@ -1,22 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request)
+    public function edit()
     {
-        $user = $request->user();
-        return view('pages.admin.profile.edit', compact('user'));
+        return view('user.profile.edit');
     }
 
     /**
@@ -24,7 +26,24 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
+        // Retrieve the form data
+        $validated = $request->validated();
+
+        // Check if the user want to change the image
+        if ($request->hasFile('profile_image')) {
+            // Delete the old image if exist
+            if ($request->user()->profile_image) {
+                static::deleteFile($request->user()->profile_image);
+                static::deleteFile($request->user()->profile_image_thumbnail);
+            }
+            // Store the new image in the public disk and retrieve the paths
+            $validated['profile_image'] = $request->file('profile_image')->store('profile', 'public');
+            $validated['profile_image_thumbnail'] = static::ResizeStoreImage($request->file('profile_image'), 'profile');
+        }
+
+        // Check if the user want to delete the image
+
+        $request->user()->fill($validated);
 
         $request->user()->save();
 
@@ -39,5 +58,44 @@ class ProfileController extends Controller
         ]);
 
         return back()->with('success', 'password-updated');
+    }
+
+    public static function ResizeStoreImage($OriginalImage, $destinationDirectory) {
+        // create image manager with desired driver
+        $manager = new ImageManager(new Driver());
+
+        // Generate unique file name for the thumbnail image
+        $thumbnailImageName = uniqid() . '.' . $OriginalImage->getClientOriginalExtension();
+
+        // read image from file system
+        $image = $manager->read($OriginalImage);
+
+        // resize image
+        $image->scale(width: 100);
+
+        // Check if the directories exist, if not, create them
+        if (!Storage::disk('public')->exists($destinationDirectory)) {
+            Storage::disk('public')->makeDirectory($destinationDirectory);
+        }
+        if (!Storage::disk('public')->exists("{$destinationDirectory}/thumbnails")) {
+            Storage::disk('public')->makeDirectory("{$destinationDirectory}/thumbnails");
+        }
+
+        // $thumbnailImagePath = 'thumbnails/' . $destinationDirectory . '/' . $thumbnailImageName;
+        $thumbnailImagePath = "$destinationDirectory/thumbnails/$thumbnailImageName";
+
+        // save modified image in the public disk
+        $image->save(storage_path('app/public/' . $thumbnailImagePath));
+
+        // Return the file path
+        return $thumbnailImagePath;
+    }
+
+    public static function deleteFile($fileToDelete) {
+        // Check if the file exists before attempting to delete it
+        if (Storage::disk('public')->exists($fileToDelete)) {
+            // Delete the file
+            Storage::disk('public')->delete($fileToDelete);
+        }
     }
 }

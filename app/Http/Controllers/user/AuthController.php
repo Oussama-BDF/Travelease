@@ -16,7 +16,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 class AuthController extends Controller
 {
     public function showLoginForm() {
-        return view('pages.user.auth.login');
+        return view('user.auth.login');
     }
 
     public function login(Request $request) {
@@ -38,7 +38,7 @@ class AuthController extends Controller
     }
 
     public function showRegisterForm() {
-        return view('pages.user.auth.register');
+        return view('user.auth.register');
     }
 
     public function register(UserRequest $request) {
@@ -81,15 +81,15 @@ class AuthController extends Controller
         $image->scale(width: 100);
 
         // Check if the directories exist, if not, create them
-        if (!Storage::disk('public')->exists('thumbnails')) {
-            Storage::disk('public')->makeDirectory('thumbnails');
+        if (!Storage::disk('public')->exists($destinationDirectory)) {
+            Storage::disk('public')->makeDirectory($destinationDirectory);
         }
-        if (!Storage::disk('public')->exists("thumbnails/{$destinationDirectory}")) {
-            Storage::disk('public')->makeDirectory("thumbnails/{$destinationDirectory}");
+        if (!Storage::disk('public')->exists("{$destinationDirectory}/thumbnails")) {
+            Storage::disk('public')->makeDirectory("{$destinationDirectory}/thumbnails");
         }
 
         // $thumbnailImagePath = 'thumbnails/' . $destinationDirectory . '/' . $thumbnailImageName;
-        $thumbnailImagePath = "thumbnails/$destinationDirectory/$thumbnailImageName";
+        $thumbnailImagePath = "$destinationDirectory/thumbnails/$thumbnailImageName";
 
         // save modified image in the public disk
         $image->save(storage_path('app/public/' . $thumbnailImagePath));

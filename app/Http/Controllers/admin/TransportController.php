@@ -16,7 +16,7 @@ class TransportController extends Controller
     public function index()
     {
         $transports = Transport::all();
-        return view('pages.admin.transport.index', compact('transports'));
+        return view('admin.transport.index', compact('transports'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TransportController extends Controller
     {
         $transport = new Transport();
         $isUpdate = false;
-        return view('pages.admin.transport.create', compact('transport', 'isUpdate'));
+        return view('admin.transport.create', compact('transport', 'isUpdate'));
     }
 
     /**
@@ -53,7 +53,7 @@ class TransportController extends Controller
     public function edit(Transport $transport)
     {
         $isUpdate = true;
-        return view('pages.admin.transport.edit', compact('transport', 'isUpdate'));
+        return view('admin.transport.edit', compact('transport', 'isUpdate'));
         
     }
 

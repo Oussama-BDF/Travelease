@@ -1,10 +1,5 @@
-<x-master title='Edit Profile'>
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit Profile</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-    </div>
-
+<x-admin-layout title='Edit Profile'>
+    <x-slot name="header">Edit Profile</x-slot>
     <!-- Content Row -->
     <div class="row">
         <div class="col-12 p-4 bg-white shadow my-2 rounded">
@@ -15,14 +10,14 @@
                 <small class="form-text text-muted mb-3">Update Your account's profile information and email address.</small>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{old('name', $user->name)}}">
+                    <input type="text" class="form-control" id="name" name="name" value="{{old('name', Auth::user()->name)}}">
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{old('email', $user->email)}}">
+                    <input type="email" class="form-control" id="email" name="email" value="{{old('email', Auth::user()->email)}}">
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -59,4 +54,4 @@
             </form>
         </div>
     </div>
-</x-master>
+</x-admin-layout>

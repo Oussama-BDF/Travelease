@@ -13,7 +13,7 @@ use App\Http\Requests\UserRequest;
 class AuthController extends Controller
 {
     public function showLoginForm() {
-        return view('pages.admin.auth.login');
+        return view('admin.auth.login');
     }
 
     public function login(Request $request) {
