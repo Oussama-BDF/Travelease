@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\TransportController;
 use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ManageUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
     Route::patch('/password', [ProfileController::class, 'updatePassword'])->name('admin.password.update');
+    // Users Management
+    Route::get('/users', [ManageUsersController::class, 'index'])->name('admin.users.index');
 });
 
 // Admin Auth

@@ -7,6 +7,8 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -58,6 +60,21 @@ class ProfileController extends Controller
         ]);
 
         return back()->with('success', 'password-updated');
+    }
+
+    public function destroy(Request $request) {
+        $request->validate([
+            'your_password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        Auth::logout();
+        $user->delete();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('home');
     }
 
     public static function ResizeStoreImage($OriginalImage, $destinationDirectory) {

@@ -79,5 +79,22 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
+
+        <div class="col-12 p-4 bg-white shadow my-2 rounded">
+            <form action="{{route('profile.destroy')}}" method="post">
+                @csrf
+                @method('DELETE')
+                <p class="text-dark font-weight-bold text-lg mb-0">Delete Account</p>
+                <small class="form-text text-muted mb-3">Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.</small>
+                <small class="form-text text-muted mb-3">Please enter your password to confirm you would like to permanently delete your account.</small>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="your_password" placeholder="Password">
+                    @error('your_password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
     </div>
 </x-user-layout>
