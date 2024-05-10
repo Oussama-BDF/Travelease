@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 30; $i++) { 
             $user = \App\Models\User::factory()->create([
                 'name' => fake()->name(),
                 'email' => fake()->unique()->safeEmail(),

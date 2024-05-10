@@ -16,7 +16,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 class AuthController extends Controller
 {
     public function showLoginForm() {
-        return view('user.auth.login');
+        return view('pages.user.auth.login');
     }
 
     public function login(Request $request) {
@@ -38,7 +38,7 @@ class AuthController extends Controller
     }
 
     public function showRegisterForm() {
-        return view('user.auth.register');
+        return view('pages.user.auth.register');
     }
 
     public function register(UserRequest $request) {

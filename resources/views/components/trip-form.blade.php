@@ -1,8 +1,8 @@
 @props(['isUpdate', 'trip', 'transports'])
 @php
-    $route = route('trips.store');
+    $route = route('admin.trips.store');
     if ($isUpdate) {
-        $route = route('trips.update', $trip->id);
+        $route = route('admin.trips.update', $trip->id);
     }
 @endphp
 <div class="col">
@@ -67,7 +67,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input class="form-control" type="number" id="price" name="price" placeholder="Enter price" value='{{old("price", $trip->price)}}'>
+                    <input class="form-control" type="text" id="price" name="price" placeholder="Enter price" value='{{old("price", $trip->price)}}'>
                     @error('price')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -100,15 +100,17 @@
         
         <label>Images :</label>
         <div id="image-container">
-            @foreach($trip->images as $key => $image)
-                <x-image-input :key="$key+1" :id="$image->id" :isUpdate="$isUpdate"/>
-                <div class="bg-dark" style="width: 100px">
-                    <img src="{{ asset('storage/'.$image->thumbnail) }}" style="width: 100px" class="" alt="...">
-                </div>
-            @endforeach
-            @for($i=count($trip->images); $i<3; $i++)
-                <x-image-input :key="$i+1" id="" :isUpdate="$isUpdate"/>
-            @endfor
+            <div class="row">
+                @foreach($trip->images as $key => $image)
+                    <x-image-input :key="$key+1" :id="$image->id" :isUpdate="$isUpdate"/>
+                    <div class="bg-dark" style="width: 100px">
+                        <img src="{{ asset('storage/'.$image->thumbnail) }}" style="width: 100px" class="" alt="...">
+                    </div>
+                @endforeach
+                @for($i=count($trip->images); $i<3; $i++)
+                    <x-image-input :key="$i+1" id="" :isUpdate="$isUpdate"/>
+                @endfor
+            </div>
         </div>
 
         <div class="d-flex justify-content-between my-2">

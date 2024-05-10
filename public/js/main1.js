@@ -60,17 +60,101 @@ function removeActivity(ele) {
     ele.parentNode.remove();
 }
 
+
+
+// Alert
+
+// Rmove the alert from the screen
+document.addEventListener("DOMContentLoaded", function() {
+    var alert = document.querySelector(".alert");
+    if(alert) {
+        alert.style.transition = "opacity 2s";
+        alert.style.opacity = 1;
+    
+        setTimeout(function() {
+            alert.style.transition = "opacity 0.5s";
+            alert.style.opacity = 0;
+            setTimeout(function() {
+                $(alert).alert('close')
+            }, 500);
+        }, 3000);
+    }
+});
+
+
+/****************** Preview Image *************************/
+document.addEventListener("DOMContentLoaded", function() {
+    // Add event listener to all file input elements with the class 'image_upload'
+    var fileInputs = document.querySelectorAll('.image_upload');
+    fileInputs.forEach(function(input) {
+        input.addEventListener('change', previewImage);
+    });
+
+    // Add event listener to all remove buttons with the class 'image_remove'
+    var removeButtons = document.querySelectorAll('.image_remove');
+    removeButtons.forEach(function(button) {
+        button.addEventListener('click', removeImage);
+    });
+
+    // Add event listener to all remove checkboxs with the class 'image_delete'
+    var deleteCheckbox = document.querySelectorAll('.image_delete');
+    deleteCheckbox.forEach(function(checkbox) {
+        checkbox.addEventListener('change', deleteImage);
+    });
+});
+
+// Preview the image uploaded
+function previewImage(event) {
+    var input = event.target;
+    var reader = new FileReader();
+
+    reader.onload = function(){
+        // Select the uploaded image view (uploaded_image_view)
+        var uploadedImgContainer = input.parentElement.nextElementSibling;
+        uploadedImgContainer.classList.add('show');
+        // Select the image element
+        var img = uploadedImgContainer.querySelector("img");
+        img.src = reader.result;
+        img.classList.add('show');
+
+
+        // ! to fix
+        if (imgView = uploadedImgContainer.nextElementSibling) {
+            imgView.classList.remove('show');
+        }
+        // var imgView = uploadedImgContainer.nextElementSibling;
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
+
+// Remove the image uploaded
+function removeImage(event) {
+    var button = event.target;
+    var uploadedImgContainer = button.parentElement;
+    uploadedImgContainer.classList.remove('show');
+    var img = uploadedImgContainer.querySelector("img");
+    img.src = "#"; // Clear the image source
+    img.classList.remove('show');
+    var input = uploadedImgContainer.previousElementSibling.querySelector(".image_upload");
+    input.value = ""; // Clear the file input value
+
+    // ! to fix
+    if (imgView = uploadedImgContainer.nextElementSibling) {
+        imgView.classList.add('show');
+    }
+}
+
+
 // Delete Image
-function deleteImage(checkbox) {
-    // Find the parent container of the checkbox
-    const parentContainer = checkbox.parentNode;
-
-    // Find the previous sibling (input element) of the parent container
-    const input =
-        parentContainer.previousElementSibling.querySelector(
-            'input[type="file"]'
-        );
-
+function deleteImage(event) {
+    var checkbox = event.target;
+    var imgContainer = checkbox.parentElement;
+    var input = imgContainer.parentElement.querySelector(".image_upload");
+    var uploadImgButton = imgContainer.parentElement.querySelector(".btn_upload");
     // If checkbox is checked, disable the input; otherwise, enable it
     input.disabled = checkbox.checked;
+    // Toggle the class disabled of the elements input and uploadImgButton
+    input.classList.toggle('disabled');
+    uploadImgButton.classList.toggle('disabled');
 }

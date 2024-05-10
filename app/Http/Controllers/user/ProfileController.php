@@ -20,7 +20,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('user.profile.edit');
+        return view('pages.user.profile.edit');
     }
 
     /**
@@ -69,6 +69,11 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        // Delete the profile image
+        static::deleteFile($user->profile_image);
+        static::deleteFile($user->profile_image_thumbnail);
+
+        // Logout and delete the account
         Auth::logout();
         $user->delete();
         $request->session()->invalidate();

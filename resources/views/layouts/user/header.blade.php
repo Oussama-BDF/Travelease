@@ -1,37 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{route('home')}}">Travel Ease</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+	<!-- Start Header/Navigation -->
+	<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="{{route('home')}}">Travel Ease<span>.</span></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('home')}}">Home</span></a>
-            </li>
-            @auth
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                        {{Auth::user()->name}}
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{route('profile.edit')}}">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
-                    </div>
-                </li>
-            @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('login')}}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('register')}}">Register</a>
-                </li>
-            @endauth
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+					<li class="nav-item">
+						<a class="nav-link" href="{{route('home')}}">Home</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="{{route('trips.index')}}">Trips</a></li>
+					<li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+					<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+					<li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+                    @auth
+						@role('user')
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+									<img src="{{asset('img/user.svg')}}" />
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="{{route('profile.edit')}}">{{Auth::user()->name}}</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+								</div>
+							</li>
+						@endrole
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('login')}}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('register')}}">Register</a>
+                        </li>
+                    @endauth
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End Header/Navigation -->

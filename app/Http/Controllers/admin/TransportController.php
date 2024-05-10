@@ -16,7 +16,7 @@ class TransportController extends Controller
     public function index()
     {
         $transports = Transport::all();
-        return view('admin.transport.index', compact('transports'));
+        return view('pages.admin.transport.index', compact('transports'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TransportController extends Controller
     {
         $transport = new Transport();
         $isUpdate = false;
-        return view('admin.transport.create', compact('transport', 'isUpdate'));
+        return view('pages.admin.transport.create', compact('transport', 'isUpdate'));
     }
 
     /**
@@ -35,7 +35,7 @@ class TransportController extends Controller
     public function store(TransportRequest $request)
     {
         Transport::create($request->validated());
-            return to_route('transports.index')->with('success', 'Your <strong>Transport</strong> Added Successfully');
+            return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Added Successfully');
     }
 
     /**
@@ -53,7 +53,7 @@ class TransportController extends Controller
     public function edit(Transport $transport)
     {
         $isUpdate = true;
-        return view('admin.transport.edit', compact('transport', 'isUpdate'));
+        return view('pages.admin.transport.edit', compact('transport', 'isUpdate'));
         
     }
 
@@ -65,9 +65,9 @@ class TransportController extends Controller
         $transport->fill($request->validated());
         if ($transport->isDirty()) {
             $transport->save();
-            return to_route('transports.index')->with('success', 'Your <strong>Transport</strong> Updated Successfully');
+            return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Updated Successfully');
         } else {
-            return to_route('transports.index')->with('warning', 'No changes were made to the Transport');
+            return to_route('admin.transports.index')->with('warning', 'No changes were made to the Transport');
         }
     }
 
@@ -77,6 +77,6 @@ class TransportController extends Controller
     public function destroy(Transport $transport)
     {
         $transport->delete();
-        return to_route('transports.index')->with('success', 'Your <strong>Transport</strong> Deleted Successfully');
+        return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Deleted Successfully');
     }
 }

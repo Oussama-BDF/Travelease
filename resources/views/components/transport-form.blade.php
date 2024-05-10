@@ -1,8 +1,8 @@
 @props(['isUpdate', 'transport'])
 @php
-    $route = route('transports.store');
+    $route = route('admin.transports.store');
     if ($isUpdate) {
-        $route = route('transports.update', $transport->id);
+        $route = route('admin.transports.update', $transport->id);
     }
 @endphp
 <div class="col">

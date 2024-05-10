@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\TripController;
 
 
 // User Routes
@@ -14,7 +15,7 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// User Auth
+// User Auth Routes
 Route::controller(AuthController::class)->group(function() {
     Route::get('/login', 'showLoginForm')->name('loginForm')->middleware('guest');
     Route::post('/login', 'login')->name('login')->middleware('guest');
@@ -23,4 +24,10 @@ Route::controller(AuthController::class)->group(function() {
     Route::post('/register', 'register')->name('register')->middleware('guest');
     
     Route::get('/logout', 'logout')->name('logout')->middleware(['role:user', 'auth']);
+});
+
+// Trip Routes
+Route::controller(TripController::class)->group(function() {
+    Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
+    Route::get('/trips/{trip}', [TripController::class, 'show'])->where('trip', '\d+')->name('trips.show');
 });

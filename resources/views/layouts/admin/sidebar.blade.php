@@ -37,8 +37,8 @@
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="{{route('trips.index')}}">All Trips</a>
-                <a class="collapse-item" href="{{route('trips.create')}}">Add Trip</a>
+                <a class="collapse-item" href="{{route('admin.trips.index')}}">All Trips</a>
+                <a class="collapse-item" href="{{route('admin.trips.create')}}">Add Trip</a>
             </div>
         </div>
     </li>
@@ -53,25 +53,18 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="{{route('transports.index')}}">All Transports</a>
-                <a class="collapse-item" href="{{route('transports.create')}}">Add Transport</a>
+                <a class="collapse-item" href="{{route('admin.transports.index')}}">All Transports</a>
+                <a class="collapse-item" href="{{route('admin.transports.create')}}">Add Transport</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu - Manage Users -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-            aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-cog"></i>
             <span>Manage Users</span>
         </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="{{route('admin.users.index')}}">All Users</a>
-            </div>
-        </div>
     </li>
     
     <!-- Nav Item - Manage Booking -->
@@ -79,6 +72,14 @@
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-cog"></i>
             <span>Manage Booking</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Manage Reviews -->
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Manage Reviews</span>
         </a>
     </li>
 

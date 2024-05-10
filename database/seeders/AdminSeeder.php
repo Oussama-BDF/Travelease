@@ -19,6 +19,8 @@ class AdminSeeder extends Seeder
         $user = \App\Models\User::factory()->create([
             'name' => 'admin',
             'email' => 'travelease@travelease.com',
+            'phone_number' => null,
+            'address' => null,
         ]);
         $user->assignRole('admin');
     }

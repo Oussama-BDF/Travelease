@@ -46,7 +46,7 @@ class StoreTripRequest extends FormRequest
             'activity_price.*.max' => 'The activity price field must not be greater than 9999.99.',
             'transport_id.required' => 'The transport field is required.',
             'image*.required' => 'The first image field is required.',
-            'image*.mimes' => 'The image field must be a file of type: jpg, jpeg.',
+            'image*.mimes' => 'The image field must be a file of type: jpg, jpeg, png.',
             'image*.image' => 'The image field must be an image.',
         ];
     }

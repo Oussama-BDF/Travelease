@@ -23,7 +23,7 @@ class TripController extends Controller
     {
         //Use "with" to avoid the duplication of queries on the table transports
         $trips = Trip::query()->with('transport')->paginate(10);
-        return view('admin.trip.index', compact('trips'));
+        return view('pages.admin.trip.index', compact('trips'));
     }
 
     /**
@@ -32,9 +32,7 @@ class TripController extends Controller
     public function create()
     {
         $transports = Transport::all();
-        $isUpdate = false;
-        $trip = new Trip();
-        return view('admin.trip.create', compact('transports', 'trip', 'isUpdate')); 
+        return view('pages.admin.trip.create', compact('transports')); 
     }
 
     /**
@@ -47,7 +45,7 @@ class TripController extends Controller
 
         // Check if the transport id exist in the db (security)
         if (empty(Transport::find($formFields['transport_id']))) {
-            return to_route('trips.index')->with('failed', 'Cannot Create This Trip, Try Again');
+            return to_route('admin.trips.index')->with('failed', 'Cannot Create This Trip, Try Again');
         }
 
         // Create the trip
@@ -84,7 +82,7 @@ class TripController extends Controller
         // Create the images in the db
         $trip->images()->createMany($imagesData);
         
-        return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
+        return to_route('admin.trips.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
     }
 
     /**
@@ -92,7 +90,7 @@ class TripController extends Controller
      */
     public function show(Trip $trip)
     {
-        return view('admin.trip.show', compact('trip'));
+        return view('pages.admin.trip.show', compact('trip'));
     }
 
     /**
@@ -101,8 +99,7 @@ class TripController extends Controller
     public function edit(Trip $trip)
     {
         $transports = Transport::all();
-        $isUpdate = true;
-        return view('admin.trip.edit', compact('trip', 'transports', 'isUpdate')); 
+        return view('pages.admin.trip.edit', compact('trip', 'transports')); 
     }
 
     /**
@@ -137,6 +134,33 @@ class TripController extends Controller
         $imagesData = [];
         $deletingCount = 0;
         $tripImages = count($trip->images);
+        
+        /*ayoub propos*/
+        $numberImageUploaded = 0;
+        $numberImageDelted = 0;
+        if ($request->hasFile('image1')) {
+            $numberImageUploaded++;
+        }
+        if ($request->hasFile('image2')) {
+            $numberImageUploaded++;
+        }
+
+        if ($request->hasFile('image3')) {
+            $numberImageUploaded++;
+        }
+
+        if ($request->has('delete_image1')) {
+            $numberImageDelted++;
+        }
+        if ($request->has('delete_image2')) {
+            $numberImageDelted++;
+        }
+
+        if ($request->has('delete_image3')) {
+            $numberImageDelted++;
+        }
+        /*ayoub propos*/
+
         for ($i=1; $i<=3; $i++) {
             if ($request->hasFile('image'.$i)) {
                 // Upload the new image to the server
@@ -154,10 +178,11 @@ class TripController extends Controller
                     'thumbnail' => $thumbnailImagePath,
                     'trip_id' => $trip->id,
                 ];
-            } elseif ($request->has("delete_image.".$i-1)) { // check if the image is need to be deleted
+            } elseif ($request->has("delete_image".$i)) { // check if the image is need to be deleted
                 // Delete the image from the server & from the db
                 // Delete in maximum two images
-                if (($image = Image::find($request->{"id$i"})) && $tripImages - $deletingCount > 1) {
+               // if (($image = Image::find($request->{"id$i"})) && $tripImages- $deletingCount > 1) {
+                if (($image = Image::find($request->{"id$i"})) && ($numberImageUploaded >= $numberImageDelted  || $tripImages >1) ) {
                     static::deleteFile($image->path);
                     static::deleteFile($image->thumbnail);
                     $image->delete();
@@ -172,7 +197,7 @@ class TripController extends Controller
             ['path', 'thumbnail', 'trip_id']
         );
 
-        return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Updated Successfully');
+        return to_route('admin.trips.index')->with('success', 'Your <strong>Trip</strong> Updated Successfully');
     }
 
     /**
@@ -189,7 +214,7 @@ class TripController extends Controller
         // Delete the trip from the db
         $trip->delete();
 
-        return to_route('trips.index')->with('success', 'Your <strong>Trip</strong> Deleted Successfully');
+        return to_route('admin.trips.index')->with('success', 'Your <strong>Trip</strong> Deleted Successfully');
     }
 
     public static function ResizeStoreImage($OriginalImage, $destinationDirectory) {

@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\ManageUsersController;
 */
 
 Route::get('/', function () {
-    return view('user.home');
+    return view('pages.user.home');
 })->name('home');
 
 
@@ -27,21 +27,22 @@ Route::get('/', function () {
 Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Dashboard
     Route::get('/', function () {
-        return view('admin.dashboard');
+        return view('pages.admin.dashboard');
     })->name('dashboard');
     // Trips
-    Route::resource('transports', TransportController::class);
+    Route::name('admin')->resource('transports', TransportController::class);
     // Transports
-    Route::resource('trips', TripController::class);
+    Route::name('admin')->resource('trips', TripController::class);
     // Admin Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
     Route::patch('/password', [ProfileController::class, 'updatePassword'])->name('admin.password.update');
     // Users Management
     Route::get('/users', [ManageUsersController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/{user}', [ManageUsersController::class, 'show'])->where('user', '\d+')->name('admin.users.show');
 });
 
-// Admin Auth
+// Admin Auth Routes
 Route::name('admin.')->controller(AuthController::class)->prefix('admin')->group(function() {
     Route::get('/login', 'showLoginForm')->name('loginForm')->middleware('guest');
     Route::post('/login', 'login')->name('login')->middleware('guest');

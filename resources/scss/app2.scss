@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@import "user/variables.scss";
+
+// Import Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// custom
+@import "user/custom.scss";
+
+// template style
+@import "user/style.scss";

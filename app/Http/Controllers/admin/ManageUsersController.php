@@ -20,6 +20,10 @@ class ManageUsersController extends Controller
         // Get only the users who have the 'user' role
         $users = $role->users;
 
-        return view('admin.users.index', compact('users'));
+        return view('pages.admin.users.index', compact('users'));
+    }
+
+    public function show(User $user) {
+        return view('pages.admin.users.show', compact('user'));
     }
 }
