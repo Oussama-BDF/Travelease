@@ -24,9 +24,7 @@ class TransportController extends Controller
      */
     public function create()
     {
-        $transport = new Transport();
-        $isUpdate = false;
-        return view('pages.admin.transport.create', compact('transport', 'isUpdate'));
+        return view('pages.admin.transport.create');
     }
 
     /**
@@ -52,8 +50,7 @@ class TransportController extends Controller
      */
     public function edit(Transport $transport)
     {
-        $isUpdate = true;
-        return view('pages.admin.transport.edit', compact('transport', 'isUpdate'));
+        return view('pages.admin.transport.edit', compact('transport'));
         
     }
 

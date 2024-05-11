@@ -5,12 +5,8 @@
             <p class="h5 mb-0 text-gray-800">Name : {{$transport->name}}</p>
         </div>
         <div class="card-footer text-muted d-flex justify-content-around">
-            <form action="{{route('admin.transports.destroy', $transport->id)}}" method="post">
-                @method('delete')
-                @csrf
-                <button class="btn btn-danger">Delete</button>
-            </form>
-            <a href="{{route('admin.transports.edit', $transport->id)}}" class="btn btn-success">Edit</a>
+            <a class="btn btn-danger call-modal" data-action="{{route('admin.transports.destroy', $transport->id)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
+            <a href="{{route('admin.transports.edit', $transport->id)}}" class="btn btn-secondary">Edit</a>
         </div>
     </div>
 </div>

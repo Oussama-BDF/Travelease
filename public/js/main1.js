@@ -1,3 +1,4 @@
+/****************** links *************************/
 // Get the current URL
 var currentUrl = window.location.href;
 
@@ -27,6 +28,7 @@ navLinks.forEach(function (li) {
 });
 
 
+/****************** Activity *************************/
 // Add An Activity
 var btnAddActivity = document.getElementById("add-activity");
 var activityContainer = document.getElementById("activity-container");
@@ -61,9 +63,7 @@ function removeActivity(ele) {
 }
 
 
-
-// Alert
-
+/****************** Alert *************************/
 // Rmove the alert from the screen
 document.addEventListener("DOMContentLoaded", function() {
     var alert = document.querySelector(".alert");
@@ -116,8 +116,6 @@ function previewImage(event) {
         var img = uploadedImgContainer.querySelector("img");
         img.src = reader.result;
         img.classList.add('show');
-
-
         // ! to fix
         if (imgView = uploadedImgContainer.nextElementSibling) {
             imgView.classList.remove('show');
@@ -146,7 +144,7 @@ function removeImage(event) {
 }
 
 
-// Delete Image
+/****************** Delete Image *************************/
 function deleteImage(event) {
     var checkbox = event.target;
     var imgContainer = checkbox.parentElement;
@@ -157,4 +155,20 @@ function deleteImage(event) {
     // Toggle the class disabled of the elements input and uploadImgButton
     input.classList.toggle('disabled');
     uploadImgButton.classList.toggle('disabled');
+}
+
+
+/****************** Add Action On Modal Form *************************/
+document.addEventListener("DOMContentLoaded", function() {
+    // Add event listener to all call modal anchor with the class 'call-modal'
+    var callModal = document.querySelectorAll('.call-modal');
+    callModal.forEach(function(button) {
+        button.addEventListener('click', AddActionOnModalForm);
+    });
+});
+
+function AddActionOnModalForm(event) {
+    var actionValue = event.target.dataset.action;
+    var form = document.getElementById("modal-form");
+    form.setAttribute('action', actionValue)
 }

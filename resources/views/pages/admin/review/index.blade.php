@@ -39,32 +39,9 @@
                                     <td ><x-user-rating :rating="$review->rating" /></td>
                                     <td >{{date('D, d M Y', strtotime($review->created_at))}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteReviewModal{{$key}}">
-                                            Delete
-                                        </a>
+                                        <a class="btn btn-danger call-modal" data-action="{{route('admin.reviews.destroy', $review->id)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="deleteReviewModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Sure to delete this review?</h5>
-                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">Select "Delete" below if you are sure that you want delete this review.</div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                <form action="{{route('admin.reviews.destroy', $review->id)}}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -72,4 +49,7 @@
             </div>
         </div>
     </div>
+
+    <x-delete-modal title="Sure to delete this review?" description='Select "Delete" below if you are sure that you want delete this review.' />
+    
 </x-admin-layout>

@@ -20,13 +20,8 @@
             </div>
         </div>
         <div class="card-footer text-muted d-flex justify-content-around" style="z-index: 1000;">
-            <form action="{{route('admin.trips.destroy', $trip->id)}}" method="post">
-                @method('delete')
-                @csrf
-                <button class="btn btn-primary">Delete</button>
-            </form>
+            <a class="btn btn-danger call-modal" data-action="{{route('admin.trips.destroy', $trip->id)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
             <a href="{{route('admin.trips.edit', $trip->id)}}" class="btn btn-secondary">Edit</a>
         </div>
     </div>
 </div>
-
