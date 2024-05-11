@@ -6,16 +6,21 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li class="nav-item">
 						<a class="nav-link" href="{{route('home')}}">Home</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="{{route('trips.index')}}">Trips</a></li>
-					<li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
-					<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-					<li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{route('review.index')}}">User Reviews</a></li>
                     @auth
+						@role('user')
+							<li class="nav-item"><a class="nav-link" href="{{route('review.create')}}">Leave Review</a></li>
+						@endrole
+                    @endauth
+				</ul>
+				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+					@auth
 						@role('user')
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -28,14 +33,11 @@
 								</div>
 							</li>
 						@endrole
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('login')}}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('register')}}">Register</a>
-                        </li>
-                    @endauth
+					@else
+						<li class="nav-item">
+							<a class="nav-link btn btn-secondary" href="{{route('login')}}">Login</a>
+						</li>
+					@endauth
 				</ul>
 			</div>
 		</div>

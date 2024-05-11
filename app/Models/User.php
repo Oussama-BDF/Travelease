@@ -56,4 +56,8 @@ class User extends Authenticatable
         }
         return RouteServiceProvider::HOME;
     }
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
 }

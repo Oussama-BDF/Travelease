@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\TripController;
+use App\Http\Controllers\User\ReviewController;
 
 
 // User Routes
@@ -13,7 +14,14 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Review Root
+    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/', [ReviewController::class, 'store'])->name('review.store');
 });
+
+Route::get('/reviews', [ReviewController::class, 'index'])->name('review.index');
+
 
 // User Auth Routes
 Route::controller(AuthController::class)->group(function() {
