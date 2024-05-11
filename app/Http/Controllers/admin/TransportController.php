@@ -37,24 +37,6 @@ class TransportController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Transport $transport)
-    {
-        // ! to fix
-        return abort(404);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Transport $transport)
-    {
-        return view('pages.admin.transport.edit', compact('transport'));
-        
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(TransportRequest $request, Transport $transport)

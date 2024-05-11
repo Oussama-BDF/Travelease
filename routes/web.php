@@ -31,7 +31,7 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
         return view('pages.admin.dashboard');
     })->name('dashboard');
     // Trips
-    Route::name('admin')->resource('transports', TransportController::class);
+    Route::name('admin')->resource('transports', TransportController::class)->except(['edit', 'show']);
     // Transports
     Route::name('admin')->resource('trips', TripController::class);
     // Admin Profile

@@ -9,5 +9,5 @@
         @endforelse
     </div>
     {{$trips->links()}}
-    <x-delete-modal title="Sure to delete this trip?" description='Select "Delete" below if you are sure that you want delete this trip.' />
+    <x-delete-modal password="false" title="Sure to delete this trip?" description='Select "Delete" below if you are sure that you want delete this trip.' />
 </x-admin-layout>

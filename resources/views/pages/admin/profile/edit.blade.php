@@ -1,8 +1,8 @@
 <x-admin-layout title='Edit Profile'>
     <x-slot name="header">Edit Profile</x-slot>
     <!-- Content Row -->
-    <div class="row">
-        <div class="col-12 p-4 bg-white shadow my-2 rounded">
+    <div class="row my-4">
+        <div class="col-12 p-4 bg-white shadow rounded">
             <form action="{{route('admin.profile.update')}}" method="post">
                 @csrf
                 @method('PATCH')
@@ -25,8 +25,10 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
+    </div>
 
-        <div class="col-12 p-4 bg-white shadow my-2 rounded">
+    <div class="row my-4">
+        <div class="col-12 p-4 bg-white shadow rounded">
             <form action="{{route('admin.password.update')}}" method="post">
                 @csrf
                 @method('PATCH')

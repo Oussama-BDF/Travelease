@@ -160,15 +160,28 @@ function deleteImage(event) {
 
 /****************** Add Action On Modal Form *************************/
 document.addEventListener("DOMContentLoaded", function() {
-    // Add event listener to all call modal anchor with the class 'call-modal'
-    var callModal = document.querySelectorAll('.call-modal');
+    // Add event listener to all call modal anchor with the class 'call-delete-modal'
+    var callModal = document.querySelectorAll('.call-delete-modal');
     callModal.forEach(function(button) {
-        button.addEventListener('click', AddActionOnModalForm);
+        button.addEventListener('click', function(event) {
+            var actionValue = event.target.dataset.action;
+            var form = document.getElementById("modal-form");
+            form.setAttribute('action', actionValue)
+        });
     });
 });
 
-function AddActionOnModalForm(event) {
-    var actionValue = event.target.dataset.action;
-    var form = document.getElementById("modal-form");
-    form.setAttribute('action', actionValue)
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // Add event listener to all call modal anchor with the class 'call-edit-modal'
+    var callModal = document.querySelectorAll('.call-edit-modal');
+    callModal.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            var actionValue = event.target.dataset.action;
+            var name = event.target.dataset.name;
+            var form = document.getElementById("modal-form-edit");
+            var input = document.getElementById("name");
+            form.setAttribute('action', actionValue)
+            input.setAttribute('value', name)
+        });
+    });
+});

@@ -86,35 +86,11 @@
                 @error('your_password')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteAccountModal">
-                    Delete
-                </a>
+                <a class="btn btn-danger call-delete-modal" data-action="{{route('profile.destroy')}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
             </div>
         </div>
     </div>
-    
-    <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete your account?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.</div>
-                <div class="footer p-4">
-                    <form action="{{route('profile.destroy')}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="your_password" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        <button class="btn btn-secondary float-right" type="button" data-dismiss="modal">Cancel</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <x-delete-modal password="true" title="Are you sure you want to delete your account?" description='Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.' />
+
 </x-user-layout>
