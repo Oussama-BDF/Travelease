@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ManageUsersController;
+use App\Http\Controllers\Admin\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Users Management
     Route::get('/users', [ManageUsersController::class, 'index'])->name('admin.users.index');
     Route::get('/users/{user}', [ManageUsersController::class, 'show'])->where('user', '\d+')->name('admin.users.show');
+    // Manage Reviews
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('admin.reviews.index');
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->where('review', '\d+')->name('admin.reviews.destroy');
 });
 
 // Admin Auth Routes

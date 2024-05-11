@@ -19,6 +19,7 @@ h6 {
     height: 250px;
 }
 
+// upload image element
 .btn_upload {
     background: $primary;
     border-radius: 0.35rem;
@@ -87,7 +88,6 @@ h6 {
     }
 }
 
-
 .image_delete {
     width: 30px;
     height: 30px;
@@ -108,3 +108,6 @@ h6 {
 }
 
 
+.user-rating {
+    color: #ffbf00;
+}

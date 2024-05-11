@@ -66,9 +66,9 @@
                             </div>
                             <div class="col-sm-4">
                                 <p class="mb-2 font-weight-bold">Rating</p>
-                                <h6 class="text-muted"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h6>
-                                <h6 class="text-muted"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h6>
-                                <h6 class="text-muted"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h6>
+                                <h6 class="text-muted"><x-user-rating rating="5" /></h6>
+                                <h6 class="text-muted"><x-user-rating rating="3" /></h6>
+                                <h6 class="text-muted"><x-user-rating rating="2" /></h6>
                             </div>
                             <a href="#" class="btn btn-primary btn-small">View All</a>
                         </div>
