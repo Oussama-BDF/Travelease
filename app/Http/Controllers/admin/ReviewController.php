@@ -25,6 +25,6 @@ class ReviewController extends Controller
     {
         $review->delete();
 
-        return to_route('admin.reviews.index')->with('success', 'The <strong>Review</strong> Deleted Successfully');
+        return back()->with('success', 'The <strong>Review</strong> Deleted Successfully');
     }
 }
