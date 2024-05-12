@@ -5,6 +5,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\TripController;
 use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\User\BookingController;
 
 
 // User Routes
@@ -15,9 +16,14 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::patch('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Review Root
+    // Review Routes
     Route::get('/reviews/create', [ReviewController::class, 'create'])->name('review.create');
     Route::post('/', [ReviewController::class, 'store'])->name('review.store');
+
+    // Book Routes
+    Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+    Route::get('/bookings/create/{trip}', [BookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings/{trip}', [BookingController::class, 'store'])->name('bookings.store');
 });
 
 Route::get('/reviews', [ReviewController::class, 'index'])->name('review.index');

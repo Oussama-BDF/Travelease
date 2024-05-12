@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="card-footer text-muted d-flex justify-content-around" style="z-index: 1000;">
-            <a href="#" class="btn btn-primary">Boook Now!</a>
+            <a href="{{route('bookings.create', $trip->id)}}" class="btn btn-primary">Boook Now!</a>
         </div>
     </div>
 </div>

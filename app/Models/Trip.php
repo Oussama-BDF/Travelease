@@ -30,4 +30,8 @@ class Trip extends Model
     public function images() {
         return $this->hasMany(Image::class);
     }
+
+    public function bookings() {
+        return $this->hasMany(Booking::class);
+    }
 }
