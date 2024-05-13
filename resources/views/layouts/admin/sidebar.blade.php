@@ -27,7 +27,7 @@
         Manage
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu - Manage Trips -->
+    <!-- Nav Item - Manage Trips -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
             aria-expanded="true" aria-controls="collapseOne">
@@ -43,7 +43,7 @@
         </div>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu - Manage Transports -->
+    <!-- Nav Item - Manage Transports -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -59,7 +59,7 @@
         </div>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu - Manage Users -->
+    <!-- Nav Item - Manage Users -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-cog"></i>
@@ -69,10 +69,19 @@
     
     <!-- Nav Item - Manage Booking -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Manage Booking</span>
+            <span>Manage Bookings</span>
         </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Components:</h6>
+                <a class="collapse-item" href="{{route('admin.bookings.index')}}">Pending Bookings</a>
+                <a class="collapse-item" href="{{route('admin.bookings.confirmed')}}">Confirmed Bookings</a>
+                <a class="collapse-item" href="{{route('admin.bookings.canceled')}}">Canceled Bookings</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Manage Reviews -->

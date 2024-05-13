@@ -185,3 +185,16 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// Show an alert if an option not selected
+function validateForm(formId) {
+    var form = document.getElementById(formId);
+    var statusSelect = form.elements['status'];
+    
+    if (statusSelect.value === '') {
+        alert('Please select a status');
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}
+

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ManageUsersController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,11 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Manage Reviews
     Route::get('/reviews', [ReviewController::class, 'index'])->name('admin.reviews.index');
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->where('review', '\d+')->name('admin.reviews.destroy');
+    // Manage Bookings
+    Route::get('/bookings', [BookingController::class, 'index'])->name('admin.bookings.index');
+    Route::get('/bookings/confirmed', [BookingController::class, 'confirmed'])->name('admin.bookings.confirmed');
+    Route::get('/bookings/canceled', [BookingController::class, 'canceled'])->name('admin.bookings.canceled');
+    Route::patch('/bookings/{booking}', [BookingController::class, 'update'])->where('review', '\d+')->name('admin.bookings.update');
 });
 
 // Admin Auth Routes
