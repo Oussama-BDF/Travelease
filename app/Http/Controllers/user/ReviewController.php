@@ -15,7 +15,6 @@ class ReviewController extends Controller
      */
     public function index() {
         $reviews = Review::orderBy('id', 'desc')->paginate(9);
-        // $reviewsAvg = Review::sum('rating') / $reviews->total();
         $reviewsAvg = number_format(Review::avg('rating'), 1);
         return view('pages.user.review.index', compact('reviews', 'reviewsAvg'));
     }
@@ -49,6 +48,6 @@ class ReviewController extends Controller
         // Create the review
         Review::create($formFields);
 
-        return to_route('review.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
+        return to_route('reviews.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
     }
 }

@@ -1,7 +1,7 @@
 @props(['trip'])
 <div class="col-md-6 col-lg-4 mb-4">
     <div class="trip-card card rounded shadow">
-        <img src="{{asset('storage/' . $trip->images->first()->path) ?? asset('storage/default.png')}}"class="card-img-top object-fit-cover img-card" alt="Gaming Laptop" />
+        <img src="{{asset('storage/' . $trip->images->first()->path)}}"class="card-img-top object-fit-cover img-card" alt="" />
         <a href="{{ route('admin.trips.show', $trip->id) }}" class="stretched-link"></a>
         <div class="card-body">
             <div class="text-center">

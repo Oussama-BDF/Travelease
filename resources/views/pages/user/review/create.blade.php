@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 p-4 bg-white shadow my-2 rounded">
                 <h1>Add your review</h1>
-                <form action="{{route('review.store')}}" method="post">
+                <form action="{{route('reviews.store')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="review">Your Review:</label>

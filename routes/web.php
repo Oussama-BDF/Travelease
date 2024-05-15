@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ManageUsersController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,8 @@ use App\Http\Controllers\Admin\BookingController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.user.home');
-})->name('home');
+// Home Routes
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // Admin Routes

@@ -17,8 +17,8 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     // Review Routes
-    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('review.create');
-    Route::post('/', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/', [ReviewController::class, 'store'])->name('reviews.store');
 
     // Booking Routes
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
@@ -31,7 +31,7 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::get('/bookings/checkout/cancel', [BookingController::class, 'checkoutCancel'])->name('bookings.checkout.cancel');
 });
 
-Route::get('/reviews', [ReviewController::class, 'index'])->name('review.index');
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 
 
 // User Auth Routes

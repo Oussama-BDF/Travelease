@@ -186,89 +186,9 @@ a {
 .section-title {
 	color: $dark;
 }
-.product-section {
-	padding: 7rem 0;
 
-	.product-item {
-		text-align: center;
-		text-decoration: none;
-		display: block;
-		position: relative;
-		padding-bottom: 50px;
-		cursor: pointer;
-
-		.product-thumbnail {
-			margin-bottom: 30px;
-			position: relative;
-			top: 0;
-			transition: .3s all ease;
-		}
-		h3 {
-			font-weight: 600;
-			font-size: 16px;
-		}
-		strong {
-			font-weight: 800!important;
-			font-size: 18px!important;
-		}
-		h3, strong {
-			color: $dark;
-			text-decoration: none;
-		}
-		.icon-cross {
-			position: absolute;
-			width: 35px;
-			height: 35px;
-			display: inline-block;
-			background: $dark;
-			bottom: 15px;
-			left: 50%;
-			transform: translateX(-50%);
-			margin-bottom: -17.5px;
-			border-radius: 50%;
-			opacity: 0;
-			visibility: hidden;
-			transition: .3s all ease;
-			img {
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-			}
-		}
-		&:before {
-			bottom: 0;
-			left: 0;
-			right: 0;
-			position: absolute;
-			content: "";
-			background: $gray-100;
-			height: 0%;
-			z-index: -1;
-			border-radius: 10px;
-			transition: .3s all ease;
-		}
-		&:hover {
-			.product-thumbnail {
-				top: -25px;
-			}
-			.icon-cross {
-				bottom: 0;
-				opacity: 1;
-				visibility: visible;
-			}
-			&:before {
-				height: 70%;
-			}
-		}
-	}
-}
-
-
-// Why Choose us section
-.why-choose-section {
-	padding: 7rem 0;
-
+// About us section
+.about-us-section {
 	.img-wrap {
 		position: relative;
 		&:before {
@@ -288,38 +208,8 @@ a {
 	}
 }
 
-.feature {
-	margin-bottom: 30px;
-	.icon {
-		display: inline-block;
-		position: relative;
-		margin-bottom: 20px;
-
-		&:before {
-			content: "";
-			width: 33px;
-			height: 33px;
-			position: absolute;
-			background: rgba($primary, .2);
-			border-radius: 50%;
-			right: -8px;
-			bottom: 0;
-		}
-
-	}
-	h3 {
-		font-size: 14px;
-		color: $dark;
-	}
-	p {
-		font-size: 14px;
-		line-height: 22px;
-	}
-}
-
-.we-help-section {
-	padding: 7rem 0;
-
+// Let us section
+.let-us-section {
 	.imgs-grid {
 		display: grid;
 		grid-template-columns: repeat(27, 1fr);
@@ -381,51 +271,8 @@ a {
 		}
 	}
 }
-.popular-product {
-	padding: 0 0 7rem 0;
-	.product-item-sm {
-		h3 {
-			font-size: 14px;
-			font-weight: 700;
-			color: $dark;
-		}
-		a {
-			text-decoration: none;
-			color: $dark;
-			transition: .3s all ease;
-			&:hover {
-				color: rgba($dark, .5);
-			}
-		}
-		p {
-			line-height: 1.4;
-			margin-bottom: 10px;
-			font-size: 14px;
-		}
-		.thumbnail {
-			margin-right: 10px;
-			flex: 0 0 120px;
-			position: relative;
-			&:before {
-				content: "";
-				position: absolute;
-				border-radius: 20px;
-				background: $gray-100;
-				width: 98px;
-				height: 98px;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				z-index: -1;
-			}
-		}
-	}
-}
 
 // Testimonial Section
-.testimonial-section {
-	padding: 3rem 0 7rem 0;
-}
 .testimonial-slider-wrap {
 	position: relative;
 
@@ -492,7 +339,7 @@ a {
 	}
 	.tns-nav {
 		position: absolute;
-		bottom: -50px;
+		bottom: -20px;
 		left: 50%;
 		transform: translateX(-50%);
 		button {
@@ -531,12 +378,8 @@ a {
 	}
 }
 
-// Blog Section
-.before-footer-section {
-	padding: 7rem 0 12rem 0!important;
-}
-.blog-section {
-	padding: 7rem 0 12rem 0;
+// Last-trips Section
+.last-trips-section {
 	.post-entry {
 		a {
 			text-decoration: none;

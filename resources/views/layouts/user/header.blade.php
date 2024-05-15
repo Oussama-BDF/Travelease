@@ -12,8 +12,8 @@
 						<a class="nav-link" href="{{route('home')}}">Home</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="{{route('trips.index')}}">Trips</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{route('review.index')}}">User Reviews</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{route('review.create')}}">Leave Review</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{route('reviews.index')}}">User Reviews</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{route('reviews.create')}}">Leave Review</a></li>
 				</ul>
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					@auth
