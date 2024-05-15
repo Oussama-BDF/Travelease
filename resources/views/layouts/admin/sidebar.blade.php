@@ -77,7 +77,7 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="{{route('admin.bookings.index')}}">Pending Bookings</a>
+                <a class="collapse-item" href="{{route('admin.bookings.pending')}}">Pending Bookings</a>
                 <a class="collapse-item" href="{{route('admin.bookings.confirmed')}}">Confirmed Bookings</a>
                 <a class="collapse-item" href="{{route('admin.bookings.canceled')}}">Canceled Bookings</a>
             </div>

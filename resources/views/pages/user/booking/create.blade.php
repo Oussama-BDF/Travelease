@@ -1,8 +1,8 @@
-<x-user-layout title='Edit Profile'>
+<x-user-layout title='Booking'>
     <div class="container">
         <div class="row">
             <div class="col-12 p-4 bg-white shadow my-2 rounded">
-                <form action="{{route('bookings.store', $trip->id)}}" method="post">
+                <form action="{{route('bookings.store', $trip_id)}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="adults_number">Adults Number</label>

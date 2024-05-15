@@ -16,7 +16,7 @@ class Booking extends Model
         'total_amount',
         'status',
         'payment_status',
-        'booking_code',
+        'payment_token',
         'user_id',
         'trip_id',
     ];
@@ -27,5 +27,9 @@ class Booking extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function calculateTotalAmount($price) {
+        return $price * $this->adults_number + $price * 50/100 * $this->children_number;
     }
 }

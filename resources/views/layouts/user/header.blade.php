@@ -25,7 +25,7 @@
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="{{route('profile.edit')}}">{{Auth::user()->name}}</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="{{route('bookings.index')}}">Bookings</a>
+									<a class="dropdown-item" href="{{route('bookings.index')}}">Bookings History</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="{{route('logout')}}">Logout</a>
 								</div>

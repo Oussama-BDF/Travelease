@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('emergency_contact', 25);
             $table->decimal('total_amount', 10, 2);
             $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending');
-            $table->enum('payment_status', ['pending', 'paid'])->default('pending');
-            $table->string('booking_code')->unique();; // A unique code generated for each booking
+            $table->enum('payment_status', ['unpaid', 'paid'])->default('unpaid');
+            $table->string('payment_token')->unique()->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unsignedBigInteger('trip_id');

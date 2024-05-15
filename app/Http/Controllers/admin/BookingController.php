@@ -5,31 +5,23 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class BookingController extends Controller
 {
     /**
-     * Display a listing of the pending bookings.
+     * Display a listing of the bookings based on the status.
      */
     public function index() {
-        $bookings = Booking::where('status', 'pending')->orderBy('id', 'desc')->get();
-        return view('pages.admin.booking.index', compact('bookings'));
-    }
-
-    /**
-     * Display a listing of the confirmed bookings.
-     */
-    public function confirmed() {
-        $bookings = Booking::where('status', 'confirmed')->orderBy('id', 'desc')->get();
-        return view('pages.admin.booking.index', compact('bookings'));
-    }
-
-    /**
-     * Display a listing of the canceled bookings.
-     */
-    public function canceled() {
-        $bookings = Booking::where('status', 'canceled')->orderBy('id', 'desc')->get();
-        return view('pages.admin.booking.index', compact('bookings'));
+        // Get the current route name
+        $currentRouteName = Route::currentRouteName();
+        // Get the status value
+        $status = Str::afterLast($currentRouteName, '.');
+        // Retrieve the data base on the status
+        $bookings = Booking::where('status', $status)->orderBy('id', 'desc')->get();
+        return view('pages.admin.booking.index', compact('bookings', 'status'));
     }
 
     /**

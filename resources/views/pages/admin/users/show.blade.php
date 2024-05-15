@@ -86,46 +86,52 @@
                         <thead>
                             <tr>
                                 <th>Booking Date</th>
-                                <th>Adults Number</th>
-                                <th>Children Number</th>
+                                <th>Adults</th>
+                                <th>Children</th>
                                 <th>Emergency Contact</th>
                                 <th>Total Amount</th>
-                                <th>Status</th>
-                                <th>Payment Status</th>
-                                <th>Booking Code</th>
                                 <th>Trip</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Booking Date</th>
-                                <th>Adults Number</th>
-                                <th>Children Number</th>
+                                <th>Adults</th>
+                                <th>Children</th>
                                 <th>Emergency Contact</th>
                                 <th>Total Amount</th>
-                                <th>Status</th>
-                                <th>Payment Status</th>
-                                <th>Booking Code</th>
                                 <th>Trip</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($user->bookings as $key => $booking)
+                            @foreach ($user->bookings()->orderBy('id', 'desc')->get() as $key => $booking)
                                 <tr>
                                     <td>{{date('D, d M Y', strtotime($booking->created_at))}}</td>
                                     <td>{{$booking->adults_number}}</td>
                                     <td>{{$booking->children_number}}</td>
                                     <td>{{$booking->emergency_contact}}</td>
                                     <td>{{$booking->total_amount}} MAD</td>
-                                    <td>{{$booking->status}}</td>
-                                    <td>{{$booking->payment_status}}</td>
-                                    <td>{{$booking->booking_code}}</td>
                                     <td>
                                         <a href="{{route('admin.trips.show', $booking->trip->id)}}">{{$booking->trip->destination}}</a>
                                     </td>
-                                    <td>edit</td>
+                                    <form id="bookingForm{{$key}}" action="{{route('admin.bookings.update', $booking->id)}}" method="POST">
+                                        <td>
+                                            <select class="form-control" name="status" required >
+                                                @foreach (['pending', 'confirmed', 'canceled'] as $item)
+                                                    <option @selected($item == $booking->status) value="{{($item == $booking->status)? '' : $item}}">{{$item}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="button" onclick="if(validateForm('bookingForm{{$key}}')) { this.form.submit(); }" class="btn btn-primary">Edit</button>
+                                        </td>
+                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -136,9 +142,9 @@
     </div>
 
     <div class="row my-4">
-        <div class="col-12 p-0 bg-white shadow rounded card">
+        <div class="col-12 p-0 bg-white shadow my-2 rounded card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">User Reviews</h6>
+                <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

@@ -1,10 +1,10 @@
 <x-admin-layout title='Bookings'>
-    <x-slot name="header">Bookings</x-slot>
+    <x-slot name="header">{{ucfirst($status)}} Bookings</x-slot>
     
     <div class="row">
         <div class="col-12 p-0 bg-white shadow my-2 rounded card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ucfirst($status)}} Bookings</h6>
                 @error('status')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -16,11 +16,12 @@
                             <tr>
                                 <th>User</th>
                                 <th>Booking Date</th>
-                                <th>Adults Number</th>
-                                <th>Children Number</th>
+                                <th>Adults</th>
+                                <th>Children</th>
                                 <th>Emergency Contact</th>
                                 <th>Total Amount</th>
                                 <th>Trip</th>
+                                <th>Payment Status</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -29,11 +30,12 @@
                             <tr>
                                 <th>User</th>
                                 <th>Booking Date</th>
-                                <th>Adults Number</th>
-                                <th>Children Number</th>
+                                <th>Adults</th>
+                                <th>Children</th>
                                 <th>Emergency Contact</th>
                                 <th>Total Amount</th>
                                 <th>Trip</th>
+                                <th>Payment Status</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -54,6 +56,7 @@
                                     <td>
                                         <a href="{{route('admin.trips.show', $booking->trip->id)}}">{{$booking->trip->destination}}</a>
                                     </td>
+                                    <td>{{$booking->payment_status}}</td>
                                     <form id="bookingForm{{$key}}" action="{{route('admin.bookings.update', $booking->id)}}" method="POST">
                                         <td>
                                             <select class="form-control" name="status" required >

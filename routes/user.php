@@ -20,10 +20,15 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::get('/reviews/create', [ReviewController::class, 'create'])->name('review.create');
     Route::post('/', [ReviewController::class, 'store'])->name('review.store');
 
-    // Book Routes
+    // Booking Routes
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
-    Route::get('/bookings/create/{trip}', [BookingController::class, 'create'])->name('bookings.create');
-    Route::post('/bookings/{trip}', [BookingController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings/create/{trip_id}', [BookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings/{trip_id}', [BookingController::class, 'store'])->name('bookings.store');
+    Route::post('/retry/{booking_id}', [BookingController::class, 'retryPayment'])->name('bookings.retryPayment');
+
+    // Route for handling the Checkout success or cancel actions
+    Route::get('/bookings/checkout/success', [BookingController::class, 'checkoutSuccess'])->name('bookings.checkout.success');
+    Route::get('/bookings/checkout/cancel', [BookingController::class, 'checkoutCancel'])->name('bookings.checkout.cancel');
 });
 
 Route::get('/reviews', [ReviewController::class, 'index'])->name('review.index');
