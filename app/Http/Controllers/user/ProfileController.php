@@ -43,7 +43,16 @@ class ProfileController extends Controller
             $validated['profile_image_thumbnail'] = static::ResizeStoreImage($request->file('profile_image'), 'profile');
         }
 
-        // Check if the user want to delete the image
+        // Check if the user want to delete the profile image
+        if ($request->input('delete_image')) {
+            // Delete the image form the server and from the db
+            if ($request->user()->profile_image) {
+                static::deleteFile($request->user()->profile_image);
+                static::deleteFile($request->user()->profile_image_thumbnail);
+                $request->user()->profile_image = null;
+                $request->user()->profile_image_thumbnail = null;
+            }
+        }
 
         $request->user()->fill($validated);
 
@@ -69,9 +78,11 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        // Delete the profile image
-        static::deleteFile($user->profile_image);
-        static::deleteFile($user->profile_image_thumbnail);
+        // Delete the profile image if exist
+        if($user->profile_image) {
+            static::deleteFile($user->profile_image);
+            static::deleteFile($user->profile_image_thumbnail);
+        }
 
         // Logout and delete the account
         Auth::logout();

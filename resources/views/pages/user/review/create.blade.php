@@ -1,8 +1,8 @@
 <x-user-layout title='User Review'>
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
             <div class="col-12 p-4 bg-white shadow my-2 rounded">
-                <h1>Add your review</h1>
+                <h3>Add your review</h3>
                 <form action="{{route('reviews.store')}}" method="post">
                     @csrf
                     <div class="form-group">
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                        <button type="submit" class="btn btn btn-outline-primary">Submit Review</button>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,5 @@
 <x-user-layout title='Trip Detail'>
-    <div class="container">
+    <div class="container py-5">
         <div class="card p-4 shadow mb-4">
             <p class="my-3 border-bottom border-gray font-weight-bold h5">Travel To : {{ $trip->destination}}</p>
             <div class="row">
@@ -23,7 +23,7 @@
                         @forelse($trip->activities as $activity)
                             <li>{{$activity->name}} : {{$activity->price}} MAD</li>
                         @empty
-                            <li>No Activity Available</li>
+                            <li>No Activity Available!!</li>
                         @endforelse
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                 </div>       
                 <div class="col-sm-4">
                     <p class="mb-2 font-weight-bold">Description</p>
-                    <ul><li>{{ $trip->description  ?? "There Is No Description!"}}</li></ul>
+                    <ul><li>{{ $trip->description  ?? "There Is No Description!!"}}</li></ul>
                 </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
                 @endforeach
             </div>
             <div class="card-footer text-muted d-flex justify-content-around" style="z-index: 1000;">
-                <a href="{{route('bookings.create', $trip->id)}}" class="btn btn-primary">Boook Now!</a>
+                <a href="{{route('bookings.create', $trip->id)}}" class="btn btn-outline-primary">Boook Now?</a>
             </div>
         </div>
     </div>

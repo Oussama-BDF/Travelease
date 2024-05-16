@@ -110,17 +110,15 @@ function previewImage(event) {
 
     reader.onload = function(){
         // Select the uploaded image view (uploaded_image_view)
-        var uploadedImgContainer = input.parentElement.nextElementSibling;
-        uploadedImgContainer.classList.add('show');
+        var uploadedImgView = input.parentElement.parentElement.querySelector('.uploaded_image_view');
+        uploadedImgView.classList.add('show');
         // Select the image element
-        var img = uploadedImgContainer.querySelector("img");
+        var img = uploadedImgView.querySelector("img");
         img.src = reader.result;
         img.classList.add('show');
-        // ! to fix
-        if (imgView = uploadedImgContainer.nextElementSibling) {
+        if (imgView = uploadedImgView.parentElement.querySelector('.image_view')) {
             imgView.classList.remove('show');
         }
-        // var imgView = uploadedImgContainer.nextElementSibling;
     };
 
     reader.readAsDataURL(input.files[0]);
@@ -129,16 +127,15 @@ function previewImage(event) {
 // Remove the image uploaded
 function removeImage(event) {
     var button = event.target;
-    var uploadedImgContainer = button.parentElement;
-    uploadedImgContainer.classList.remove('show');
-    var img = uploadedImgContainer.querySelector("img");
+    var uploadedImgView = button.parentElement;
+    uploadedImgView.classList.remove('show');
+    var img = uploadedImgView.querySelector("img");
     img.src = "#"; // Clear the image source
     img.classList.remove('show');
-    var input = uploadedImgContainer.previousElementSibling.querySelector(".image_upload");
+    var input = uploadedImgView.parentElement.querySelector(".image_upload");
     input.value = ""; // Clear the file input value
 
-    // ! to fix
-    if (imgView = uploadedImgContainer.nextElementSibling) {
+    if (imgView = uploadedImgView.parentElement.querySelector('.image_view')) {
         imgView.classList.add('show');
     }
 }

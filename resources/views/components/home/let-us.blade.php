@@ -1,4 +1,4 @@
-<div class="let-us-section py-5">
+<div class="let-us-section py-5 bg-gray border-bottom">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-7 mb-5 mb-lg-0">

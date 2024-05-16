@@ -1,5 +1,5 @@
 <x-user-layout title='Edit Profile'>
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
             <div class="col-12 p-4 bg-white shadow my-2 rounded">
                 <form action="{{route('profile.update')}}" method="post" enctype='multipart/form-data'>
@@ -7,6 +7,33 @@
                     @method('PATCH')
                     <p class="text-dark font-weight-bold h4 mb-0">Profile Information</p>
                     <small class="form-text text-muted mb-3">Update Your account's profile information and email address.</small>
+
+                    <div class="form-group mb-3">
+                        {{-- Old Image View --}}
+                        @if ($image =  Auth::user()->profile_image)
+                            <small class="text-danger">You can change the profile image by uploading a new one, or you can delete it by checking it!</small>
+                        @endif
+                        <div class="image_view show">
+                            @if ($image)
+                                <input class="image_delete" type="checkbox" name="delete_image">
+                            @endif
+                            <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('storage/'. ($image ?? 'profile/default.png')) }}">
+                        </div>
+                        {{-- Upload Image View --}}
+                        <div class="uploaded_image_view">
+                            <span class="image_remove d-flex justify-content-center align-items-center bg-danger"><i class="fa fa-solid fa-trash"></i></span>
+                            <img class="object-fit-cover preview" style="width: 250px; height: 250px;" src="#">
+                        </div>
+                        {{-- Upload Image Button --}}
+                        <div class="btn_upload">
+                            <input class="image_upload" type="file" name="profile_image">
+                            <i class="fa fa-solid fa-camera"></i> Upload Image
+                        </div>
+                        @error('image')
+                            <div class="text-danger">{{$message}}</div>
+                        @enderror
+                    </div>
+
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{old('name', Auth::user()->name)}}">
@@ -14,6 +41,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{old('email', Auth::user()->email)}}">
@@ -21,6 +49,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="phone-number">Phone number:</label>
                         <input class="form-control" type="text" id="phone-number" name="phone_number" placeholder="Enter phone number" value="{{old('phone_number', Auth::user()->phone_number)}}">
@@ -28,6 +57,7 @@
                             <div class="text-danger">{{$message}}</div>
                         @enderror
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="address">Address:</label>
                         <input class="form-control" type="text" id="address" name="address" placeholder="Enter address" value="{{old('address', Auth::user()->address)}}">
@@ -35,18 +65,7 @@
                             <div class="text-danger">{{$message}}</div>
                         @enderror
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="image">Profile Image:</label>
-                        <input class="form-control-file" type="file" id="image" name="profile_image" placeholder="Select an image">
-                        @if($image = Auth::user()->profile_image_thumbnail)
-                            <div class="bg-dark" style="width: 100px">
-                                <img src="{{ asset('storage/'.$image) }}" style="width: 100px" class="" alt="...">
-                            </div>
-                        @endif
-                        @error('image')
-                            <div class="text-danger">{{$message}}</div>
-                        @enderror
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>

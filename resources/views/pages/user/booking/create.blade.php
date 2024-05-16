@@ -1,5 +1,5 @@
 <x-user-layout title='Booking'>
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
             <div class="col-12 p-4 bg-white shadow my-2 rounded">
                 <form action="{{route('bookings.store', $trip_id)}}" method="post">
@@ -25,7 +25,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Confirm Booking?</button>
+                    <button type="submit" class="btn btn-outline-primary">Confirm Booking?</button>
                 </form>
             </div>
         </div>

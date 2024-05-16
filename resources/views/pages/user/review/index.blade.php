@@ -1,7 +1,7 @@
 <x-user-layout title='Reviews'>
-    <div class="container">
+    <div class="container  py-5">
         <div class="row">
-            <div class="col-12 p-4 bg-white shadow my-2 rounded ">
+            <div class="col-12 p-4 my-2">
                 <div class="text-center m-auto" style="width: 60%">
                     <h3 class="mb-4 font-weight-bold">Users Reviews</h3>
                     <p class="mb-4 pb-2 mb-md-5 pb-md-0">
@@ -18,8 +18,7 @@
                     </div>
                 </div>
                 <hr>
-                <a href="#" class="btn btn-outline-primary btn-sm float-right">Top Rated</a>
-                <h5 class="text-dark font-weight-bold h4 mb-0">All Ratings and Reviews</h5>
+-                <h5 class="text-dark font-weight-bold h4 mb-0">All Ratings and Reviews</h5>
                 @foreach ($reviews as $review)
                     <div class="user-review pt-4 pb-4">
                         <div class="media">

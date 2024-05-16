@@ -1,5 +1,5 @@
 @props(['trips'])
-<div class="last-trips-section py-5">
+<div class="last-trips-section py-5 bg-gray border-bottom">
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-6">
@@ -20,15 +20,16 @@
                             </h3>
                             <div class="meta">
                                 <span>start at {{$trip->start_at}}</span>
-                                <span>end at {{$trip->end_at}}</span>
+                                <span class="float-right">end at {{$trip->end_at}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="row justify-content-center my-5">
+        <div class="row justify-content-center my-5 read-more">
             <a href="{{route('trips.index')}}" class="btn btn-outline-primary">View All</a>
+            <hr>
         </div>
     </div>
 </div>

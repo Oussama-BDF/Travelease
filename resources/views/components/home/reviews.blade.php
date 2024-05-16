@@ -1,5 +1,5 @@
 @props(['reviews'])
-<div class="testimonial-section py-5">
+<div class="testimonial-section py-5 bg-white border-bottom">
     <div class="container">
         <div class="row">
             <div class="col-lg-7 mx-auto text-center">
@@ -45,8 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center my-5">
+        <div class="row justify-content-center my-5 read-more">
             <a href="{{route('reviews.index')}}" class="btn btn-outline-primary">View All</a>
+            <hr>
         </div>
     </div>
 </div>

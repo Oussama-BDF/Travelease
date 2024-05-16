@@ -33,6 +33,14 @@ Route::middleware(['role:user', 'auth'])->group(function () {
 
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 
+Route::get('/about-us', function() {
+    return view('pages.user.about_us');
+})->name('about_us');
+
+Route::get('/contact-us', function() {
+    return view('pages.user.contact_us');
+})->name('contact_us');
+
 
 // User Auth Routes
 Route::controller(AuthController::class)->group(function() {
