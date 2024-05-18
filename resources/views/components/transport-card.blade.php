@@ -6,7 +6,7 @@
         </div>
         <div class="card-footer text-muted d-flex justify-content-around">
             <a class="btn btn-danger call-delete-modal" data-action="{{route('admin.transports.destroy', $transport->id)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
-            <a class="btn btn-secondary call-edit-modal" data-name="{{$transport->name}}" data-action="{{route('admin.transports.update', $transport->id)}}"  href="#" data-toggle="modal" data-target="#edit-modal-alert">Show Edit modal</a>
+            <a class="btn btn-secondary call-edit-modal" data-name="{{$transport->name}}" data-action="{{route('admin.transports.update', $transport->id)}}"  href="#" data-toggle="modal" data-target="#edit-modal-alert">Edit</a>
         </div>
     </div>
 </div>

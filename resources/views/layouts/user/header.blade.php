@@ -1,7 +1,8 @@
 	<!-- Start Header/Navigation -->
 	<nav class="navbar navbar-expand-md navbar-dark" id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="{{route('home')}}">Travel Ease<span>.</span></a>
+			{{-- <a class="navbar-brand" href="{{route('home')}}">Travel Ease<span>.</span></a> --}}
+			<a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('img/logo-white.svg')}}" alt="..." /></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				Menu
 				<span class="navbar-toggler-icon"></span>
@@ -34,7 +35,7 @@
 						@endrole
 					@else
 						<li class="nav-item">
-							<a class="nav-link btn btn-secondary" href="{{route('login')}}">Login</a>
+							<a class="nav-link btn btn-outline-secondary" href="{{route('login')}}">Login</a>
 						</li>
 					@endauth
 				</ul>

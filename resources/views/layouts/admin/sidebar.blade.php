@@ -3,7 +3,8 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            {{-- <i class="fas fa-laugh-wink"></i> --}}
+			<img src="{{asset('img/logo-white.svg')}}" alt="..." />
         </div>
         <div class="sidebar-brand-text mx-3">Travel Ease</div>
     </a>
@@ -31,7 +32,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
             aria-expanded="true" aria-controls="collapseOne">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-plane-departure"></i>
             <span>Manage Trips</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -47,7 +48,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-shuttle-van"></i>
             <span>Manage Transports</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -62,7 +63,7 @@
     <!-- Nav Item - Manage Users -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-users"></i>
             <span>Manage Users</span>
         </a>
     </li>
@@ -71,7 +72,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
             aria-expanded="true" aria-controls="collapseThree">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-clipboard-list"></i>
             <span>Manage Bookings</span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -87,7 +88,7 @@
     <!-- Nav Item - Manage Reviews -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.reviews.index')}}">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-comments"></i>
             <span>Manage Reviews</span>
         </a>
     </li>

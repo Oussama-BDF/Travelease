@@ -59,5 +59,9 @@
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('js/datatables-demo.js')}}"></script>
+
+    <script src="{{asset('js/Chart.min.js')}}"></script>
+
+    <script src="{{asset('js/chart-area-demo.js')}}"></script>
 </body>
 </html>

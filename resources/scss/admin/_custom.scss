@@ -19,6 +19,9 @@ h6 {
     height: 250px;
 }
 
+.trip-card:hover img {
+    opacity: .8;
+}
 // upload image element
 .btn_upload {
     background: $primary;
@@ -110,4 +113,9 @@ h6 {
 
 .user-rating {
     color: #ffbf00;
+}
+
+
+.sidebar-brand img {
+    height: 2.5rem;
 }

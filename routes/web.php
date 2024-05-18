@@ -8,7 +8,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ManageUsersController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BookingController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\ChartController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +21,14 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Home Routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
+// Charts
+Route::get('/popular-destinations', [ChartController::class, 'popularDestinations']);
+Route::get('/booking-status-distribution', [ChartController::class, 'bookingStatusDistribution']);
 
 // Admin Routes
 Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Dashboard
-    Route::get('/', function () {
-        return view('pages.admin.dashboard');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     // Trips
     Route::name('admin')->resource('transports', TransportController::class)->except(['edit', 'show']);
     // Transports

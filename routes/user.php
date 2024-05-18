@@ -6,6 +6,11 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\TripController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\User\HomeController;
+
+
+// Home Routes
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // User Routes

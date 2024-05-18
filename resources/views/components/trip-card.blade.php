@@ -4,14 +4,13 @@
         <img src="{{asset('storage/' . $trip->images->first()->path)}}"class="card-img-top object-fit-cover img-card" alt="" />
         <a href="{{ route('admin.trips.show', $trip->id) }}" class="stretched-link"></a>
         <div class="card-body">
-            <div class="text-center">
-                <h5 class="h5 mb-0 font-weight-bold text-gray-800"><span class="font-weight-bold">To : </span>{{ $trip->destination }}!</h5>
-                <p class="small text-uppercase mb-1">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>
+            <div class="d-flex justify-content-between mb-3">
+                <h5 class="mb-0"><span class="font-weight-bold">To : </span>{{ $trip->destination }}!</h5>
+                <h5 class="mb-0 text-primary">{{ $trip->price }} MAD</h5>
             </div>
 
-            <div class="d-flex justify-content-between mb-3">
-                <h5 class="mb-0"><span class="font-weight-bold">On a : </span>{{ $trip->transport?->name ?? "Undefined" }}</h5>
-                <h5 class="mb-0 text-danger">{{ $trip->price }} MAD</h5>
+            <div class="text-center">
+                <p class="small text-uppercase mb-1">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>
             </div>
 
             <div class="d-flex justify-content-between mb-2">
