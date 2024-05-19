@@ -23,8 +23,8 @@ class UpdateTripRequest extends FormRequest
     {
         return [
             'destination' => 'required|max:100',
-            'start_at' => 'required',
-            'end_at' => 'required',
+            'start_at' => 'required|date',
+            'end_at' => 'required|date|after:start_at',
             'price' => 'required|numeric|max:9999.99',
             'accommodation' => 'required|max:100',
             'transport_id' => 'required',

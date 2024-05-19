@@ -392,8 +392,15 @@ a {
 
 	.links-wrap {
 		margin-top: 0px;
+		h5 {
+			color: $gray-900;
+			font-weight: 600;
+		}
 		@media (min-width: $lg) {
-			margin-top: 54px;
+			margin-top: 84px;
+			h5 {
+				margin-bottom: 28px;
+			}
 		}
 		ul {
 			li {
@@ -411,13 +418,11 @@ a {
 	}
 	.custom-social {
 		li {
-			margin: 2px;
-			display: inline-block;
-			a {
-				width: 40px;
-				height: 40px;
+			i {
+				width: 20px;
+				height: 20px;
 				text-align: center;
-				line-height: 40px;
+				line-height: 20px;
 				display: inline-block;
 				background: $gray-100;
 				color: $primary;

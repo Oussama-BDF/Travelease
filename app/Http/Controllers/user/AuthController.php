@@ -28,7 +28,7 @@ class AuthController extends Controller
         ]);
         if($auth && Auth::user()->hasRole('user')) {
             $request->session()->regenerate();
-            return to_route('home');
+            return redirect()->intended('/');
         } else {
             $request->session()->invalidate();
             return back()->withErrors([

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,10 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     Route::patch('/bookings/{booking}', [BookingController::class, 'update'])->where('review', '\d+')->name('admin.bookings.update');
     // Route for canceling a booking
     // Route::post('/bookings/{booking}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
+
+    // Generate Report
+    Route::get('/report', [ReportController::class, 'generateReport'])->name('admin.report');
+
 });
 
 // Admin Auth Routes

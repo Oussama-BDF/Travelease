@@ -2,8 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            {{-- <i class="fas fa-laugh-wink"></i> --}}
+        <div class="sidebar-brand-icon">
 			<img src="{{asset('img/logo-white.svg')}}" alt="..." />
         </div>
         <div class="sidebar-brand-text mx-3">Travel Ease</div>

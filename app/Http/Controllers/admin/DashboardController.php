@@ -52,6 +52,11 @@ class DashboardController extends Controller
         //         });
         // })->get();
 
+        // Bookings (Monthly)
+        $BookingsMonthly = Booking::whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->count();
+
         return view('pages.admin.dashboard', compact(
             'pendingBookings',
             'earningMonthly',
@@ -59,6 +64,7 @@ class DashboardController extends Controller
             'activatedTripsCount',
             'activatedBookingsCount',
             'pendingPayments',
+            'BookingsMonthly',
             'newUsers',
         ));
     }
