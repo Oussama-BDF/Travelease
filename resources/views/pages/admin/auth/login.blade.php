@@ -4,17 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Travel Ease - Login</title>
-        <link rel="stylesheet" href="{{asset('css/app.min.css')}}">
-        <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
         @vite(['resources/scss/app.scss'])
     </head>
 
     <body class="bg-gradient-primary">
 
-        <div class="container">
+        <div class="container login">
     
             <!-- Outer Row -->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-center h-100">
     
                 <div class="col-xl-10 col-lg-12 col-md-9">
     
@@ -22,7 +20,9 @@
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
-                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background: url('{{asset('img/hero.jpg')}}') no-repeat center/cover; position: relative;">
+                                    <div class="overlay"></div> <!-- Overlay div -->
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center">
@@ -33,7 +33,7 @@
                                             <div class="form-group">
                                                 <input type="email" name="email" class="form-control form-control-user"
                                                     id="exampleInputEmail" aria-describedby="emailHelp"
-                                                    placeholder="Enter Email Address...">
+                                                    placeholder="Enter Email Address..." value={{old('email')}}>
                                                 @error('email')
                                                     <small class="text-danger">{{$message}}</small>
                                                 @enderror
@@ -45,12 +45,12 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">Remember
-                                                        Me</label>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                                                    <label class="custom-control-label" for="remember">Remember Me</label>
                                                 </div>
                                             </div>
+                                            
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                                 Login
                                             </button>

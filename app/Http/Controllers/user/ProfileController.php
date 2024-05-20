@@ -43,7 +43,7 @@ class ProfileController extends Controller
             $validated['profile_image_thumbnail'] = static::ResizeStoreImage($request->file('profile_image'), 'profile');
         }
 
-        // Check if the user want to delete the profile image
+        // Check if the user want to delete the old profile image
         if ($request->input('delete_image')) {
             // Delete the image form the server and from the db
             if ($request->user()->profile_image) {
@@ -54,9 +54,7 @@ class ProfileController extends Controller
             }
         }
 
-        $request->user()->fill($validated);
-
-        $request->user()->save();
+        $request->user()->fill($validated)->save();
 
         return back()->with('success', 'Your <strong>Profile</strong> Added Successfully');
     }

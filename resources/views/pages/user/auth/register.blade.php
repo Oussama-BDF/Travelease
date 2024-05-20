@@ -1,7 +1,7 @@
 <x-user-layout title='Register'>
     <div class="container py-5">
-        <div class="row">
-            <div class="col-12 p-4 bg-white shadow my-2 rounded">
+        <div class="row justify-content-center">
+            <div class="col-md-7 mx-4 mx-sm-0 p-4 bg-white shadow my-2 rounded">
                 <h1>Register</h1>
                 <div class="my-3"><a href="{{route('loginForm')}}" class="btn btn-outline-primary">Already have an account?</a></div>
                 <form action="{{route('register')}}" method="post" enctype='multipart/form-data'>
@@ -9,16 +9,16 @@
 
                     <div class="form-group mb-3">
                         {{-- Default Image View --}}
-                        <div class="image_view show">
+                        <div class="image_view profile show">
                             <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('storage/'. 'profile/default.png') }}">
                         </div>
                         {{-- Upload Image View --}}
-                        <div class="uploaded_image_view">
+                        <div class="uploaded_image_view profile">
                             <span class="image_remove d-flex justify-content-center align-items-center bg-danger"><i class="fa fa-solid fa-trash"></i></span>
                             <img class="object-fit-cover preview" style="width: 250px; height: 250px;" src="#">
                         </div>
                         {{-- Upload Image Button --}}
-                        <div class="btn_upload">
+                        <div class="btn_upload profile">
                             <input class="image_upload" type="file" name="profile_image">
                             <i class="fa fa-solid fa-camera"></i> Upload Image
                         </div>

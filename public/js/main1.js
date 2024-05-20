@@ -127,6 +127,11 @@ function previewImage(event) {
 // Remove the image uploaded
 function removeImage(event) {
     var button = event.target;
+    // Check if the clicked element has the class "image_remove" or if its parent has the class
+    if (button && !button.classList.contains("image_remove")) {
+        button = button.parentElement;
+    }
+
     var uploadedImgView = button.parentElement;
     uploadedImgView.classList.remove('show');
     var img = uploadedImgView.querySelector("img");

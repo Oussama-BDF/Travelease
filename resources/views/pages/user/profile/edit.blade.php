@@ -13,19 +13,19 @@
                         @if ($image =  Auth::user()->profile_image)
                             <small class="text-danger">You can change the profile image by uploading a new one, or you can delete it by checking it!</small>
                         @endif
-                        <div class="image_view show">
+                        <div class="image_view profile show">
                             @if ($image)
                                 <input class="image_delete" type="checkbox" name="delete_image">
                             @endif
                             <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('storage/'. ($image ?? 'profile/default.png')) }}">
                         </div>
                         {{-- Upload Image View --}}
-                        <div class="uploaded_image_view">
+                        <div class="uploaded_image_view profile">
                             <span class="image_remove d-flex justify-content-center align-items-center bg-danger"><i class="fa fa-solid fa-trash"></i></span>
                             <img class="object-fit-cover preview" style="width: 250px; height: 250px;" src="#">
                         </div>
                         {{-- Upload Image Button --}}
-                        <div class="btn_upload">
+                        <div class="btn_upload profile">
                             <input class="image_upload" type="file" name="profile_image">
                             <i class="fa fa-solid fa-camera"></i> Upload Image
                         </div>

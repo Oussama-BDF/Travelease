@@ -106,8 +106,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ucwords(Auth::user()->name)}}</span>
-                <img class="img-profile rounded-circle"
-                    src="{{asset('img/undraw_profile_2.svg')}}">
+                <img class="object-fit-cover rounded-circle" style="width: 32px; height: 32px;" src="{{asset("storage/".(Auth::user()->profile_image_thumbnail ?? 'profile/thumbnails/default.png'))}}" alt="">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -2,6 +2,15 @@ h6 {
     font-size: 14px;
 }
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity and color as needed */
+}
+
 .object-fit-cover {
     object-fit: cover;
 }
@@ -22,22 +31,55 @@ h6 {
 .trip-card:hover img {
     opacity: .8;
 }
+
+// trip status
+/* Base styles for the status */
+.status {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+/* Upcoming status styles */
+.status.upcoming {
+    color: #c3a03a;
+}
+
+/* Ongoing status styles */
+.status.ongoing {
+    color: #598ec9;
+}
+
+/* Completed status styles */
+.status.completed {
+    color: #529461;
+}
+
+/* Full status styles */
+.status.full {
+    color: #a85a62;
+}
+
+
 // upload image element
+// Global
 .btn_upload {
     background: $primary;
     border-radius: 0.35rem;
-    padding: 17px 30px 12px;
     color: #fff;
+    font-size: 16px;
     text-align: center;
     position: relative;
     display: block;
-    margin: 0 35px 10px;
     overflow: hidden;
     z-index: 3;
     white-space: nowrap;
+    cursor: pointer;
     &:hover {
         opacity: 0.8;
-
     }
     input {
         position: absolute;
@@ -65,50 +107,99 @@ h6 {
     text-align: center;
     position: relative;
     transition: 0.2s;
-    border: 2px solid #ddd;
-    padding: 15px;
     &.show, img.show {
         display: block;
     }
 }
 
-.image_remove {
+.uploaded_image_view .image_remove {
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+}
+
+.image_view .image_delete {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    display: block;
     position: absolute;
-    background: #aaa;
-    line-height: 30px;
     color: #fff;
-    font-size: 12px;
     cursor: pointer;
-    right: -15px;
-    top: -15px;
     &:hover {
         background: #222;
         transition: 0.2s;
     }
 }
 
-.image_delete {
+// For trip images
+.btn_upload.trip {
+    padding: 17px 30px 12px;
+    margin: 0 35px 10px;
+}
+
+.uploaded_image_view.trip,
+.image_view.trip {
+    border: 2px solid #ddd;
+    padding: 15px;
+}
+
+.uploaded_image_view.trip .image_remove {
+    display: block;
+    background: #aaa;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    display: block;
-    position: absolute;
-    background: #aaa;
     line-height: 30px;
-    color: #fff;
     font-size: 12px;
-    cursor: pointer;
     right: -15px;
     top: -15px;
-    &:hover {
-        background: #222;
-        transition: 0.2s;
+}
+
+.image_view.trip .image_delete {
+    display: block;
+    background: #aaa;
+    line-height: 30px;
+    font-size: 12px;
+    right: -15px;
+    top: -15px;
+}
+
+// For Profile image
+.btn_upload.profile {
+    padding: 5px 20px;
+    margin: auto;
+    width: fit-content;
+}
+
+.uploaded_image_view.profile,
+.image_view.profile {
+    border: 4px solid #999;
+    border-radius: 50%;
+    img {
+        border-radius: 50%;
     }
 }
+
+.uploaded_image_view.profile .image_remove {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    right: 20px;
+    bottom: 20px;
+}
+
+.image_view.profile .image_delete {
+    font-size: 15px;
+    right: 20px;
+    bottom: 20px;
+}
+
+
 
 
 .user-rating {

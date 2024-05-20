@@ -19,10 +19,11 @@ class AuthController extends Controller
     public function login(Request $request) {
         $email = $request->email;
         $password = $request->password;
+        $remember = $request->has('remember');
         $auth = Auth::attempt([
             'email' => $email,
             'password' => $password,
-        ]);
+        ], $remember);
         if($auth && Auth::user()->hasRole('admin')) {
             $request->session()->regenerate();
             return redirect()->intended('admin');

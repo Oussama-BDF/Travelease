@@ -1,16 +1,6 @@
 <x-admin-layout title='Edit Trip'>
     <x-slot name="header">Edit Trip</x-slot>
     <!-- Content Row -->
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
     <div class="row">
         {{-- <x-trip-form :isUpdate="$isUpdate" :trip="$trip" :transports="$transports" /> --}}
         <div class="col p-4 bg-white shadow my-2 rounded">
@@ -119,7 +109,7 @@
                         <div class="col-md-4">
                             <x-upload-image :key="$key+1" />
                             {{-- Old Image View --}}
-                            <div class="image_view show">
+                            <div class="image_view trip show">
                                 <input class="image_delete" type="checkbox" name="delete_image{{$key+1}}">
                                 <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('storage/'.$image->path) }}">
                             </div>
