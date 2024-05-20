@@ -23,12 +23,13 @@ class StoreTripRequest extends FormRequest
     {
         return [
             'destination' => 'required|max:100',
-            'start_at' => 'required|date',
+            'start_at' => 'required|date|after:now',
             'end_at' => 'required|date|after:start_at',
             'price' => 'required|numeric|max:9999.99',
             'accommodation' => 'required|max:100',
             'transport_id' => 'required',
             'description' => 'nullable|string',
+            'max_travelers' => ['required', 'numeric', 'min:1'],
             'activity_price.*' => 'required|numeric|max:9999.99',
             'activity_name.*' => 'required',
             'image1' => 'required|image|mimes:jpg,jpeg,png|max:5000',

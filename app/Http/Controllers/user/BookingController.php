@@ -23,17 +23,20 @@ class BookingController extends Controller
 
     public function create($trip_id) {
         // Check if the trip is exist
-        if (!Trip::where('id', $trip_id)->exists())
-            return abort('404');
+        $trip = Trip::findOrFail($trip_id);
 
-        return view('pages.user.booking.create', compact('trip_id'));
+        // And check if the trip is available
+        if(!$trip->status['availability']) {
+            return abort('404');
+        }
+
+        return view('pages.user.booking.create', compact('trip'));
     }
 
     
     public function store(Request $request, $trip_id) {
-
         // Retrive the price of the trip if exist
-        $trip = Trip::findOrFail($trip_id, ['price']);
+        $trip = Trip::findOrFail($trip_id);
 
         // Retrieve the form data (Validate form data)
         $formFields = $request->validate([
@@ -41,6 +44,13 @@ class BookingController extends Controller
             'children_number' => ['required', 'numeric', 'min:0'],
             'emergency_contact' => ['required', 'string', 'max:25'],
         ]);
+
+        // Validate the number of travelers (check for places availability)
+        $new_travelers = $formFields['adults_number'] + $formFields['children_number'];
+        $total_travelers = $trip->current_travelers + $new_travelers;
+        if ($total_travelers > $trip->max_travelers) {
+            return back()->withErrors(['adults_number' => 'The total number of travelers exceeds the maximum allowed for this trip!']);
+        }
         
         // Create a new booking
         $booking = new Booking();
@@ -50,6 +60,10 @@ class BookingController extends Controller
         $booking->total_amount = $booking->calculateTotalAmount($trip->price); // $booking->trip->price
         $booking->trip_id = $trip_id;
         $booking->user_id = Auth::user()->id;
+        
+        // Increment the number of travelers in the trip
+        $trip->current_travelers += ($booking->adults_number + $booking->children_number);
+        $trip->save();
         
         // Create a new Stripe Checkout session
         Stripe::setApiKey(config('stripe.test.sk'));
@@ -72,7 +86,7 @@ class BookingController extends Controller
             'cancel_url'  => route('bookings.checkout.cancel'),
         ]);
 
-        // Set the payment_token and save the booking object inthe database
+        // Set the payment_token and save the booking object in the database
         $booking->payment_token = $session->id;
         $booking->save();
 

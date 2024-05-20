@@ -315,3 +315,38 @@ h6 {
         z-index: 0;
     }
 }
+
+
+
+
+// trip status
+/* Base styles for the status */
+.status {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+/* Upcoming status styles */
+.status.upcoming {
+    color: #c3a03a;
+}
+
+/* Ongoing status styles */
+.status.ongoing {
+    color: #598ec9;
+}
+
+/* Completed status styles */
+.status.completed {
+    color: #529461;
+}
+
+/* Full status styles */
+.status.full {
+    color: #a85a62;
+}
+

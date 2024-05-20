@@ -22,7 +22,11 @@ class TripController extends Controller
     public function index()
     {
         //Use "with" to avoid the duplication of queries on the table transports
-        $trips = Trip::query()->with('transport')->paginate(10);
+        $trips = Trip::query()
+            ->with('transport')
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
         return view('pages.admin.trip.index', compact('trips'));
     }
 

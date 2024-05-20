@@ -30,7 +30,7 @@
                                     <td>
                                         @if($booking->payment_status == "unpaid")
                                             @php
-                                                $unpaidError = "Note that the unpaid booking will be canceled after 5 days from the booking date"
+                                                $unpaidError = "Please note that unpaid bookings will be canceled if payment is not received."
                                             @endphp
                                             <form action="{{route('bookings.retryPayment', $booking->id)}}" method="post">
                                                 @csrf

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Trip;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -36,6 +37,18 @@ class BookingController extends Controller
         $allowed_values = ['pending', 'confirmed', 'canceled'];
         if (!in_array($formFields['status'], $allowed_values)) {
             return back();
+        }
+
+        // Change the number of travelers in the trip based on the status
+        if ($formFields['status'] == "canceled") {
+            $trip = Trip::find($booking->trip->id);
+            $trip->current_travelers -= ($booking->adults_number + $booking->children_number);
+            $trip->save();
+        } elseif ($booking->status == "canceled") {
+            // ! check the available places
+            $trip = Trip::find($booking->trip->id);
+            $trip->current_travelers += ($booking->adults_number + $booking->children_number);
+            $trip->save();
         }
 
         $booking->fill($formFields)->save();

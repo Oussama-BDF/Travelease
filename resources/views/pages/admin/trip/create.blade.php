@@ -69,11 +69,20 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="description">Description:</label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Enter description" cols="30" rows="1">{{old("description")}}</textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="Enter description" col-md-6s="30" rows="1">{{old("description")}}</textarea>
                             @error('description')
+                                <div class="text-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="max_travelers">Travelers Number:</label>
+                            <input class="form-control" type="number" id="max_travelers" name="max_travelers" placeholder="Enter travelers number" value='{{old("max_travelers")}}'>
+                            @error('max_travelers')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>

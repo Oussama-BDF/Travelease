@@ -29,6 +29,7 @@ class UpdateTripRequest extends FormRequest
             'accommodation' => 'required|max:100',
             'transport_id' => 'required',
             'description' => 'nullable|string',
+            'max_travelers' => ['required', 'numeric', 'min:1'],
             'activity_price.*' => 'required|numeric|max:9999.99',
             'activity_name.*' => 'required',
             'image1' => 'image|mimes:jpg,jpeg,png',
