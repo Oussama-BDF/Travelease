@@ -30,6 +30,7 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::get('/bookings/create/{trip_id}', [BookingController::class, 'create'])->name('bookings.create');
     Route::post('/bookings/{trip_id}', [BookingController::class, 'store'])->name('bookings.store');
     Route::post('/retry/{booking_id}', [BookingController::class, 'retryPayment'])->name('bookings.retryPayment');
+    Route::get('/bookings/ticket/{booking}', [BookingController::class, 'getTicket'])->name('bookings.ticket');
 
     // Route for handling the Checkout success or cancel actions
     Route::get('/bookings/checkout/success', [BookingController::class, 'checkoutSuccess'])->name('bookings.checkout.success');

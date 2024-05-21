@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{asset('css/tiny-slider.css')}}">
     <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="bg-gray">
     @include('layouts.user.header')
 
     <main>

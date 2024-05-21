@@ -56,7 +56,7 @@
                 <div class="col-lg-6">
                     <p class="mb-2 text-center text-lg-start">
                         Copyright &copy;
-                        All Rights Reserved &mdash; Travel Ease
+                        All Rights Reserved &mdash; Travel Ease {{now()->year}}
                     </p>
                 </div>
 

@@ -11,7 +11,11 @@ use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 use Stripe\Stripe;
 use Illuminate\Support\Facades\URL;
-
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use PDF;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager as Image;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class BookingController extends Controller
 {
@@ -35,14 +39,14 @@ class BookingController extends Controller
 
     
     public function store(Request $request, $trip_id) {
-        // Retrive the price of the trip if exist
+        // Retrive the trip if exist
         $trip = Trip::findOrFail($trip_id);
 
-        // Retrieve the form data (Validate form data)
+        // Validate the form data
         $formFields = $request->validate([
             'adults_number' => ['required', 'numeric', 'min:1'],
             'children_number' => ['required', 'numeric', 'min:0'],
-            'emergency_contact' => ['required', 'string', 'max:25'],
+            'emergency_contact' => ['required', 'string', 'max:25','regex:/^(\+212|0)([ \-]?[0-9]){9}$/'],
         ]);
 
         // Validate the number of travelers (check for places availability)
@@ -103,27 +107,28 @@ class BookingController extends Controller
         // Retrive the booking object if exist
         $booking = Booking::where('payment_token', $request->session_id)->firstOrFail();
 
-        // Check if the booking code equal the session id from the url
+        // Check if the booking payment token equal the session id from the url
         if (!($booking->payment_token === $request->session_id && $booking->payment_status == 'unpaid'))
             return abort('404');
 
-        // Handle successful payment, update payment status to "paid".
+        // Handle successful payment: update payment status to "paid" and generate QrCode.
+        // Generate the QR code data
+        $qrData = [
+            'booking_id' => $booking->id,
+            'user_id' => $booking->user_id,
+            'trip_id' => $booking->trip->id,
+            'trip_date' => $booking->trip->start_at,
+        ];
+        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(json_encode($qrData)));
+
         // Todo : send confirmation email
         $booking->update(['payment_status' => 'paid']);
-        return view('pages.user.booking.success');
+        return view('pages.user.booking.success', compact('qrCode', 'booking'));
     }
 
     public function checkoutCancel(Request $request)
     {
-        return 'faild';
-        $bookingId = $request->query('booking_id');
-        $booking = Booking::findOrFail($bookingId);
-
-        // Inform the user about the canceled payment and provide an option to retry the payment
-        return redirect()->route('bookings.retry', ['booking_id' => $bookingId])->with('status', 'Payment was canceled. Please retry the payment.');
-        
-        // Handle canceled payment, redirect back to booking form with a message
-        return to_route('bookings.create')->with('status', 'Payment was canceled.');
+        return view('pages.user.booking.cancel');
     }
 
 
@@ -161,5 +166,36 @@ class BookingController extends Controller
         $booking->update();
 
         return redirect()->away($session->url);
+    }
+
+
+    public function getTicket(Booking $booking)
+    {
+        if(!($booking->user_id == Auth::user()->id) || $booking->payment_status == "unpaid") {
+            return abort('404');
+        }
+
+        
+        // Generate the QR code data
+        $qrData = [
+            'booking_id' => $booking->id,
+            'user_id' => $booking->user_id,
+            'trip_id' => $booking->trip->id,
+            'trip_date' => $booking->trip->start_at,
+        ];
+        // $img = base64_encode();
+        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(json_encode($qrData)));
+
+        // Pass data to the view
+        $data = [
+            'qrCode' => $qrCode,
+            'booking' => $booking,
+        ];
+
+        // Load the view and convert it to PDF
+        $pdf = PDF::loadView('pages.user.ticket', $data);
+
+        // Download the PDF
+        return $pdf->download('ticket.pdf');
     }
 }
