@@ -2,7 +2,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 p-4 bg-white shadow my-2 rounded">
-                <form action="{{route('bookings.store', $trip->id)}}" method="post">
+                <form action="{{route('bookings.store', $trip->uuid)}}" method="post">
                     @csrf
                     <p class="status {{$trip->status['class']}}">{{$trip->status['status']}}</p>
                     <div class="form-group">

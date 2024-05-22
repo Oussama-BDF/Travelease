@@ -117,9 +117,9 @@
                                     <td>{{$booking->emergency_contact}}</td>
                                     <td>{{$booking->total_amount}} MAD</td>
                                     <td>
-                                        <a href="{{route('admin.trips.show', $booking->trip->id)}}">{{$booking->trip->destination}}</a>
+                                        <a href="{{route('admin.trips.show', $booking->trip->uuid)}}">{{$booking->trip->destination}}</a>
                                     </td>
-                                    <form id="bookingForm{{$key}}" action="{{route('admin.bookings.update', $booking->id)}}" method="POST">
+                                    <form id="bookingForm{{$key}}" action="{{route('admin.bookings.update', $booking->uuid)}}" method="POST">
                                         <td>
                                             <select class="form-control" name="status" required >
                                                 @foreach (['pending', 'confirmed', 'canceled'] as $item)
@@ -173,7 +173,7 @@
                                     <td ><x-user-rating :rating="$review->rating" /></td>
                                     <td >{{date('D, d M Y', strtotime($review->created_at))}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-danger call-delete-modal" data-action="{{route('admin.reviews.destroy', $review->id)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
+                                        <a class="btn btn-danger call-delete-modal" data-action="{{route('admin.reviews.destroy', $review->uuid)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -25,9 +25,9 @@ class BookingController extends Controller
         return view('pages.user.booking.index', compact('bookings'));
     }
 
-    public function create($trip_id) {
+    public function create($trip_uuid) {
         // Check if the trip is exist
-        $trip = Trip::findOrFail($trip_id);
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
 
         // And check if the trip is available
         if(!$trip->status['availability']) {
@@ -38,9 +38,9 @@ class BookingController extends Controller
     }
 
     
-    public function store(Request $request, $trip_id) {
+    public function store(Request $request, $trip_uuid) {
         // Retrive the trip if exist
-        $trip = Trip::findOrFail($trip_id);
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
 
         // Validate the form data
         $formFields = $request->validate([
@@ -62,7 +62,7 @@ class BookingController extends Controller
         $booking->children_number = $formFields['children_number'];
         $booking->emergency_contact = $formFields['emergency_contact'];
         $booking->total_amount = $booking->calculateTotalAmount($trip->price); // $booking->trip->price
-        $booking->trip_id = $trip_id;
+        $booking->trip_id = $trip->id;
         $booking->user_id = Auth::user()->id;
         
         // Increment the number of travelers in the trip
@@ -127,9 +127,9 @@ class BookingController extends Controller
     }
 
 
-    public function retryPayment(Request $request, $booking_id)
+    public function retryPayment(Request $request, $booking_uuid)
     {
-        $booking = Booking::findOrFail($booking_id);
+        $booking = Booking::where('uuid', $booking_uuid)->firstOrFail();
 
         // return 404 if the booking is paid
         if($booking->payment_status == "paid") {
@@ -164,13 +164,15 @@ class BookingController extends Controller
     }
 
 
-    public function getTicket(Booking $booking)
+    public function getTicket($booking_uuid)
     {
+        $booking = Booking::where('uuid', $booking_uuid)->firstOrFail();
+
         if(!($booking->user_id == Auth::user()->id) || $booking->payment_status == "unpaid") {
             return abort('404');
         }
 
-        $qrData = route('admin.bookings.verify', ['token' => $booking->uuid]);
+        $qrData = route('admin.bookings.verify', ['token' => $booking_uuid]);
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($qrData));
         
         // Pass data to the view

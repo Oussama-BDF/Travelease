@@ -29,10 +29,12 @@ class BookingController extends Controller
     /**
      * Update the status of a specified booking in storage.
      */
-    public function update(Request $request, Booking $booking) {
+    public function update(Request $request, $booking_uuid) {
         $formFields = $request->validate([
             'status' => 'required',
         ]);
+
+        $booking = Booking::where('uuid', $booking_uuid)->firstOrFail();
 
         // Check if the booking status has the allowed values
         $allowed_values = ['pending', 'confirmed', 'canceled'];

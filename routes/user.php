@@ -28,10 +28,10 @@ Route::middleware(['role:user', 'auth'])->group(function () {
 
     // Booking Routes
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
-    Route::get('/bookings/create/{trip_id}', [BookingController::class, 'create'])->name('bookings.create');
-    Route::post('/bookings/{trip_id}', [BookingController::class, 'store'])->name('bookings.store');
-    Route::post('/retry/{booking_id}', [BookingController::class, 'retryPayment'])->name('bookings.retryPayment');
-    Route::get('/bookings/ticket/{booking}', [BookingController::class, 'getTicket'])->name('bookings.ticket');
+    Route::get('/bookings/create/{trip_uuid}', [BookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings/{trip_uuid}', [BookingController::class, 'store'])->name('bookings.store');
+    Route::post('/retry/{booking_uuid}', [BookingController::class, 'retryPayment'])->name('bookings.retryPayment');
+    Route::get('/bookings/ticket/{booking_uuid}', [BookingController::class, 'getTicket'])->name('bookings.ticket');
 
     // Route for handling the Checkout success or cancel actions
     Route::get('/bookings/checkout/success', [BookingController::class, 'checkoutSuccess'])->name('bookings.checkout.success');
@@ -65,5 +65,5 @@ Route::controller(AuthController::class)->group(function() {
 // Trip Routes
 Route::controller(TripController::class)->group(function() {
     Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
-    Route::get('/trips/{trip}', [TripController::class, 'show'])->where('trip', '\d+')->name('trips.show');
+    Route::get('/trips/{trip_uuid}', [TripController::class, 'show'])->where('trip', '\d+')->name('trips.show');
 });

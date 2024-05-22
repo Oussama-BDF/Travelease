@@ -41,7 +41,7 @@
                                             class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" />
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{route('admin.users.show', $user->id)}}" class="btn btn-primary">View</a>
+                                        <a href="{{route('admin.users.show', $user->uuid)}}" class="btn btn-primary">View</a>
                                     </td>
                                 </tr>
                             @endforeach

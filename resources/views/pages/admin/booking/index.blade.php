@@ -44,7 +44,7 @@
                             @foreach ($bookings as $key => $booking)
                                 <tr>
                                     <td>
-                                        <a href="{{route('admin.users.show', $booking->user->id)}}">
+                                        <a href="{{route('admin.users.show', $booking->user->uuid)}}">
                                             <img src="{{ $booking->user->profile_image_thumbnail ? asset('storage/' . $booking->user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
                                                 class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" />
                                         </a>
@@ -55,10 +55,10 @@
                                     <td>{{$booking->emergency_contact}}</td>
                                     <td>{{$booking->total_amount}} MAD</td>
                                     <td>
-                                        <a href="{{route('admin.trips.show', $booking->trip->id)}}">{{$booking->trip->destination}}</a>
+                                        <a href="{{route('admin.trips.show', $booking->trip->uuid)}}">{{$booking->trip->destination}}</a>
                                     </td>
                                     <td>{{$booking->payment_status}}</td>
-                                    <form id="bookingForm{{$key}}" action="{{route('admin.bookings.update', $booking->id)}}" method="POST">
+                                    <form id="bookingForm{{$key}}" action="{{route('admin.bookings.update', $booking->uuid)}}" method="POST">
                                         <td>
                                             <select class="form-control" name="status" required >
                                                 @foreach (['pending', 'confirmed', 'canceled'] as $item)

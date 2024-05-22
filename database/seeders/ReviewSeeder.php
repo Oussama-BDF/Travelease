@@ -12,7 +12,7 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 5 review the 5 first users with rating 5
+        // Create 5 reviews for the 5 first users with rating 5
         for ($i=0; $i < 5; $i++) { 
             $user = \App\Models\Review::factory()->create([
                 'review' => fake()->paragraph(),

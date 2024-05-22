@@ -33,8 +33,9 @@ class TripController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Trip $trip)
+    public function show($trip_uuid)
     {
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
         return view('pages.user.trip.show', compact('trip'));
     }
     

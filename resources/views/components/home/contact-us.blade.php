@@ -43,7 +43,7 @@
                         </svg>
                         </div> <!-- /.icon -->
                         <div class="service-contents">
-                        <p>+El Jadida - Maroc</p>
+                        <p>+2120606060606</p>
                         </div> <!-- /.service-contents-->
                     </div> <!-- /.service -->
                     </div>

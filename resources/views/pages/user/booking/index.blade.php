@@ -32,7 +32,7 @@
                                             @php
                                                 $unpaidError = "Please note that unpaid bookings will be canceled if payment is not received."
                                             @endphp
-                                            <form action="{{route('bookings.retryPayment', $booking->id)}}" method="post">
+                                            <form action="{{route('bookings.retryPayment', $booking->uuid)}}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-danger">Go To Pay!</button>
                                             </form>

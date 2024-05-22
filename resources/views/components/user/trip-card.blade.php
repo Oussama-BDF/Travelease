@@ -2,7 +2,7 @@
 <div class="col-md-6 col-lg-4 mb-4">
     <div class="trip-card card rounded shadow">
         <img src="{{asset('storage/' . $trip->images->first()->path)}}"class="card-img-top object-fit-cover img-card" alt="" />
-        <a href="{{ route('trips.show', $trip->id) }}" class="stretched-link"></a>
+        <a href="{{ route('trips.show', $trip->uuid) }}" class="stretched-link"></a>
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
                 <h5 class="mb-0"><span class="font-weight-bold">To </span>{{ $trip->destination }}!</h5>
@@ -28,7 +28,7 @@
             @if(!$trip->status['availability'])
                 <a href="#" class="btn btn-secondary disabled"><del>Not Available</del></a>
             @else
-                <a href="{{route('bookings.create', $trip->id)}}" class="btn btn-outline-primary">Boook Now!</a>
+                <a href="{{route('bookings.create', $trip->uuid)}}" class="btn btn-outline-primary">Boook Now!</a>
             @endif
         </div>
     </div>

@@ -31,7 +31,7 @@
                             @foreach ($reviews as $key => $review)
                                 <tr>
                                     <td class="text-center">
-                                        <a href="{{route('admin.users.show', $review->user->id)}}">
+                                        <a href="{{route('admin.users.show', $review->user->uuid)}}">
                                             <img src="{{ $review->user->profile_image_thumbnail ? asset('storage/' . $review->user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
                                                 class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" />
                                         </a>
@@ -40,7 +40,7 @@
                                     <td ><x-user-rating :rating="$review->rating" /></td>
                                     <td >{{date('D, d M Y', strtotime($review->created_at))}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-danger call-delete-modal" data-action="{{route('admin.reviews.destroy', $review->id)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
+                                        <a class="btn btn-danger call-delete-modal" data-action="{{route('admin.reviews.destroy', $review->uuid)}}"  href="#" data-toggle="modal" data-target="#delete-modal-alert">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

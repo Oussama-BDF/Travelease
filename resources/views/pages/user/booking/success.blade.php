@@ -5,7 +5,7 @@
         </div>
         <div class="ticket row">
             <div class="col-12">
-                <a href="{{route('bookings.ticket', $booking->id)}}" class="btn btn-primary mb-3">Download Ticket</a>
+                <a href="{{route('bookings.ticket', $booking->uuid)}}" class="btn btn-primary mb-3">Download Ticket</a>
                 <p class="text-success">You can download the ticket from the Bookings History!</p>
             </div>
             <div class="ticket-header col-12">

@@ -39,8 +39,10 @@ class TransportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TransportRequest $request, Transport $transport)
+    public function update(TransportRequest $request, $transport_uuid)
     {
+        $transport = Transport::where('uuid', $transport_uuid)->firstOrFail();
+
         $transport->fill($request->validated());
         if ($transport->isDirty()) {
             $transport->save();
@@ -53,8 +55,10 @@ class TransportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transport $transport)
+    public function destroy($transport_uuid)
     {
+        $transport = Transport::where('uuid', $transport_uuid)->firstOrFail();
+
         $transport->delete();
         return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Deleted Successfully');
     }

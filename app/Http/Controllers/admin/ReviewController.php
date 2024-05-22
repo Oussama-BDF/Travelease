@@ -21,8 +21,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified review from storage.
      */
-    public function destroy(Review $review)
+    public function destroy($review_uuid)
     {
+        $review = Review::where('uuid', $review_uuid)->firstOrFail();
+
         $review->delete();
 
         return back()->with('success', 'The <strong>Review</strong> Deleted Successfully');

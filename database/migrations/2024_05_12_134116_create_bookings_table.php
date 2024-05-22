@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid', 36)->unique()->nullable();
             $table->unsignedInteger('adults_number');
             $table->unsignedInteger('children_number');
             $table->string('emergency_contact', 25);

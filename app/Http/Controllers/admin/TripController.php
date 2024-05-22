@@ -92,16 +92,18 @@ class TripController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Trip $trip)
+    public function show($trip_uuid)
     {
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
         return view('pages.admin.trip.show', compact('trip'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Trip $trip)
+    public function edit($trip_uuid)
     {
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
         $transports = Transport::all();
         return view('pages.admin.trip.edit', compact('trip', 'transports')); 
     }
@@ -109,8 +111,9 @@ class TripController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTripRequest $request, Trip $trip)
+    public function update(UpdateTripRequest $request, $trip_uuid)
     {
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
         // Retrieve form data
         $formFields = $request->validated();
         // Fill the trip object
@@ -207,8 +210,10 @@ class TripController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Trip $trip)
+    public function destroy($trip_uuid)
     {
+        $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
+
         // Delete the images from the server
         foreach ($trip->images as $image) {
             static::deleteFile($image->path);

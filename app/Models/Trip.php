@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Trip extends Model
+class Trip extends BaseModel
 {
     use HasFactory;
 
     protected $fillable = [
+        'uuid',
         'destination',
         'start_at',
         'end_at',

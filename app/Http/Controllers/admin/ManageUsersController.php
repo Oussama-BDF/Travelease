@@ -23,7 +23,8 @@ class ManageUsersController extends Controller
         return view('pages.admin.users.index', compact('users'));
     }
 
-    public function show(User $user) {
+    public function show($user_uuid) {
+        $user = User::where('uuid', $user_uuid)->firstOrFail();
         return view('pages.admin.users.show', compact('user'));
     }
 }

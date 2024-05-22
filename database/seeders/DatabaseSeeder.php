@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'remember_token' => Str::random(10),
-                'phone_number' => fake()->phoneNumber(),
+                'phone_number' => "+212 606060606",
                 'address' => fake()->address(),
             ]);
             $user->assignRole('user');
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'remember_token' => Str::random(10),
-                'phone_number' => fake()->phoneNumber(),
+                'phone_number' => "+212 606060606",
                 'address' => fake()->address(),
             ]);
             $user->assignRole('user');

@@ -4,7 +4,7 @@
     <div class="row">
         {{-- <x-trip-form :isUpdate="$isUpdate" :trip="$trip" :transports="$transports" /> --}}
         <div class="col p-4 bg-white shadow my-2 rounded">
-            <form action="{{route('admin.trips.update', $trip->id)}}" method="post" enctype='multipart/form-data'>
+            <form action="{{route('admin.trips.update', $trip->uuid)}}" method="post" enctype='multipart/form-data'>
                 @csrf
                 @method('PUT')
                 <div class="row">
