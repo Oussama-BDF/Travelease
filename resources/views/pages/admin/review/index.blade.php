@@ -32,7 +32,8 @@
                                 <tr>
                                     <td class="text-center">
                                         <a href="{{route('admin.users.show', $review->user->id)}}">
-                                            <img class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" src="{{asset("storage/".($review->user->profile_image_thumbnail ?? 'profile/thumbnails/default.png'))}}" alt="">
+                                            <img src="{{ $review->user->profile_image_thumbnail ? asset('storage/' . $review->user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
+                                                class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" />
                                         </a>
                                     </td>
                                     <td >{{$review->review}}</td>

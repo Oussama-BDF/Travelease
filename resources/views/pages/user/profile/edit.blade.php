@@ -17,7 +17,8 @@
                             @if ($image)
                                 <input class="image_delete" type="checkbox" name="delete_image">
                             @endif
-                            <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('storage/'. ($image ?? 'profile/default.png')) }}">
+                            <img src="{{ $image ? asset('storage/' . $image) : asset('img/default.png') }}"
+                                class="object-fit-cover preview show" style="width: 250px; height: 250px;" />
                         </div>
                         {{-- Upload Image View --}}
                         <div class="uploaded_image_view profile">

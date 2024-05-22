@@ -49,29 +49,43 @@
                     </div>
                 </div>
 
-                <form>
+                <form action={{route('contact')}} method="POST">
+                    @csrf
+                    @method('POST')
                     <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                        <label class="text-black" for="fname">First name</label>
-                        <input type="text" class="form-control" id="fname">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="text-black" for="fname">First name</label>
+                                <input type="text" class="form-control" id="fname" name="fname" required>
+                                @error('fname')
+                                    <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                        <label class="text-black" for="lname">Last name</label>
-                        <input type="text" class="form-control" id="lname">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="text-black" for="lname">Last name</label>
+                                <input type="text" class="form-control" id="lname" name="lname" required>
+                                @error('lname')
+                                    <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="form-group">
-                    <label class="text-black" for="email">Email address</label>
-                    <input type="email" class="form-control" id="email">
+                        <label class="text-black" for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        @error('email')
+                            <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-5">
-                    <label class="text-black" for="message">Message</label>
-                    <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+                        <label class="text-black" for="message">Message</label>
+                        <textarea class="form-control" id="message" cols="30" rows="5" name="message" required></textarea>
+                        @error('message')
+                            <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-outline-primary">Send Message</button>

@@ -45,7 +45,8 @@
                                 <tr>
                                     <td>
                                         <a href="{{route('admin.users.show', $booking->user->id)}}">
-                                            <img class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" src="{{asset("storage/".($booking->user->profile_image_thumbnail ?? 'profile/thumbnails/default.png'))}}" alt="">
+                                            <img src="{{ $booking->user->profile_image_thumbnail ? asset('storage/' . $booking->user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
+                                                class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" />
                                         </a>
                                     </td>
                                     <td>{{date('D, d M Y', strtotime($booking->created_at))}}</td>

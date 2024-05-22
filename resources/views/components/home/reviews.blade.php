@@ -29,8 +29,8 @@
 
                                             <div class="author-info">
                                                 <div class="author-pic">
-                                                    <img src="{{asset('storage/'.($review->user->profile_image_thumbnail ?? 'profile/thumbnails/default.png'))}}" 
-                                                        class="rounded-circle object-fit-cover mr-3" style="width: 80px; height: 80px;"  />
+                                                    <img src="{{ $review->user->profile_image_thumbnail ? asset('storage/' . $review->user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
+                                                        class="rounded-circle object-fit-cover mr-3" style="width: 80px; height: 80px;" />
                                                 </div>
                                                 <h3 class="font-weight-bold">{{$review->user->name}}</h3>
                                                 <span class="position d-block mb-3"><x-user-rating :rating="$review->rating" /></span>

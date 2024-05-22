@@ -10,7 +10,7 @@
                     <div class="form-group mb-3">
                         {{-- Default Image View --}}
                         <div class="image_view profile show">
-                            <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('storage/'. 'profile/default.png') }}">
+                            <img class="object-fit-cover preview show" style="width: 250px; height: 250px;" src="{{ asset('img/default.png') }}">
                         </div>
                         {{-- Upload Image View --}}
                         <div class="uploaded_image_view profile">

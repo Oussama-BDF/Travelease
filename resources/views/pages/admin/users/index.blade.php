@@ -36,7 +36,10 @@
                                     <td >{{$user->email}}</td>
                                     <td >{{$user->phone_number}}</td>
                                     <td >{{$user->address}}</td>
-                                    <td class="text-center"><img class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" src="{{asset("storage/".($user->profile_image_thumbnail ?? 'profile/thumbnails/default.png'))}}" alt=""></td>
+                                    <td class="text-center">
+                                        <img src="{{ $user->profile_image_thumbnail ? asset('storage/' . $user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
+                                            class="object-fit-cover rounded-circle" style="width: 50px; height: 50px;" />
+                                    </td>
                                     <td class="text-center">
                                         <a href="{{route('admin.users.show', $user->id)}}" class="btn btn-primary">View</a>
                                     </td>

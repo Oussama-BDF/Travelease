@@ -7,6 +7,7 @@ use App\Http\Controllers\User\TripController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ContactController;
 
 
 // Home Routes
@@ -46,6 +47,8 @@ Route::get('/about-us', function() {
 Route::get('/contact-us', function() {
     return view('pages.user.contact_us');
 })->name('contact_us');
+
+Route::post('/contact-us', [ContactController::class, 'create'])->name('contact');
 
 
 // User Auth Routes

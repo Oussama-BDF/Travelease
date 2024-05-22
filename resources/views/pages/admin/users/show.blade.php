@@ -7,7 +7,8 @@
                 <div class="col-sm-4 user-profile py-4 px-0 bg-gradient-primary ">
                     <div class="text-center text-white p-4">
                         <div class="mb-4">
-                            <img class="rounded-circle object-fit-cover" style="width: 100px; height: 100px;" src="{{asset("storage/".($user->profile_image ?? 'profile/default.png'))}}" alt="User-Profile-Image">
+                            <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('img/default.png') }}"
+                                class="object-fit-cover rounded-circle" style="width: 100px; height: 100px;" />
                         </div>
                         <p class="h4">{{$user->name}}</p>
                     </div>

@@ -22,7 +22,8 @@
                 @foreach ($reviews as $review)
                     <div class="user-review pt-4 pb-4">
                         <div class="media">
-                            <img src="{{asset('storage/'.($review->user->profile_image_thumbnail ?? 'profile/thumbnails/default.png'))}}" class="rounded-circle object-fit-cover mr-3" style="width: 60px; height: 60px;"  />
+                            <img src="{{ $review->user->profile_image_thumbnail ? asset('storage/' . $review->user->profile_image_thumbnail) : asset('img/default_thumbnail.png') }}"
+                                class="rounded-circle object-fit-cover mr-3" style="width: 60px; height: 60px;" />
                             <div class="media-body">
                                 <div class="user-review-header">
                                     <h6 class="mb-1">
