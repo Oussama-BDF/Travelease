@@ -113,13 +113,8 @@ class BookingController extends Controller
 
         // Handle successful payment: update payment status to "paid" and generate QrCode.
         // Generate the QR code data
-        $qrData = [
-            'booking_id' => $booking->id,
-            'user_id' => $booking->user_id,
-            'trip_id' => $booking->trip->id,
-            'trip_date' => $booking->trip->start_at,
-        ];
-        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(json_encode($qrData)));
+        $qrData = route('admin.bookings.verify', ['token' => $booking->uuid]);
+        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($qrData));
 
         // Todo : send confirmation email
         $booking->update(['payment_status' => 'paid']);
@@ -175,17 +170,9 @@ class BookingController extends Controller
             return abort('404');
         }
 
+        $qrData = route('admin.bookings.verify', ['token' => $booking->uuid]);
+        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($qrData));
         
-        // Generate the QR code data
-        $qrData = [
-            'booking_id' => $booking->id,
-            'user_id' => $booking->user_id,
-            'trip_id' => $booking->trip->id,
-            'trip_date' => $booking->trip->start_at,
-        ];
-        // $img = base64_encode();
-        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(json_encode($qrData)));
-
         // Pass data to the view
         $data = [
             'qrCode' => $qrCode,

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Trip;
+use App\Models\BaseModel;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -54,5 +55,14 @@ class BookingController extends Controller
         $booking->fill($formFields)->save();
 
         return back();
+    }
+
+    public function verify(Request $request) {
+        $booking = Booking::where('uuid', $request->input('token'))->first();
+        if ($booking) {
+            return view('pages.admin.booking.valide');
+        } else {
+            return view('pages.admin.booking.notValide');
+        }
     }
 }

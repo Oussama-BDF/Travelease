@@ -37,7 +37,7 @@
                                                 <button type="submit" class="btn btn-outline-danger">Go To Pay!</button>
                                             </form>
                                         @else
-                                            <a href="{{route('bookings.ticket', $booking->id)}}" class="btn btn-outline-success mb-3">Ticket <i class="fas fa-download fa-sm"></i></a>
+                                            <a href="{{route('bookings.ticket', $booking->id)}}" class="btn btn-outline-primary mb-3">Ticket <i class="fas fa-download fa-sm"></i></a>
                                             {{$booking->payment_status}}
                                         @endif
                                     </td>

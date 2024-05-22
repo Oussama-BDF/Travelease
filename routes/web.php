@@ -55,6 +55,8 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
     // Generate Report
     Route::get('/report', [ReportController::class, 'generateReport'])->name('admin.report');
 
+    // Verify QrCode
+    Route::get('/bookings/verify', [BookingController::class, 'verify'])->name('admin.bookings.verify');
 });
 
 // Admin Auth Routes

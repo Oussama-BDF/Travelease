@@ -37,7 +37,7 @@
         .ticket-details h2 {
             margin: 0 0 10px;
             font-size: 20px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #000;
             padding-bottom: 5px;
         }
         .ticket-details ul {
@@ -46,21 +46,16 @@
             margin: 0;
         }
         .ticket-details ul li {
+            border-bottom: 1px solid #ddd;
             margin-bottom: 10px;
             font-size: 16px;
         }
         .ticket-details ul li strong {
             display: inline-block;
-            width: 150px;
+            width: 220px;
         }
         .qr-code {
             text-align: center;
-        }
-        .qr-code h2 {
-            margin: 0 0 10px;
-            font-size: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
         }
         .qr-code img {
             width: 200px;
@@ -97,10 +92,10 @@
         <div class="ticket-details">
             <h2>Booking Details</h2>
             <ul>
-                <li><strong>adults_number:</strong> {{$booking->adults_number}}</li>
-                <li><strong>children_number:</strong> {{$booking->children_number}}</li>
-                <li><strong>emergency_contact:</strong> {{$booking->emergency_contact}}</li>
-                <li><strong>total_amount:</strong> {{$booking->total_amount}} MAD</li>
+                <li><strong>Adults Number:</strong> {{$booking->adults_number}}</li>
+                <li><strong>Children Number:</strong> {{$booking->children_number}}</li>
+                <li><strong>Emergency Contact: </strong> {{$booking->emergency_contact}}</li>
+                <li><strong>Total Amount:</strong> {{$booking->total_amount}} MAD</li>
             </ul>
         </div>
         <div class="ticket-details">
@@ -113,7 +108,6 @@
             </ul>
         </div>
         <div class="qr-code">
-            <h2>QR Code</h2>
             <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code">
         </div>
     </div>
