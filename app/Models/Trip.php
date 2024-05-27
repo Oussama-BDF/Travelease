@@ -20,6 +20,7 @@ class Trip extends BaseModel
         'accommodation',
         'transport_id',
         'max_travelers',
+        'current_travelers',
     ];
 
     public function transport() {

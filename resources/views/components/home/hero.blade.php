@@ -8,7 +8,7 @@
                         Explore Morocco with Us
                     </h1>
                     <p class="mb-4">
-                        Journey through Morocco's hidden gems with Travel Ease, from ancient medinas to sweeping desert vistas. Adventure, culture, and discovery await around every corner. Start your Moroccan odyssey today.
+                        Journey through Morocco's hidden gems with Explore Morocco, from ancient medinas to sweeping desert vistas. Adventure, culture, and discovery await around every corner. Start your Moroccan odyssey today.
                     </p>
                     <p>
                         <a href="{{route('trips.index')}}" class="btn btn-secondary me-2">Explore Now</a>

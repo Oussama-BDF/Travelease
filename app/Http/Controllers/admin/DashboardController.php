@@ -19,12 +19,14 @@ class DashboardController extends Controller
         $now = Carbon::now();
         $year = $now->year;
         $month = $now->month;
-        $earningMonthly = Booking::whereYear('created_at', $year)
+        $earningMonthly = Booking::where('payment_status', 'paid')
+            ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
             ->sum('total_amount');
 
         // Earning Annual
-        $earningAnnual = Booking::whereYear('created_at', $year)
+        $earningAnnual = Booking::where('payment_status', 'paid')
+            ->whereYear('created_at', $year)
             ->sum('total_amount');
 
         // Activated Trips

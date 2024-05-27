@@ -30,7 +30,7 @@
                         </svg>
                         </div> <!-- /.icon -->
                         <div class="service-contents">
-                        <p>TravelEase@gmail.com</p>
+                        <p>ExploreMorocco@gmail.com</p>
                         </div> <!-- /.service-contents-->
                     </div> <!-- /.service -->
                     </div>

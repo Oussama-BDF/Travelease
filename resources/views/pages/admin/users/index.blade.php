@@ -13,7 +13,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Phone Number</th>
+                                <th style="width: 125px">Phone Number</th>
                                 <th>Address</th>
                                 <th>Profile Image</th>
                                 <th>Action</th>

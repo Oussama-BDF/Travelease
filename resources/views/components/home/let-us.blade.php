@@ -19,7 +19,7 @@
                     Let Us Guide You Through Unforgettable Journeys
                 </h2>
                 <p>
-                    Embark on a journey of discovery with <span class="text-primary">Travel Ease.</span> Our expertly crafted trips take you to the most captivating destinations in Morocco, ensuring every moment is filled with wonder and excitement.
+                    Embark on a journey of discovery with <span class="text-primary">Explore Morocco</span> Our expertly crafted trips take you to the most captivating destinations in Morocco, ensuring every moment is filled with wonder and excitement.
                 </p>
             
                 <ul class="list-unstyled custom-list my-4 px-2">

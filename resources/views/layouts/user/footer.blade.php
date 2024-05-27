@@ -4,11 +4,11 @@
         <div class="row g-5 mb-5">
             <div class="col-lg-6">
                 <div class="mb-4 footer-logo-wrap">
-                    {{-- <a class="navbar-brand footer-logo" href="{{route('home')}}">TravelEase.</a> --}}
+                    {{-- <a class="navbar-brand footer-logo" href="{{route('home')}}">ExploreMorocco.</a> --}}
                     <a class="navbar-brand" href="{{route('home')}}"><img  width="100px" src="{{asset('img/logo-black.svg')}}" alt="..." /></a>
                 </div>
                 <p class="mb-4">
-                    Welcome to Travel Ease.! We are passionate about 
+                    Welcome to Explore Morocco! We are passionate about 
                     creating unforgettable travel experiences that showcase 
                     the beauty and diversity of Morocco. With years of expertise 
                     in the travel industry, we specialize in curating personalized 
@@ -43,7 +43,7 @@
                         <ul class="list-unstyled custom-social">
                             <li><a href="#"><i class="fas  fa-phone"></i>+2120606060606</a></li>
                             <li><a href="#"><i class="fas fa-fax"></i>+2120606060606</a></li>
-                            <li><a href="#"><i class="fas fa-envelope"></i>TravelEase@gmail.com</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i>ExploreMorocco@gmail.com</a></li>
                             <li><a href="#"><i class="fas fa-map-marker-alt"></i>El Jadida - Maroc</a></li>
                         </ul>
                     </div>
@@ -56,7 +56,7 @@
                 <div class="col-lg-6">
                     <p class="mb-2 text-center text-lg-start">
                         Copyright &copy;
-                        All Rights Reserved &mdash; Travel Ease {{now()->year}}
+                        All Rights Reserved &mdash; Explore Morocco {{now()->year}}
                     </p>
                 </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Ease - {{$title}}</title>
+    <title>Explore Morocco - {{ucwords($title)}}</title>
     @vite(['resources/scss/app.scss'])
     <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css">

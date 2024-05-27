@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
 			<img src="{{asset('img/logo-white.svg')}}" alt="..." />
         </div>
-        <div class="sidebar-brand-text mx-3">Travel Ease</div>
+        <div class="sidebar-brand-text mx-3">Explore Morocco</div>
     </a>
 
     <!-- Divider -->
@@ -89,6 +89,14 @@
         <a class="nav-link" href="{{route('admin.reviews.index')}}">
             <i class="fas fa-comments"></i>
             <span>Manage Reviews</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Manage Reviews -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.contacts.index')}}">
+            <i class="fas fa-comments"></i>
+            <span>Contact messages</span>
         </a>
     </li>
 

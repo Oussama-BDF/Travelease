@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::middleware(['role:admin', 'auth'])->prefix('admin')->group(function () {
 
     // Verify QrCode
     Route::get('/bookings/verify', [BookingController::class, 'verify'])->name('admin.bookings.verify');
+
+    // Contact Messages
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
 });
 
 // Admin Auth Routes

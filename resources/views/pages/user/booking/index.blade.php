@@ -4,8 +4,8 @@
             @if($bookings->isEmpty())
                 <p class="message">No Booking Available, go and book a trip!!</p>
             @else
-                <div class="col-12 p-4 shadow bg-white my-2 rounded">
-                    <table class="table table-striped">
+                <div class="col-12 p-4 shadow bg-white my-2 rounded table-responsive">
+                    <table class="table table-striped text-center">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -37,13 +37,12 @@
                                                 <button type="submit" class="btn btn-outline-danger">Go To Pay!</button>
                                             </form>
                                         @else
-                                            <a href="{{route('bookings.ticket', $booking->id)}}" class="btn btn-outline-primary mb-3">Ticket <i class="fas fa-download fa-sm"></i></a>
-                                            {{$booking->payment_status}}
+                                            <a href="{{route('bookings.ticket', $booking->uuid)}}" class="btn btn-outline-primary mb-3">Ticket <i class="fas fa-download fa-sm"></i></a>
                                         @endif
                                     </td>
                                     <td>{{$booking->status}}</td>
                                     <td>
-                                        <a href="{{route('trips.show', $booking->trip->id)}}">{{$booking->trip->destination}}</a>
+                                        <a href="{{route('trips.show', $booking->trip->uuid)}}">{{$booking->trip->destination}}</a>
                                     </td>
                                     <td>{{date('D, d M Y', strtotime($booking->created_at))}}</td>
                                 </tr>

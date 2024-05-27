@@ -1,5 +1,5 @@
 <x-admin-layout title='Edit Profile'>
-    <x-slot name="header">Edit Profile (admin)</x-slot>
+    <x-slot name="header">Edit Profile</x-slot>
     <!-- Content Row -->
     <div class="row my-4">
         <div class="col-12 p-4 bg-white shadow rounded">

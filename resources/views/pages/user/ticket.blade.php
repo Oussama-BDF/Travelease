@@ -113,7 +113,7 @@
     </div>
     <div class="footer">
         Copyright &copy;
-        All Rights Reserved &mdash; Travel Ease {{now()->year}}
+        All Rights Reserved &mdash; Explore Morocco {{now()->year}}
     </div>
 </body>
 </html>

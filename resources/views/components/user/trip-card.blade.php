@@ -5,16 +5,16 @@
         <a href="{{ route('trips.show', $trip->uuid) }}" class="stretched-link"></a>
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
-                <h5 class="mb-0"><span class="font-weight-bold">To </span>{{ $trip->destination }}!</h5>
+                <h5 class="mb-0"><span class="font-weight-bold"></span>{{ $trip->destination }}</h5>
                 <h5 class="mb-0 text-primary">{{ $trip->price }} MAD</h5>
             </div>
 
             <div class="text-center">
-                <p class="small text-uppercase mb-1">{{ Str::limit($trip->description, 50) ?? "There Is No Description!"}}</p>
+                <p class="small text-uppercase mb-1">{{ Str::limit($trip->description, 20) ?? "There Is No Description!"}}</p>
             </div>
 
             <div class="d-flex justify-content-center mb-2">
-                <p class="text-muted mb-0">
+                <p class="text-muted mb-0 small">
                     <span class="font-weight-bold"></span>{{ \Carbon\Carbon::parse($trip->start_at)->format('F j, Y') }} - {{ \Carbon\Carbon::parse($trip->end_at)->format('F j, Y') }} 
                     <span class="font-weight-bold"></span>({{ \Carbon\Carbon::parse($trip->start_at)->diffInDays(\Carbon\Carbon::parse($trip->end_at)) + 1 }} days)
                 </p>

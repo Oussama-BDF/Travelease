@@ -47,7 +47,11 @@
                 @endforeach
             </div>
             <div class="card-footer text-muted d-flex justify-content-around" style="z-index: 1000;">
-                <a href="{{route('bookings.create', $trip->uuid)}}" class="btn btn-outline-primary">Boook Now?</a>
+                @if(!$trip->status['availability'])
+                    <a href="#" class="btn btn-secondary disabled"><del>Not Available</del></a>
+                @else
+                    <a href="{{route('bookings.create', $trip->uuid)}}" class="btn btn-outline-primary">Boook Now!</a>
+                @endif
             </div>
         </div>
     </div>

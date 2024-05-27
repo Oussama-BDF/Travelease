@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <hr>
--                <h5 class="text-dark font-weight-bold h4 mb-0">All Ratings and Reviews</h5>
+                <h5 class="text-dark font-weight-bold h4 mb-0">All Ratings and Reviews</h5>
                 @foreach ($reviews as $review)
                     <div class="user-review pt-4 pb-4">
                         <div class="media">
