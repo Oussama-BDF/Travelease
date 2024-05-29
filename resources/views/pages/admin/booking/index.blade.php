@@ -80,7 +80,5 @@
             </div>
         </div>
     </div>
-
-    <x-delete-modal password="false" title="Sure to delete this review?" description='Select "Delete" below if you are sure that you want delete this review.' />
     
 </x-admin-layout>

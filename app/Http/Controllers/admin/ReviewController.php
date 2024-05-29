@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     /**
-     * Display a listing of the reviews.
+     * Display a listing of reviews.
      */
     public function index() {
-        $reviews = Review::orderBy('id', 'desc')->get();
+        $reviews = Review::with('user')
+            ->orderBy('id', 'desc')
+            ->get();
         $reviewsAvg = number_format(Review::avg('rating'), 1);
         return view('pages.admin.review.index', compact('reviews', 'reviewsAvg'));
     }

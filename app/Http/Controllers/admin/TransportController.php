@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Transport;
 use Illuminate\Http\Request;
-use App\Http\Requests\TransportRequest;
 
 class TransportController extends Controller
 {
@@ -30,20 +29,24 @@ class TransportController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TransportRequest $request)
+    public function store(Request $request)
     {
-        Transport::create($request->validated());
-            return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Added Successfully');
+        Transport::create($request->validate([
+            'name' => 'required|max:20',
+        ]));
+        return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Added Successfully');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(TransportRequest $request, $transport_uuid)
+    public function update(Request $request, $transport_uuid)
     {
         $transport = Transport::where('uuid', $transport_uuid)->firstOrFail();
 
-        $transport->fill($request->validated());
+        $transport->fill($request->validate([
+            'name' => 'required|max:20',
+        ]));
         if ($transport->isDirty()) {
             $transport->save();
             return to_route('admin.transports.index')->with('success', 'Your <strong>Transport</strong> Updated Successfully');

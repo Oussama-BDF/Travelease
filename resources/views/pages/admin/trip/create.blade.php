@@ -93,7 +93,7 @@
                 <button id="add-activity" type="button" class="btn btn-primary rounded-circle">+</button>
                 <div id="activity-container">
                     @foreach(old("activity_name") ?? [] as $key => $activity_name)
-                        <x-activity-input :key="$key" :activity_price="old('activity_price.' . $key)" :activity_name="$activity_name" />
+                        <x-admin.activity-input :key="$key" :activity_price="old('activity_price.' . $key)" :activity_name="$activity_name" />
                     @endforeach
                 </div>
 
@@ -101,7 +101,7 @@
                 <div class="row">
                     @for($i=1; $i<=3; $i++)
                         <div class="col-md-4">
-                            <x-upload-image :key="$i" />
+                            <x-admin.upload-image :key="$i" />
                             @error('image' .$i)
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

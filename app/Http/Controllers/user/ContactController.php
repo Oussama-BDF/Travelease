@@ -8,7 +8,12 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
-    public function create(Request $request) {
+
+    public function create() {
+        return view('pages.user.contact_us');
+    }
+
+    public function store(Request $request) {
         $formFields = $request->validate([
             'fname' => 'required',
             'lname' => 'required',

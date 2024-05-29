@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 class ManageUsersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of users.
      */
     public function index()
     {
@@ -24,7 +24,8 @@ class ManageUsersController extends Controller
     }
 
     public function show($user_uuid) {
-        $user = User::where('uuid', $user_uuid)->firstOrFail();
+        $user = User::where('uuid', $user_uuid)
+            ->firstOrFail();
         return view('pages.admin.users.show', compact('user'));
     }
 }

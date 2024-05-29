@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>{{ucfirst($title)}} - Explore Morocco</title>
+        <title>Page Not Found - Explore Morocco</title>
 
         <style>
             * {
@@ -137,10 +137,10 @@
             <div class="overlay"></div>
             <div class="error">
                 <div class="icon">
-                    <h3>Oops! {{ucfirst($title)}}</h3>
-                    <h1><span>{{$codeStatus[0]}}</span><span>{{$codeStatus[1]}}</span><span>{{$codeStatus[2]}}</span></h1>
+                    <h3>Oops! Page Not Found</h3>
+                    <h1><span>4</span><span>0</span><span>4</span></h1>
                 </div>
-                <h2>{{$message}}</h2>
+                <h2>we are sorry, but the page you requested was not found</h2>
                 <button onclick="goBack()">Go Back</button>
             </div>
         </div>

@@ -1,7 +1,33 @@
+<style>
+    /* .icon {
+        display: inline-block !important;
+        font-size: 1.1rem !important;
+        width: .9em;
+        height: .9em;
+        background-color: currentColor;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        margin-right: .25rem;
+        color: white;
+    }
+
+    .icon ~ span {
+        vertical-align: text-top;
+    }
+
+    .tachometer {
+        mask-image: url({{asset('svgs/tachometer.svg')}});
+        -webkit-mask-image: url({{asset('svgs/tachometer.svg')}});
+    } */
+</style>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
         <div class="sidebar-brand-icon">
 			<img src="{{asset('img/logo-white.svg')}}" alt="..." />
         </div>
@@ -13,8 +39,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route('dashboard')}}">
+        <a class="nav-link" href="{{route('admin.dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
+            {{-- <span class="icon tachometer"></span> --}}
             <span>Dashboard</span>
         </a>
     </li>

@@ -23,7 +23,7 @@ class TripFactory extends Factory
             'description' => fake()->paragraph(),
             'price' => fake()->randomFloat(2, 100, 9999),
             'accommodation' => fake()->randomElement(['Hotel', 'Hostel', 'Apartment', 'Villa', 'Condo', 'Beach house', 'Chalet', 'Cottage']),
-            'transport_id' => fake()->randomElement([1,2]),
+            'transport_id' => fake()->randomElement([1,2,3,4,5,6,7,8,9,10,11,12]),
         ];
     }
 }

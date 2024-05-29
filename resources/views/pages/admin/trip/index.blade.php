@@ -3,7 +3,7 @@
     <!-- Content Row -->
     <div class="row">
         @forelse($trips as $trip)
-        <x-trip-card :trip="$trip" />
+        <x-admin.trip-card :trip="$trip" />
         @empty
             <p>No Trip Available</p>
         @endforelse

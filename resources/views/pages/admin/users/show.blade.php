@@ -32,44 +32,6 @@
                                 <h6 class="text-muted">{{$user->address}}</h6>
                             </div>
                         </div>
-                        {{-- <h6 class="my-3 border-bottom border-gray font-weight-bold">Recent Booking</h6>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="mb-2 font-weight-bold">Trip Name</p>
-                                <h6 class="text-muted">Oujeda</h6>
-                                <h6 class="text-muted">El Jadida</h6>
-                                <h6 class="text-muted">Chefchawen</h6>
-                            </div>
-                            <div class="col-sm-6">
-                                <p class="mb-2 font-weight-bold">Date</p>
-                                <h6 class="text-muted">08/05/2024</h6>
-                                <h6 class="text-muted">08/05/2024</h6>
-                                <h6 class="text-muted">08/05/2024</h6>
-                            </div>
-                            <a href="#" class="btn btn-primary btn-small">View All</a>
-                        </div>
-                        <h6 class="my-3 border-bottom border-gray font-weight-bold">Latest Reviews</h6>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p class="mb-2 font-weight-bold">Trip Name</p>
-                                <h6 class="text-muted">Marackech</h6>
-                                <h6 class="text-muted">Rabat</h6>
-                                <h6 class="text-muted">Casablanca</h6>
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="mb-2 font-weight-bold">Review</p>
-                                <h6 class="text-muted">Dinoter husainm Dinoter...</h6>
-                                <h6 class="text-muted">Dinoter husainm Dinoter...</h6>
-                                <h6 class="text-muted">Dinoter husainm Dinoter...</h6>
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="mb-2 font-weight-bold">Rating</p>
-                                <h6 class="text-muted"><x-user-rating rating="5" /></h6>
-                                <h6 class="text-muted"><x-user-rating rating="3" /></h6>
-                                <h6 class="text-muted"><x-user-rating rating="2" /></h6>
-                            </div>
-                            <a href="#" class="btn btn-primary btn-small">View All</a>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -109,7 +71,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($user->bookings()->orderBy('id', 'desc')->get() as $key => $booking)
+                            @foreach ($user->bookings()->with('trip')->orderBy('id', 'desc')->get() as $key => $booking)
                                 <tr>
                                     <td>{{date('D, d M Y', strtotime($booking->created_at))}}</td>
                                     <td>{{$booking->adults_number}}</td>
@@ -153,9 +115,9 @@
                         <thead>
                             <tr>
                                 <th>Review</th>
-                                <th style="width: 125px">Rating</th>
+                                <th style="width: 160px">Rating</th>
                                 <th style="width: 120px">Date</th>
-                                <th>Action</th>
+                                <th style="width: 120px">Action</th>
                             </tr>
                         </thead>
                         <tfoot>

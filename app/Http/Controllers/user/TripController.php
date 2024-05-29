@@ -23,7 +23,6 @@ class TripController extends Controller
     {
         //Use "with" to avoid the duplication of queries on the table transports
         $trips = Trip::query()
-            ->with('transport')
             ->orderBy('id', 'desc')
             ->paginate(9);
 

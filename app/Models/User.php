@@ -48,14 +48,14 @@ class User extends BaseUserModel
         'password' => 'hashed',
     ];
 
-    public function getRedirectRoute() {
-        if ($this->hasRole('admin')) {
-            return 'dashboard';
-        } else if ($this->hasRole('user')) {
-            return 'home';
-        }
-        return RouteServiceProvider::HOME;
-    }
+    // public function getRedirectRoute() {
+    //     if ($this->hasRole('admin')) {
+    //         return 'dashboard';
+    //     } else if ($this->hasRole('user')) {
+    //         return 'home';
+    //     }
+    //     return RouteServiceProvider::HOME;
+    // }
 
     public function reviews() {
         return $this->hasMany(Review::class);

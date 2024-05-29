@@ -24,7 +24,7 @@
                             <li><a href="{{route('about_us')}}">About us</a></li>
                             <li><a href="{{route('trips.index')}}">Trips</a></li>
                             <li><a href="{{route('reviews.index')}}">Reviews</a></li>
-                            <li><a href="{{route('contact_us')}}">Contact us</a></li>
+                            <li><a href="{{route('contact.create')}}">Contact us</a></li>
                         </ul>
                     </div>
 

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Morocco - {{ucwords($title)}}</title>
-    @vite(['resources/scss/app.scss'])
+    {{-- @vite(['resources/scss/app.scss']) --}}
+    <link rel="stylesheet" href="{{asset('build/assets/app.min.css')}}">
     <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css">
 </head>
@@ -12,7 +13,6 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- flashbag-->
         @include('components.flashbag')
 
         <!-- Sidebar -->
@@ -45,22 +45,17 @@
         <!-- And Content Wrapper -->
     </div>
 
-    <!-- Scroll to Top Button-->
-    @include('components.scrollTopButton')
-
     <!-- Logout Modal-->
-    @include('components.logoutModal')
+    @include('components.admin.logoutModal')
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('js/main1.js')}}"></script>
+    <script src="{{asset('js/chart.min.js')}}"></script>
+    <script src="{{asset('js/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('js/datatables-demo.js')}}"></script>
 
-    <script src="{{asset('js/Chart.min.js')}}"></script>
-
-    <script src="{{asset('js/chart-area-demo.js')}}"></script>
 </body>
 </html>

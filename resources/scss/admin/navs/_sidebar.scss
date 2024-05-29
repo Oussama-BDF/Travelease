@@ -344,69 +344,6 @@
 
 // Sidebar Color Variants
 
-// Sidebar Light
-.sidebar-light {
-    .sidebar-brand {
-        color: $gray-700;
-    }
-
-    hr.sidebar-divider {
-        border-top: 1px solid $gray-200;
-    }
-
-    .sidebar-heading {
-        color: $gray-500;
-    }
-
-    .nav-item {
-        .nav-link {
-            color: $gray-600;
-
-            i {
-                color: $gray-400;
-            }
-
-            &:active,
-            &:focus,
-            &:hover {
-                color: $gray-700;
-
-                i {
-                    color: $gray-700;
-                }
-            }
-
-            // Accordion
-            &[data-toggle="collapse"]::after {
-                color: $gray-500;
-            }
-        }
-
-        &.active {
-            .nav-link {
-                color: $gray-700;
-
-                i {
-                    color: $gray-700;
-                }
-            }
-        }
-    }
-
-    // Color the sidebar toggler
-    #sidebarToggle {
-        background-color: $gray-200;
-
-        &::after {
-            color: $gray-500;
-        }
-
-        &:hover {
-            background-color: $gray-300;
-        }
-    }
-}
-
 // Sidebar Dark
 .sidebar-dark {
     .sidebar-brand {

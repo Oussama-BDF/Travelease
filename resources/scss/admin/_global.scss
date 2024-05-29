@@ -15,6 +15,22 @@ a {
   }
 }
 
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.img-card {
+  height: 250px;
+}
+
+h6 {
+  font-size: 14px;
+}
+
 // Main page wrapper
 #wrapper {
   display: flex;

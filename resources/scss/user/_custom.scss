@@ -1,45 +1,3 @@
-// Global
-main {
-    min-height: 100vh;
-}
-
-.message {
-    margin: 0 auto 30px;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-
-h6 {
-    font-size: 14px;
-}
-
-.object-fit-cover {
-    object-fit: cover;
-}
-
-.btn-small {
-    padding: 5px 10px;
-    font-size: 10px;
-}
-
-.overflow-hidden {
-    overflow: hidden;
-}
-
-.img-card {
-    height: 250px;
-}
-
-.bg-gray {
-    background-color: $gray-100 !important;
-}
-
-.border-bottom {
-    border-bottom: 1px solid $gray-400 !important;
-}
-
-
 // Rating stars
 .rating {
     display: flex;
@@ -108,7 +66,6 @@ h6 {
     color: #000000;
 }
 
-
 // upload image element
 .btn_upload.profile {
     background: $primary;
@@ -150,7 +107,6 @@ h6 {
         opacity: 0.8;
     }
 }
-
 .uploaded_image_view.profile,
 .image_view.profile {
     display: none;
@@ -171,7 +127,6 @@ h6 {
         display: block;
     }
 }
-
 .uploaded_image_view.profile .image_remove {
     width: 40px;
     height: 40px;
@@ -188,7 +143,6 @@ h6 {
         transition: 0.2s;
     }
 }
-
 .image_view.profile .image_delete {
     width: 30px;
     height: 30px;
@@ -206,15 +160,11 @@ h6 {
     }
 }
 
-
 .trip-card:hover img {
     opacity: .7;
 }
 
-
-
 // Nav bar
-
 .navbar .container {
     margin-block: 0;
 }
@@ -257,7 +207,6 @@ h6 {
 #mainNav .navbar-nav .nav-item .nav-link:hover {
     color: #fff;
 }
-
 @media (min-width: 992px) {
     #mainNav {
         padding-top: .5rem;
@@ -294,7 +243,6 @@ h6 {
     }
 }
 
-
 // read more
 .read-more {
     position: relative;
@@ -316,9 +264,6 @@ h6 {
     }
 }
 
-
-
-
 // trip status
 /* Base styles for the status */
 .status {
@@ -329,24 +274,19 @@ h6 {
     text-transform: uppercase;
     margin-bottom: 0;
 }
-
 /* Upcoming status styles */
 .status.upcoming {
     color: #c3a03a;
 }
-
 /* Ongoing status styles */
 .status.ongoing {
     color: #598ec9;
 }
-
 /* Completed status styles */
 .status.completed {
     color: #529461;
 }
-
 /* Full status styles */
 .status.full {
     color: #a85a62;
 }
-

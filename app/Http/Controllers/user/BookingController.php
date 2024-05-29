@@ -19,12 +19,21 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class BookingController extends Controller
 {
-
+    /**
+     * Display a listing of the user bookings.
+     */
     public function index() {
-        $bookings = Auth::user()->bookings()->orderBy('id', 'desc')->get();
+        $bookings = Auth::user()
+            ->bookings()
+            ->with('trip')
+            ->orderBy('id', 'desc')
+            ->get();
         return view('pages.user.booking.index', compact('bookings'));
     }
 
+    /**
+     * Show the form for creating a new booking.
+     */
     public function create($trip_uuid) {
         // Check if the trip is exist
         $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
@@ -37,7 +46,9 @@ class BookingController extends Controller
         return view('pages.user.booking.create', compact('trip'));
     }
 
-    
+    /**
+     * Store a newly created booking in storage.
+     */
     public function store(Request $request, $trip_uuid) {
         // Retrive the trip if exist
         $trip = Trip::where('uuid', $trip_uuid)->firstOrFail();
@@ -90,13 +101,16 @@ class BookingController extends Controller
             'cancel_url'  => route('bookings.checkout.cancel'),
         ]);
 
-        // Set the payment_token and save the booking object in the database
+        // Set the payment_token (which equal the session id) and save the booking object in the database
         $booking->payment_token = $session->id;
         $booking->save();
 
         return redirect()->away($session->url);
     }
 
+    /**
+     * Show the view of booking success
+     */
     public function checkoutSuccess(Request $request)
     {
         // Check if there is a session id in the url
@@ -107,8 +121,8 @@ class BookingController extends Controller
         // Retrive the booking object if exist
         $booking = Booking::where('payment_token', $request->session_id)->firstOrFail();
 
-        // Check if the booking payment token equal the session id from the url
-        if (!($booking->payment_token === $request->session_id && $booking->payment_status == 'unpaid'))
+        // Check if the payment status is paid
+        if ($booking->payment_status == 'paid')
             return abort('404');
 
         // Handle successful payment: update payment status to "paid" and generate QrCode.
@@ -121,17 +135,22 @@ class BookingController extends Controller
         return view('pages.user.booking.success', compact('qrCode', 'booking'));
     }
 
+    /**
+     * Show the view of booking canceled
+     */
     public function checkoutCancel(Request $request)
     {
         return view('pages.user.booking.cancel');
     }
 
-
+    /**
+     * retry the payment
+     */
     public function retryPayment(Request $request, $booking_uuid)
     {
         $booking = Booking::where('uuid', $booking_uuid)->firstOrFail();
 
-        // return 404 if the booking is paid
+        // Check if the booking is paid
         if($booking->payment_status == "paid") {
             return abort('404');
         }
@@ -157,21 +176,26 @@ class BookingController extends Controller
             'cancel_url'  => route('bookings.checkout.cancel'),
         ]);
 
+        // Change the payment_token by the new session id and update the booking
         $booking->payment_token = $session->id;
         $booking->update();
 
         return redirect()->away($session->url);
     }
 
-
+    /**
+     * Get the ticket of the booking
+     */
     public function getTicket($booking_uuid)
     {
         $booking = Booking::where('uuid', $booking_uuid)->firstOrFail();
 
+        // Check the user and the payment status
         if(!($booking->user_id == Auth::user()->id) || $booking->payment_status == "unpaid") {
             return abort('404');
         }
 
+        // Generate the QrCode
         $qrData = route('admin.bookings.verify', ['token' => $booking_uuid]);
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($qrData));
         

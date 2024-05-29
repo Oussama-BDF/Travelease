@@ -72,7 +72,30 @@
     sitePlusMinus();
 })();
 
-/****************** links *************************/
+/************************* Nav bar shrink *************************/
+window.addEventListener("DOMContentLoaded", (event) => {
+    // Navbar shrink function
+    var navbarShrink = function () {
+        const navbarCollapsible = document.body.querySelector("#mainNav");
+        if (!navbarCollapsible) {
+            return;
+        }
+        if (window.scrollY === 0) {
+            navbarCollapsible.classList.remove("navbar-shrink");
+        } else {
+            navbarCollapsible.classList.add("navbar-shrink");
+        }
+    };
+
+    // Shrink the navbar
+    navbarShrink();
+
+    // Shrink the navbar when page is scrolled
+    document.addEventListener("scroll", navbarShrink);
+});
+
+
+/************************* links *************************/
 // Get the current URL
 var currentUrl = window.location.href;
 
@@ -101,7 +124,8 @@ navLinks.forEach(function (li) {
     });
 });
 
-/****************** Preview Image *************************/
+
+/************************* Image *************************/
 document.addEventListener("DOMContentLoaded", function () {
     // Add event listener to all file input elements with the class 'image_upload'
     var fileInputs = document.querySelectorAll(".image_upload");
@@ -173,7 +197,8 @@ function removeImage(event) {
     }
 }
 
-/****************** Delete Image *************************/
+
+/************************* Delete An Image *************************/
 function deleteImage(event) {
     var checkbox = event.target;
     var imgContainer = checkbox.parentElement;
@@ -187,24 +212,20 @@ function deleteImage(event) {
     uploadImgButton.classList.toggle("disabled");
 }
 
-// Nav bar
-window.addEventListener("DOMContentLoaded", (event) => {
-    // Navbar shrink function
-    var navbarShrink = function () {
-        const navbarCollapsible = document.body.querySelector("#mainNav");
-        if (!navbarCollapsible) {
-            return;
-        }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove("navbar-shrink");
-        } else {
-            navbarCollapsible.classList.add("navbar-shrink");
-        }
-    };
-
-    // Shrink the navbar
-    navbarShrink();
-
-    // Shrink the navbar when page is scrolled
-    document.addEventListener("scroll", navbarShrink);
+/************************* Alert *************************/
+// Rmove the alert from the screen
+document.addEventListener("DOMContentLoaded", function() {
+    var alert = document.querySelector(".alert");
+    if(alert) {
+        alert.style.transition = "opacity 2s";
+        alert.style.opacity = 1;
+    
+        setTimeout(function() {
+            alert.style.transition = "opacity 0.5s";
+            alert.style.opacity = 0;
+            setTimeout(function() {
+                $(alert).alert('close')
+            }, 500);
+        }, 3000);
+    }
 });

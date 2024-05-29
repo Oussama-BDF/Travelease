@@ -11,7 +11,7 @@
             @foreach ($trips as $trip)
                 <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                     <div class="post-entry">
-                        <a href="{{route('trips.show', $trip->id)}}" class="post-thumbnail"><img src="{{asset('storage/'.$trip->images->first()->path)}}" alt="Image"
+                        <a href="{{route('trips.show', $trip->uuid)}}" class="post-thumbnail"><img src="{{asset('storage/'.$trip->images->first()->path)}}" alt="Image"
                             class="card-img-top object-fit-cover img-card" /></a>
                         <div class="post-content-entry">
                             <h3>

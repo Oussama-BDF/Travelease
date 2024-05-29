@@ -14,7 +14,9 @@ class ReviewController extends Controller
      * Display a listing of the reviews.
      */
     public function index() {
-        $reviews = Review::orderBy('id', 'desc')->paginate(9);
+        $reviews = Review::with('user')
+            ->orderBy('id', 'desc')
+            ->paginate(9);
         $reviewsAvg = number_format(Review::avg('rating'), 1);
         return view('pages.user.review.index', compact('reviews', 'reviewsAvg'));
     }
@@ -39,7 +41,7 @@ class ReviewController extends Controller
         // Check if the rating has the allowed values
         $allowed_values = [1, 2, 3, 4, 5];
         if (!in_array($formFields['rating'], $allowed_values)) {
-            return back();
+            return back()->with('failed', 'Cannot add this review, Try Again');
         }
 
         // retrieve the user id
@@ -48,6 +50,6 @@ class ReviewController extends Controller
         // Create the review
         Review::create($formFields);
 
-        return to_route('reviews.index')->with('success', 'Your <strong>Trip</strong> Added Successfully');
+        return to_route('reviews.index')->with('success', 'Your <strong>Review</strong> Added Successfully');
     }
 }

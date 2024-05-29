@@ -64,7 +64,7 @@ class ReportController extends Controller
             'newUsers' => $newUsers,
             'topDestinations' => $topDestinations,
             'bookingStatuses' => $bookingStatuses,
-            'generatedOn' => now()->format('Y-m-d'),
+            'generatedOn' => $now->format('Y-m-d'),
         ];
 
         // Load the view and convert it to PDF

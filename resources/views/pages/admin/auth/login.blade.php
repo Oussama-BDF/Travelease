@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Explore Morocco - Login</title>
-        @vite(['resources/scss/app.scss'])
+        {{-- @vite(['resources/scss/app.scss']) --}}
+        <link rel="stylesheet" href="{{asset('build/assets/app.min.css')}}">
     </head>
 
     <body class="bg-gradient-primary">

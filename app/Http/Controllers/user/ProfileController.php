@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
     /**
      * Display the user's profile form.
@@ -40,7 +37,7 @@ class ProfileController extends Controller
             }
             // Store the new image in the public disk and retrieve the paths
             $validated['profile_image'] = $request->file('profile_image')->store('profile', 'public');
-            $validated['profile_image_thumbnail'] = static::ResizeStoreImage($request->file('profile_image'), 'profile');
+            $validated['profile_image_thumbnail'] = static::processThumbnail($request->file('profile_image'), 'profile');
         }
 
         // Check if the user want to delete the old profile image
@@ -59,6 +56,9 @@ class ProfileController extends Controller
         return back()->with('success', 'Your <strong>Profile</strong> Added Successfully');
     }
 
+    /**
+     * Update the password
+     */
     public function updatePassword(PasswordUpdateRequest $request) {
         $validated = $request->validated();
 
@@ -69,6 +69,9 @@ class ProfileController extends Controller
         return back()->with('success', 'password-updated');
     }
 
+    /**
+     * Delete the account
+     */
     public function destroy(Request $request) {
         $request->validate([
             'your_password' => ['required', 'current_password'],
@@ -89,44 +92,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return to_route('home');
-    }
-
-    public static function ResizeStoreImage($OriginalImage, $destinationDirectory) {
-        // create image manager with desired driver
-        $manager = new ImageManager(new Driver());
-
-        // Generate unique file name for the thumbnail image
-        $thumbnailImageName = uniqid() . '.' . $OriginalImage->getClientOriginalExtension();
-
-        // read image from file system
-        $image = $manager->read($OriginalImage);
-
-        // resize image
-        $image->scale(width: 100);
-
-        // Check if the directories exist, if not, create them
-        if (!Storage::disk('public')->exists($destinationDirectory)) {
-            Storage::disk('public')->makeDirectory($destinationDirectory);
-        }
-        if (!Storage::disk('public')->exists("{$destinationDirectory}/thumbnails")) {
-            Storage::disk('public')->makeDirectory("{$destinationDirectory}/thumbnails");
-        }
-
-        // $thumbnailImagePath = 'thumbnails/' . $destinationDirectory . '/' . $thumbnailImageName;
-        $thumbnailImagePath = "$destinationDirectory/thumbnails/$thumbnailImageName";
-
-        // save modified image in the public disk
-        $image->save(storage_path('app/public/' . $thumbnailImagePath));
-
-        // Return the file path
-        return $thumbnailImagePath;
-    }
-
-    public static function deleteFile($fileToDelete) {
-        // Check if the file exists before attempting to delete it
-        if (Storage::disk('public')->exists($fileToDelete)) {
-            // Delete the file
-            Storage::disk('public')->delete($fileToDelete);
-        }
     }
 }

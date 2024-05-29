@@ -3,7 +3,7 @@
     {{-- Content Row --}}
     <div class="row">
         @forelse($transports as $key => $transport)
-            <x-transport-card :transport='$transport' :key='$key'/>
+            <x-admin.transport-card :transport='$transport' :key='$key'/>
         @empty
             <p>No Transport Available</p>
         @endforelse

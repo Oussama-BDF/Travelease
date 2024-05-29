@@ -9,7 +9,7 @@ use App\Models\Contact;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the contact messages
+     * Display a listing of contact messages
      */
     public function index() {
         $contacts = Contact::all();

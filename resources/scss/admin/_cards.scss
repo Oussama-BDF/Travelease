@@ -1,6 +1,9 @@
 // Custom Card Styling
 
 .card {
+  &.trip-card:hover img {
+    opacity: .8;
+  }
   .card-header {
     // Format Dropdowns in Card Headings
     .dropdown {

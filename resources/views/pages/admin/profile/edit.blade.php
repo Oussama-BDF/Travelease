@@ -57,7 +57,7 @@
 
     <div class="row my-4">
         <div class="col-12 p-4 bg-white shadow rounded">
-            <form action="{{route('admin.password.update')}}" method="post">
+            <form action="{{route('admin.profile.password.update')}}" method="post">
                 @csrf
                 @method('PATCH')
                 <p class="text-dark font-weight-bold text-lg mb-0">Update Password</p>

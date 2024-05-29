@@ -28,33 +28,33 @@ class Handler extends ExceptionHandler
         });
     }
 
-    function render($request, Throwable $exception)
-    {
-        if ($this->isHttpException($exception)) {
-            $error = [] ;
-            if ($exception->getStatusCode() == 404) {
-                $error =  [
-                    'title' => 'page not found',
-                    'message' => "we are sorry, but the page you requested was not found",
-                    'codeStatus' => (string)$exception->getStatusCode(),
-                ];
-            }
-            if ($exception->getStatusCode() == 403) {
-                $error =  [
-                    'title' => 'Forbidden',
-                    'message' => "You don't have the right roles to access this page!",
-                    'codeStatus' => (string)$exception->getStatusCode(),
-                ];
-            }
-            if ($exception->getStatusCode() == 500) {
-                $error =  [
-                    'title' => 'Server Error',
-                    'message' => "Internal Server Error, Something is wrong!",
-                    'codeStatus' => (string)$exception->getStatusCode(),
-                ];
-            }
-            return response()->view('errors.index', $error);
-        }
-        return parent::render($request, $exception);
-    }
+    // function render($request, Throwable $exception)
+    // {
+    //     if ($this->isHttpException($exception)) {
+    //         $error = [] ;
+    //         if ($exception->getStatusCode() == 404) {
+    //             $error =  [
+    //                 'title' => 'page not found',
+    //                 'message' => "we are sorry, but the page you requested was not found",
+    //                 'codeStatus' => (string)$exception->getStatusCode(),
+    //             ];
+    //         }
+    //         if ($exception->getStatusCode() == 403) {
+    //             $error =  [
+    //                 'title' => 'Forbidden',
+    //                 'message' => "You don't have the right roles to access this page!",
+    //                 'codeStatus' => (string)$exception->getStatusCode(),
+    //             ];
+    //         }
+    //         if ($exception->getStatusCode() == 500) {
+    //             $error =  [
+    //                 'title' => 'Server Error',
+    //                 'message' => "Internal Server Error, Something is wrong!",
+    //                 'codeStatus' => (string)$exception->getStatusCode(),
+    //             ];
+    //         }
+    //         return response()->view('errors.index', $error);
+    //     }
+    //     return parent::render($request, $exception);
+    // }
 }

@@ -46,14 +46,6 @@ class DashboardController extends Controller
             ->whereMonth('created_at', Carbon::now()->month)
             ->count();
 
-        // $activatedTrips = Trip::where(function ($query) use ($now) {
-        //     $query->where('start_at', '>', $now)
-        //         ->orWhere(function ($query) use ($now) {
-        //             $query->where('start_at', '<=', $now)
-        //                     ->where('end_at', '>', $now);
-        //         });
-        // })->get();
-
         // Bookings (Monthly)
         $BookingsMonthly = Booking::whereYear('created_at', $year)
             ->whereMonth('created_at', $month)

@@ -94,11 +94,11 @@
                 <button id="add-activity" type="button" class="btn btn-primary rounded-circle">+</button>
                 <div id="activity-container">
                     @foreach($trip->activities as $key => $activity)
-                        <x-activity-input :key="$key" :activity_price="old('activity_price.' . $key, $activity->price)" :activity_name="old('activity_name.' . $key, $activity->name)" />
+                        <x-admin.activity-input :key="$key" :activity_price="old('activity_price.' . $key, $activity->price)" :activity_name="old('activity_name.' . $key, $activity->name)" />
                     @endforeach
                     @foreach(old("activity_name") ?? [] as $key => $activity_name)
                         @if( $key >= $trip->activities->count() )
-                            <x-activity-input :key="$key" :activity_price="old('activity_price.' . $key)" :activity_name="$activity_name" />
+                            <x-admin.activity-input :key="$key" :activity_price="old('activity_price.' . $key)" :activity_name="$activity_name" />
                         @endif
                     @endforeach
                 </div>
@@ -107,7 +107,7 @@
                 <div class="row">
                     @foreach($trip->images as $key => $image)
                         <div class="col-md-4">
-                            <x-upload-image :key="$key+1" />
+                            <x-admin.upload-image :key="$key+1" />
                             {{-- Old Image View --}}
                             <div class="image_view trip show">
                                 <input class="image_delete" type="checkbox" name="delete_image{{$key+1}}">
@@ -121,7 +121,7 @@
                     @endforeach
                     @for($i=count($trip->images)+1; $i<=3; $i++)
                         <div class="col-md-4">
-                            <x-upload-image :key="$i" />
+                            <x-admin.upload-image :key="$i" />
                             @error('image' .$i)
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

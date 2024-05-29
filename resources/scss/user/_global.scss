@@ -1,0 +1,34 @@
+// Global
+main {
+    min-height: 100vh;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.img-card {
+    height: 250px;
+}
+
+.bg-gray {
+    background-color: $gray-100 !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid $gray-400 !important;
+}
+
+.message {
+    margin: 0 auto 30px;
+    font-size: 25px;
+    font-weight: bold;
+}
