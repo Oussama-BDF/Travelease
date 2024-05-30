@@ -20,7 +20,7 @@ class TripController extends BaseController
     {
         $trips = Trip::query()
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(9);
 
         return view('pages.admin.trip.index', compact('trips'));
     }

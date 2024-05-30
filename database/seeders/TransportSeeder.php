@@ -15,7 +15,7 @@ class TransportSeeder extends Seeder
 
         $names = ['Airplane', 'Car', 'Motor Cycle', 'Train', 'Boat', 'Ferry', 'Bicycles', 'Electric Bike', 'Bus', 'Tram', 'Subway', 'walk'];
         // Create 12 transports
-        for ($i=0; $i < 1; $i++) { 
+        for ($i=0; $i < 12; $i++) { 
             $user = \App\Models\Transport::create([
                 'name' => $names[$i],
             ]);

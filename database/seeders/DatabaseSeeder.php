@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(TransportSeeder::class);
+        $this->call(TripSeeder::class);
+        $this->call(ImageSeeder::class);
+        $this->call(ActivitySeeder::class);
     }
 }

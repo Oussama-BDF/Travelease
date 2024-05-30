@@ -15,8 +15,8 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $user = \App\Models\User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@explore.com',
+            'name' => 'Oussama Boudafdafa',
+            'email' => 'admin@exploremorocco.com',
             'phone_number' => null,
             'address' => null,
         ]);

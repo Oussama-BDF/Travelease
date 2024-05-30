@@ -12,6 +12,6 @@
                 <p class="message">Sorry No Trip Available!!</p>
             @endforelse
         </div>
+        {{$trips->links()}}
     </div>
-    {{$trips->links()}} 
 </x-user-layout>

@@ -17,13 +17,11 @@ class TripFactory extends Factory
     public function definition(): array
     {
         return [
-            'destination' => fake()->city(),
-            'start_at' => fake()->dateTimeBetween('now', '+1 week')->format('Y-m-d'),
-            'end_at' => fake()->dateTimeBetween('+2 weeks', '3 weeks')->format('Y-m-d'),
-            'description' => fake()->paragraph(),
-            'price' => fake()->randomFloat(2, 100, 9999),
+            'description' => fake()->randomElement([null, 'Experience the thrill of adventure with our curated trips. From exotic destinations to cultural wonders, each journey promises unforgettable memories. Book your next getaway today!']),
+            'price' => fake()->randomFloat(2, 100, 400),
             'accommodation' => fake()->randomElement(['Hotel', 'Hostel', 'Apartment', 'Villa', 'Condo', 'Beach house', 'Chalet', 'Cottage']),
-            'transport_id' => fake()->randomElement([1,2,3,4,5,6,7,8,9,10,11,12]),
+            'transport_id' => rand(1, 12),
+            'max_travelers' => rand(5, 20),
         ];
     }
 }
